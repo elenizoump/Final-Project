@@ -5,7 +5,7 @@ const router = new Router();
 const User = require('./../models/user');
 const bcryptjs = require('bcryptjs');
 
-router.post('/sign-up', (req, res, next) => {
+router.post('/register', (req, res, next) => {
   const { name, email, password } = req.body;
   bcryptjs
     .hash(password, 10)
@@ -25,7 +25,7 @@ router.post('/sign-up', (req, res, next) => {
     });
 });
 
-router.post('/sign-in', (req, res, next) => {
+router.post('/logIn', (req, res, next) => {
   let userId;
   const { email, password } = req.body;
   User.findOne({ email })
@@ -40,7 +40,7 @@ router.post('/sign-in', (req, res, next) => {
     .then(result => {
       if (result) {
         req.session.user = userId;
-        res.json({ user });
+        res.json({ });
       } else {
         return Promise.reject(new Error('Wrong password.'));
       }
@@ -50,7 +50,7 @@ router.post('/sign-in', (req, res, next) => {
     });
 });
 
-router.post('/sign-out', (req, res, next) => {
+router.post('/logOut', (req, res, next) => {
   req.session.destroy();
   res.json({});
 });

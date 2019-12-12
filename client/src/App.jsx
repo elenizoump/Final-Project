@@ -27,20 +27,21 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <BrowserRouter>
+  
+          <Fragment>
+            <Link to="/sign-in">Sign In</Link>
+            <Link to="/sign-up">Sign Up</Link>
+          </Fragment>
+        
+      <Switch>
+        <Route path="/sign-up" component={TeacherSignUpView} />
+        <Route path="/sign-in" component={SignInView} />
+      </Switch>
+     
+    </BrowserRouter>
+     
     </div>
   );
 }

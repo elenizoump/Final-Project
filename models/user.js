@@ -7,6 +7,10 @@ const schema = new mongoose.Schema({
     type: String,
     enum: ["Teacher", "Student"]
   },
+  description: {
+    type: String
+  },
+  
   name: {
     type: String,
     trim: true

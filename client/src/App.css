@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+input {
+  margin: 5px;
+  padding: 5px;
+ 
+}

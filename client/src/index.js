@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App.jsx";
 import * as serviceWorker from "./serviceWorker";
-=======
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App.jsx';
-import * as serviceWorker from './serviceWorker';
->>>>>>> f838126ccd3e0341fe140e94868830881c651e31
 
 ReactDOM.render(<App />, document.getElementById("root"));
 

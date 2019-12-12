@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 // student views
@@ -28,7 +28,6 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      
       <BrowserRouter>
   
           <Fragment>

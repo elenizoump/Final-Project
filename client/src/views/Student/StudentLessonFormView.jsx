@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-//import { create as createNoteService } from './../services/notes';
+import { create as createLessonService } from './../../services/lesson.js';
 
 class StudentLessonFormView extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class StudentLessonFormView extends Component {
   async handleFormSubmission(event) {
     event.preventDefault();
     const lesson = this.state.lesson;
-    console.log(note);
+    console.log(lesson);
     try {
       const lessonDocument = await createLessonService(lesson);
       const id = lessonDocument._id;

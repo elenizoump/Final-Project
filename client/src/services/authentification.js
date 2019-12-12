@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 const apiAuthenticationService = axios.create({
-  baseURL: '/api/authentication'
+  baseURL: "/api/authentication"
 });
 
 export const signIn = async data => {
@@ -24,7 +24,10 @@ export const signUp = async data => {
 
 export const signUpTeacher = async data => {
   try {
-    const response = await apiAuthenticationService.post(`/sign-up-teacher`, data);
+    const response = await apiAuthenticationService.post(
+      `/sign-up-teacher`,
+      data
+    );
     return response.data.user;
   } catch (error) {
     throw error;
@@ -39,3 +42,12 @@ export const signOut = async () => {
   }
 };
 
+export const load = async id => {
+  try {
+    const response = await apiService.get(`/${id}`);
+    const user = response.data.user;
+    return user;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class TeacherSignUpView extends Component {
+class SignUpView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,10 +10,9 @@ class TeacherSignUpView extends Component {
       address: '',
       image:'',
       password: '',
-      levels: '',
-      gender: '',
       age:'',
       city:'',
+      instruments:'',
       description: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,9 +29,9 @@ class TeacherSignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { name, email, address, image, password, levels, gender, age, city, description} = this.state;
+    const { name, email, address, image, password, age, city, instruments, description} = this.state;
     try {
-      const user = await TeacherSignUpView({ name, email, address, image, password, levels, gender, age, city, description});
+      const user = await SignUpView({ name, email, address, image, password, age, city, instruments, description});
       console.log(user);
       this.props.history.push(`/private`);
     } catch (error) {
@@ -73,20 +72,6 @@ class TeacherSignUpView extends Component {
             onChange={this.handleInputChange}
           />
           <input
-            type="levels"
-            placeholder="levels"
-            value={this.state.levels}
-            name="levels"
-            onChange={this.handleInputChange}
-          />
-          <input
-            type="gender"
-            placeholder="gender"
-            value={this.state.gender}
-            name="gender"
-            onChange={this.handleInputChange}
-          />
-          <input
             type="age"
             placeholder="age"
             value={this.state.age}
@@ -98,6 +83,13 @@ class TeacherSignUpView extends Component {
             placeholder="city"
             value={this.state.city}
             name="city"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="instruments"
+            placeholder="instruments"
+            value={this.state.instruments}
+            name="instruments"
             onChange={this.handleInputChange}
           />
           <input
@@ -114,4 +106,4 @@ class TeacherSignUpView extends Component {
   }
 }
 
-export default TeacherSignUpView;
+export default SignUpView;

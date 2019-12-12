@@ -10,7 +10,7 @@ const schema = new mongoose.Schema({
   description: {
     type: String
   },
-  
+
   name: {
     type: String,
     trim: true
@@ -25,17 +25,34 @@ const schema = new mongoose.Schema({
     type: String
   },
 
-  address: {
-    type: String,
-    required: true
-  },
+  address: [
+    {
+      streetname: {
+        type: String,
+        required: true
+      },
+      postcode: {
+        type: Number,
+        required: true
+      },
+      city: {
+        type: String,
+        required: true
+      },
+      houseNumber: {
+        type: Number,
+        required: true
+      }
+    }
+  ],
+
   image: {
     type: String
   },
   levels: [
     {
       name: {
-        type: String,
+        type: [String],
         enum: ["Beginner", "Intermediate", "Advanced"]
       },
       price: {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { signUp as signUpService } from "./../../services/authentication";
+import { signUp as signUpService } from "./../../services/authentification";
 
 class AuthenticationSignUpView extends Component {
   constructor(props) {

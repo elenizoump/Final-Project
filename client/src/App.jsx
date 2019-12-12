@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 
 // student views
@@ -27,21 +27,17 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      
       <BrowserRouter>
-  
-          <Fragment>
-            <Link to="/sign-in">Sign In</Link>
-            <Link to="/sign-up">Sign Up</Link>
-          </Fragment>
-        
-      <Switch>
-        <Route path="/sign-up" component={TeacherSignUpView} />
-        <Route path="/sign-in" component={SignInView} />
-      </Switch>
-     
-    </BrowserRouter>
-     
+        <Fragment>
+          <Link to="/sign-in">Sign In</Link>
+          <Link to="/sign-up">Sign Up</Link>
+        </Fragment>
+
+        <Switch>
+          <Route path="/sign-up" component={TeacherSignUpView} />
+          <Route path="/sign-in" component={SignInView} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

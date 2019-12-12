@@ -44,7 +44,7 @@ export const signOut = async () => {
 
 export const load = async id => {
   try {
-    const response = await apiService.get(`/${id}`);
+    const response = await apiAuthenticationService.get(`/${id}`);
     const user = response.data.user;
     return user;
   } catch (error) {

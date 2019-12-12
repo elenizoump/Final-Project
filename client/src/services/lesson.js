@@ -5,7 +5,7 @@ const apiService = axios.create({
   // baseURL: 'http://localhost:3020/api'
   // After proxying
   // baseURL: 'http://localhost:3000/api'
-  baseURL: "/api"
+  baseURL: "/lesson"
 });
 
 export const list = async () => {
@@ -45,10 +45,6 @@ export const remove = async id => {
 };
 
 export const create = async lesson => {
-  const data = new FormData();
-  data.append("instrument", lesson.instrument);
-  data.append("hoursOfStudy", lesson.hoursOfStudy);
-
   try {
     const response = await apiService.post(`/create`, data);
     return response.data.lesson;

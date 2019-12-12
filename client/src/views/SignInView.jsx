@@ -1,34 +1,27 @@
 import React, { Component } from "react";
 
-export default class SignInView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: ""
-    };
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleFormSubmission = this.handleFormSubmission.bind(this);
-  }
-
-  handleInputChange(event) {
-    const email = event.target.email;
-    const password = event.target.password;
-    const value = event.target.value;
-    this.setState({
-      [email]: value
-    });
-  }
-
-  async handleFormSubmission(event) {
-    event.preventDefault();
-    const { email, password } = this.state;
-    try {
-      //const email = await loginService({ email, password })
-    } catch {}
-  }
-
+class SignInView extends Component {
   render() {
-    return <div></div>;
+    return (
+      <main>
+        <form>
+          <input
+            type="text"
+            placeholder="Username"
+           
+            name="text"
+          />
+          <input
+            type="password"
+            placeholder="Password"
+          
+            name="password"
+          />
+          <button>Sign In</button>
+        </form>
+      </main>
+    );
   }
 }
+
+export default SignInView

@@ -9,10 +9,10 @@ import StudentListOfLessonsView from "./views/Student/StudentListOfLessonsView";
 import StudentProfileView from "./views/Student/StudentProfileView";
 import StudentProgressView from "./views/Student/StudentProgressView";
 import StudentSignUpView from "./views/Student/StudentSignUpView";
-import StudentSingleLessoView from "./views/Student/StudentSingleLessoView";
+import StudentSingleLessonView from "./views/Student/StudentSingleLessonView";
 //teacher views
 import TeacherCalendarView from "./views/Teacher/TeacherCalendarView";
-import TeacherListOfLessons from "./views/Teacher/TeacherListOfLessons";
+import TeacherListOfLessonsView from "./views/Teacher/TeacherListOfLessonsView";
 import TeacherListRequestedLessons from "./views/Teacher/TeacherListRequestedLessons";
 import TeacherProfileView from "./views/Teacher/TeacherProfileView";
 import TeacherSignUpView from "./views/Teacher/TeacherSignUpView";

@@ -1,19 +1,20 @@
-'use strict';
+"use strict";
 
-const { Router } = require('express');
+const { Router } = require("express");
 const router = new Router();
-const User = require('./../models/user');
-const bcryptjs = require('bcryptjs');
+const User = require("./../models/user");
+const bcryptjs = require("bcryptjs");
 
-router.post('/register', (req, res, next) => {
-  const { name, email, password } = req.body;
+router.post("/register", (req, res, next) => {
+  const { name, email, password, address } = req.body;
   bcryptjs
     .hash(password, 10)
     .then(hash => {
       return User.create({
         name,
         email,
-        passwordHash: hash
+        passwordHash: hash,
+        address
       });
     })
     .then(user => {
@@ -25,7 +26,7 @@ router.post('/register', (req, res, next) => {
     });
 });
 
-router.post('/logIn', (req, res, next) => {
+router.post("/logIn", (req, res, next) => {
   let userId;
   const { email, password } = req.body;
   User.findOne({ email })
@@ -40,9 +41,9 @@ router.post('/logIn', (req, res, next) => {
     .then(result => {
       if (result) {
         req.session.user = userId;
-        res.json({ });
+        res.json({ message: "sucess in logIn" });
       } else {
-        return Promise.reject(new Error('Wrong password.'));
+        return Promise.reject(new Error("Wrong password."));
       }
     })
     .catch(error => {
@@ -50,7 +51,7 @@ router.post('/logIn', (req, res, next) => {
     });
 });
 
-router.post('/logOut', (req, res, next) => {
+router.post("/logOut", (req, res, next) => {
   req.session.destroy();
   res.json({});
 });

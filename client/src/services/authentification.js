@@ -22,6 +22,15 @@ export const signUp = async data => {
   }
 };
 
+export const signUpTeacher = async data => {
+  try {
+    const response = await apiAuthenticationService.post(`/sign-up-teacher`, data);
+    return response.data.user;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const signOut = async () => {
   try {
     await apiAuthenticationService.post(`/sign-out`);

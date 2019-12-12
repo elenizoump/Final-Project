@@ -6,10 +6,14 @@ class StudentLessonFormView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lesson: {
+      /* lesson: {
         instrument: "",
-        hoursOfStudy: 0
-      }
+        hoursOfStudy: 0,
+        student: "",
+        teacher: "",
+        date: "",
+        status: "Pending"
+      } */
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);

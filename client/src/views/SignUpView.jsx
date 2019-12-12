@@ -10,8 +10,6 @@ class SignUpView extends Component {
       address: '',
       image:'',
       password: '',
-      levels: '',
-      gender: '',
       age:'',
       city:'',
       instruments:'',
@@ -31,9 +29,9 @@ class SignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { name, email, address, image, password, levels, gender, age, city, instruments, description} = this.state;
+    const { name, email, address, image, password, age, city, instruments, description} = this.state;
     try {
-      const user = await SignUpView({ name, email, address, image, password, levels, gender, age, city, instruments, description});
+      const user = await SignUpView({ name, email, address, image, password, age, city, instruments, description});
       console.log(user);
       this.props.history.push(`/private`);
     } catch (error) {
@@ -71,20 +69,6 @@ class SignUpView extends Component {
             placeholder="password"
             value={this.state.password}
             name="password"
-            onChange={this.handleInputChange}
-          />
-          <input
-            type="levels"
-            placeholder="levels"
-            value={this.state.levels}
-            name="levels"
-            onChange={this.handleInputChange}
-          />
-          <input
-            type="gender"
-            placeholder="gender"
-            value={this.state.gender}
-            name="gender"
             onChange={this.handleInputChange}
           />
           <input

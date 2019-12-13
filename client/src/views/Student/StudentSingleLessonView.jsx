@@ -30,22 +30,22 @@ class StudentSingleLessonView extends Component {
     return (
       <div>
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={user.image} />
+          <Card.Img variant="top" src={lesson._teacher.image} />
           <Card.Body>
             <Card.Title>
-              <p>{_teacher.name}</p>
-              <p>{_teacher.gender}</p>
-              <p>{_teacher.age}</p>
-              <p>{_teacher.name}</p>
-              <p>{_teacher.adress}</p>
-              {this.state._teacher.levels.map(level => (
+              <p>{lesson._teacher.name}</p>
+              <p>{lesson._teacher.gender}</p>
+              <p>{lesson._teacher.age}</p>
+              <p>{lesson._teacher.name}</p>
+              <p>{lesson._teacher.adress}</p>
+              {this.state.lesson._teacher.levels.map(level => (
                 <p>
-                  {level.name} - {level.price}
+                  {level.levelsname} - {level.levelsprice}
                 </p>
               ))}
             </Card.Title>
 
-            <Card.Text>{_teacher.description}</Card.Text>
+            <Card.Text>{lesson._teacher.description}</Card.Text>
             <Button variant="primary">Go somewhere</Button>
           </Card.Body>
         </Card>

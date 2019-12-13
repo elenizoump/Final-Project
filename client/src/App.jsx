@@ -40,6 +40,7 @@ function App() {
           <Route path="/sign-up" component={SignUpView} />
           <Route path="/sign-in" component={SignInView} />
           <Route path="/sign-up-teacher" component={TeacherSignUpView} />
+<<<<<<< HEAD
 
           <ProtectedRoute
             path="/create"
@@ -48,6 +49,8 @@ function App() {
             verify={this.verifyAuthentication}
             redirect="/error/401"
           />
+=======
+>>>>>>> 8bc2ce6f0fcdf6f99a4023cf591efa010105d329
         </Switch>
       </BrowserRouter>
     </div>

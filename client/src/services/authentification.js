@@ -42,9 +42,9 @@ export const signOut = async () => {
   }
 };
 
-export const load = async id => {
+export const load = async name => {
   try {
-    const response = await apiAuthenticationService.get(`/${id}`);
+    const response = await apiAuthenticationService.get(`/${name}`);
     const user = response.data.user;
     return user;
   } catch (error) {

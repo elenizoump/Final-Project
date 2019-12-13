@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
 
 class TeacherSignUpView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      email: '',
-      address: '',
-      image:'',
-      password: '',
-      levels: '',
-      gender: '',
-      age:'',
-      city:'',
-      description: ''
+      name: "",
+      email: "",
+      address: "",
+      image: "",
+      password: "",
+      levels: "",
+      gender: "",
+      age: "",
+      city: "",
+      description: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -30,11 +29,33 @@ class TeacherSignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { name, email, address, image, password, levels, gender, age, city, description} = this.state;
+    const {
+      name,
+      email,
+      address,
+      image,
+      password,
+      levels,
+      gender,
+      age,
+      city,
+      description
+    } = this.state;
     try {
-      const user = await TeacherSignUpView({ name, email, address, image, password, levels, gender, age, city, description});
+      const user = await TeacherSignUpView({
+        name,
+        email,
+        address,
+        image,
+        password,
+        levels,
+        gender,
+        age,
+        city,
+        description
+      });
       console.log(user);
-      this.props.history.push(`/private`);
+      this.props.history.push(`/${name}`);
     } catch (error) {
       console.log(error);
     }

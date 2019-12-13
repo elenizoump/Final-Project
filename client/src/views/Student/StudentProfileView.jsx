@@ -9,7 +9,7 @@ class StudentProfileView extends Component {
     super(props);
     this.state = {
       user: null,
-      levels: []
+      instruments: []
     };
   }
   async componentDidMount() {

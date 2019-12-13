@@ -19,6 +19,7 @@ import TeacherListRequestedLessons from "./views/Teacher/TeacherListRequestedLes
 import TeacherProfileView from "./views/Teacher/TeacherProfileView";
 import TeacherSignUpView from "./views/Teacher/TeacherSignUpView";
 import TeacherSingleLessonRequest from "./views/Teacher/TeacherSingleLessonRequest";
+import TeacherSingleLessonView from "./views/Teacher/TeacherSingleLessonView";
 //other
 import ErrorView from "./views/ErrorView";
 import LessonWallView from "./views/LessonWallView";
@@ -78,6 +79,15 @@ class App extends Component {
             <Route path="/sign-in" component={SignInView} />
             <Route path="/sign-up-teacher" component={TeacherSignUpView} />
             <Route path="/lesson/create" component={StudentLessonFormView} />
+            {/* <Route
+              path="/TeacherSingleLessonView"
+              component={TeacherSingleLessonView}
+            />
+            <Route
+              path="/StudentSingleLessonView"
+              component={StudentSingleLessonView}
+            /> */}
+
             {/* <ProtectedRoute
               path="/create"
               // component={NoteCreateView}

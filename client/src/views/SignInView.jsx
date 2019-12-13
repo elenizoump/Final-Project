@@ -1,21 +1,30 @@
 import React, { Component } from "react";
 
 class SignInView extends Component {
+  // constructor
+
+
+  // handleChange
+
+
+  // handleSubmit
+  
   render() {
     return (
       <main>
-        <form action='/student-profile' method='GET'>
+        <form>
           <input
             type="text"
             placeholder="Email"
             name="text"
+            onChange
           />
           <input
             type="password"
             placeholder="Password"
             name="password"
           />
-          <button>Sign In</button>
+          <button onClick>Sign In</button>
         </form>
       </main>
     );

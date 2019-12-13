@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiAuthenticationService = axios.create({
-  baseURL: "/api/authentication"
+  baseURL: "http://localhost:5000/auth"
 });
 
 export const signIn = async data => {
@@ -21,6 +21,8 @@ export const signUp = async data => {
     throw error;
   }
 };
+
+export default signUp;
 
 export const signUpTeacher = async data => {
   try {
@@ -42,11 +44,10 @@ export const signOut = async () => {
   }
 };
 
-export const load = async name => {
+export const load = async id => {
   try {
-    const response = await apiAuthenticationService.get(`/${name}`);
-    const user = response.data.user;
-    return user;
+    const response = await apiAuthenticationService.get(`/student/${id}`);
+    return response.data;
   } catch (error) {
     throw error;
   }

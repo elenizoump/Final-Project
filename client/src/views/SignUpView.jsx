@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import signUp from './../services/authentification';
 
 
 class SignUpView extends Component {
@@ -23,6 +24,7 @@ class SignUpView extends Component {
   }
 
   handleInputChange(event) {
+    event.preventDefault();
     const name = event.target.name;
     const value = event.target.value;
     this.setState({
@@ -34,9 +36,8 @@ class SignUpView extends Component {
     event.preventDefault();
     const { name, email, image, password, age, instruments, description, streetname, postcode, city, housenumber } = this.state;
     try {
-      const user = await SignUpView({ name, email, image, password, age, instruments, description, streetname, postcode, city, housenumber });
-      console.log(user);
-      this.props.history.push(`/private`);
+      const user = await signUp(this.state);
+      this.props.history.push(`/student/${user._id}`);
     } catch (error) {
       console.log(error);
     }
@@ -45,9 +46,9 @@ class SignUpView extends Component {
   render() {
     return (
       <main>
-        <form action="/profile/{{user._id}}" method="POST" enctype="multipart/form-data" onSubmit={this.handleFormSubmission}>
+        <form onSubmit={this.handleFormSubmission}>
           <input
-            type="name"
+            type="text"
             placeholder="name"
             value={this.state.name}
             name="name"
@@ -68,7 +69,7 @@ class SignUpView extends Component {
             onChange={this.handleInputChange}
           />
           <input
-            type="age"
+            type="number"
             placeholder="age"
             value={this.state.age}
             name="age"
@@ -76,14 +77,14 @@ class SignUpView extends Component {
           />
           <label htmlFor="instruments">Choose your instrument</label>
           <input
-            type="instrumentname"
+            type="text"
             placeholder="instrumentname"
             value={this.state.instrumentname}
             name="instrumentname"
             onChange={this.handleInputChange}
           />
           <input
-            type="level"
+            type="text"
             placeholder="level"
             value={this.state.level}
             name="level"
@@ -92,35 +93,35 @@ class SignUpView extends Component {
           <label htmlFor="address">Address</label>
 
           <input
-            type="streetname"
+            type="text"
             placeholder="streetname"
             value={this.state.streetname}
             name="streetname"
             onChange={this.handleInputChange}
           />
           <input
-            type="housenumber"
+            type="number"
             placeholder="housenumber"
             value={this.state.housenumber}
             name="housenumber"
             onChange={this.handleInputChange}
           />
           <input
-            type="postcode"
+            type="text"
             placeholder="postcode"
             value={this.state.postcode}
             name="postcode"
             onChange={this.handleInputChange}
           />
           <input
-            type="city"
+            type="text"
             placeholder="city"
             value={this.state.city}
             name="city"
             onChange={this.handleInputChange}
           />
           <input
-            type="description"
+            type="text"
             placeholder="description"
             value={this.state.description}
             name="description"

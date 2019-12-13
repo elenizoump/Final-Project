@@ -12,6 +12,7 @@ export const signIn = async data => {
     throw error;
   }
 };
+//export default signIn;
 
 export const signUp = async data => {
   try {
@@ -21,20 +22,19 @@ export const signUp = async data => {
     throw error;
   }
 };
+//export default signUp;
 
-export default signUp;
-
-export const signUpTeacher = async data => {
-  try {
-    const response = await apiAuthenticationService.post(
-      `/sign-up-teacher`,
-      data
-    );
-    return response.data.user;
-  } catch (error) {
-    throw error;
-  }
-};
+// export const signUpTeacher = async data => {
+//   try {
+//     const response = await apiAuthenticationService.post(
+//       `/sign-up-teacher`,
+//       data
+//     );
+//     return response.data.user;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export const signOut = async () => {
   try {
@@ -43,6 +43,7 @@ export const signOut = async () => {
     throw error;
   }
 };
+//export default signOut;
 
 export const load = async id => {
   try {
@@ -52,3 +53,4 @@ export const load = async id => {
     throw error;
   }
 };
+//export default load;

@@ -4,25 +4,25 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { load as loadUserInformationService } from "./services/authentification.js";
 
 // student views
-import ListOfTeachersView from "./views/Student/ListOfTeachersView";
-import PopUpView from "./views/Student/PopUpView";
+// import ListOfTeachersView from "./views/Student/ListOfTeachersView";
+// import PopUpView from "./views/Student/PopUpView";
 import StudentLessonFormView from "./views/Student/StudentLessonFormView";
 import StudentListOfLessonsView from "./views/Student/StudentListOfLessonsView";
 import StudentProfileView from "./views/Student/StudentProfileView";
-import StudentProgressView from "./views/Student/StudentProgressView";
-import StudentSignUpView from "./views/Student/StudentSignUpView";
-import StudentSingleLessonView from "./views/Student/StudentSingleLessonView";
+// import StudentProgressView from "./views/Student/StudentProgressView";
+// import StudentSignUpView from "./views/Student/StudentSignUpView";
+// import StudentSingleLessonView from "./views/Student/StudentSingleLessonView";
 //teacher views
-import TeacherCalendarView from "./views/Teacher/TeacherCalendarView";
-import TeacherListOfLessonsView from "./views/Teacher/TeacherListOfLessonsView";
-import TeacherListRequestedLessons from "./views/Teacher/TeacherListRequestedLessons";
+// import TeacherCalendarView from "./views/Teacher/TeacherCalendarView";
+// import TeacherListOfLessonsView from "./views/Teacher/TeacherListOfLessonsView";
+// import TeacherListRequestedLessons from "./views/Teacher/TeacherListRequestedLessons";
 import TeacherProfileView from "./views/Teacher/TeacherProfileView";
 import TeacherSignUpView from "./views/Teacher/TeacherSignUpView";
 import TeacherSingleLessonRequest from "./views/Teacher/TeacherSingleLessonRequest";
 import TeacherSingleLessonView from "./views/Teacher/TeacherSingleLessonView";
 //other
-import ErrorView from "./views/ErrorView";
-import LessonWallView from "./views/LessonWallView";
+// import ErrorView from "./views/ErrorView";
+// import LessonWallView from "./views/LessonWallView";
 import SignInView from "./views/SignInView";
 import SignUpView from "./views/SignUpView";
 
@@ -75,10 +75,23 @@ class App extends Component {
           </Fragment>
 
           <Switch>
+            {/* routes to forms */}
             <Route path="/sign-up" component={SignUpView} />
-            <Route path="/student/:id" component={StudentProfileView} />
             <Route path="/sign-in" component={SignInView} />
             <Route path="/sign-up-teacher" component={TeacherSignUpView} />
+            {/* routes from forms to profiles */}
+            {/* <Route path="/teacher/:id" component={TeacherProfileView} />
+            <Route path="/student/:id" component={StudentProfileView} /> */}
+            <Route
+              path="/:userType/:id"
+              render={props =>
+                props.match.params.userType === "student" ? (
+                  <StudentProfileView {...props} />
+                ) : (
+                  <TeacherProfileView {...props} />
+                )
+              }
+            />
             <Route path="/lesson/create" component={StudentLessonFormView} />
             {/* <Route
               path="/TeacherSingleLessonView"

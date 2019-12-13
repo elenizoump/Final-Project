@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
-import signUp from './../services/authentification';
-
+import React, { Component } from "react";
+import { signUp } from "./../services/authentification";
 
 class SignUpView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      email: '',
-      image: '',
-      password: '',
-      age: '',
-      city: '',
-      instrumentname: '',
-      level:'',
-      description: '',
-      streetname: '',
-      postcode: '',
-      housenumber: ''
+      name: "",
+      email: "",
+      image: "",
+      password: "",
+      age: "",
+      city: "",
+      instrumentname: "",
+      level: "",
+      description: "",
+      streetname: "",
+      postcode: "",
+      housenumber: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -34,7 +33,19 @@ class SignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { name, email, image, password, age, instruments, description, streetname, postcode, city, housenumber } = this.state;
+    const {
+      name,
+      email,
+      image,
+      password,
+      age,
+      instruments,
+      description,
+      streetname,
+      postcode,
+      city,
+      housenumber
+    } = this.state;
     try {
       const user = await signUp(this.state);
       this.props.history.push(`/student/${user._id}`);
@@ -68,7 +79,8 @@ class SignUpView extends Component {
             name="password"
             onChange={this.handleInputChange}
           />
-          <input
+          {/* These can be added in the profile edit */}
+          {/* <input
             type="number"
             placeholder="age"
             value={this.state.age}
@@ -127,7 +139,7 @@ class SignUpView extends Component {
             name="description"
             onChange={this.handleInputChange}
           />
-          <input type="file" id="file" name="photo" />
+          <input type="file" id="file" name="photo" /> */}
           <button>Sign Up</button>
         </form>
       </main>

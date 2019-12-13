@@ -1,28 +1,30 @@
 import React, { Component } from "react";
+import { signUp } from "./../../services/authentification";
 
 class TeacherSignUpView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      email: '',
-      image: '',
-      password: '',
-      levelsname: '',
-      levelsprice:'',
-      gender: '',
-      age: '',
-      city: '',
-      description: '',
-      streetname: '',
-      postcode: '',
-      housenumber: ''
+      name: "",
+      email: "",
+      image: "",
+      password: "",
+      levelsname: "",
+      levelsprice: "",
+      gender: "",
+      age: "",
+      city: "",
+      description: "",
+      streetname: "",
+      postcode: "",
+      housenumber: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
   }
 
   handleInputChange(event) {
+    event.preventDefault();
     const name = event.target.name;
     const value = event.target.value;
     this.setState({
@@ -32,11 +34,24 @@ class TeacherSignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { name, email, image, password, levelsname, levelsprice, gender, age, description, streetname, postcode, city, housenumber } = this.state;
+    const {
+      name,
+      email,
+      image,
+      password,
+      levelsname,
+      levelsprice,
+      gender,
+      age,
+      description,
+      streetname,
+      postcode,
+      city,
+      housenumber
+    } = this.state;
     try {
-      const user = await TeacherSignUpView({ name, email, image, password, levelsname, levelsprice, gender, age, description, streetname, postcode, city, housenumber });
-      console.log(user);
-      this.props.history.push(`/${name}`);
+      const user = await signUp(this.state);
+      this.props.history.push(`/teacher/${user._id}`);
     } catch (error) {
       console.log(error);
     }
@@ -45,9 +60,9 @@ class TeacherSignUpView extends Component {
   render() {
     return (
       <main>
-        <form action='/TeacherProfileView' method='POST' onSubmit={this.handleFormSubmission} >
+        <form onSubmit={this.handleFormSubmission}>
           <input
-            type="name"
+            type="text"
             placeholder="name"
             value={this.state.name}
             name="name"
@@ -67,7 +82,8 @@ class TeacherSignUpView extends Component {
             name="password"
             onChange={this.handleInputChange}
           />
-           <input
+          {/* These can be added in the profile edit */}
+          {/* <input
             type="gender"
             placeholder="gender"
             value={this.state.gender}
@@ -136,6 +152,7 @@ class TeacherSignUpView extends Component {
             onChange={this.handleInputChange}
           />
           <input type="file" id="file" name="photo" />
+          */}
           <button>Sign Up</button>
         </form>
       </main>

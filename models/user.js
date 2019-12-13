@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const schema = new mongoose.Schema({
   type: {
     type: String,
-    enum: ["Teacher", "Student"]
+    enum: ["teacher", "student"]
   },
   description: {
     type: String
@@ -13,13 +13,15 @@ const schema = new mongoose.Schema({
 
   name: {
     type: String,
-    trim: true
+    trim: true,
+    unique: true
   },
   email: {
     type: String,
     required: true,
     lowercase: true,
-    trim: true
+    trim: true,
+    unique: true
   },
   passwordHash: {
     type: String

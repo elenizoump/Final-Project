@@ -13,7 +13,7 @@ class StudentProfileView extends Component {
     };
   }
   async componentDidMount() {
-    console.log('DID MOUNT',this.props.match.params.id);
+    console.log("DID MOUNT", this.props.match.params.id);
 
     const id = this.props.match.params.id;
     try {
@@ -22,7 +22,6 @@ class StudentProfileView extends Component {
         user
       });
     } catch (error) {
-      
       this.props.history.push("/error/404");
     }
   }
@@ -32,20 +31,20 @@ class StudentProfileView extends Component {
     console.log("USER NO REACT", user);
     const id = this.props.match.params.id;
     return (
-        
       <div>
         <Card style={{ width: "18rem" }}>
           {/* <Card.Img variant="top" src='#' /> */}
           <Card.Body>
             <Card.Title>
-              {user && (<div>
-                {user.name && <p>{user.name}</p>}
-              {user.gender && <p>{user.gender}</p>}
-              {user.age && <p>{user.age}</p>}
-              {user.adress && <p>{user.adress}</p>}
-              </div>)}
-              
-              
+              {user && (
+                <div>
+                  {user.name && <p>{user.name}</p>}
+                  {user.gender && <p>{user.gender}</p>}
+                  {user.age && <p>{user.age}</p>}
+                  {user.adress && <p>{user.adress}</p>}
+                </div>
+              )}
+
               {/* {this.state.user.instruments.map(instrument => (
                 <p>
                   {instrument.instrumentname}  {instrument.level}

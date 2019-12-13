@@ -7,13 +7,16 @@ class SignUpView extends Component {
     this.state = {
       name: '',
       email: '',
-      address: '',
-      image:'',
+      image: '',
       password: '',
-      age:'',
-      city:'',
-      instruments:'',
-      description: ''
+      age: '',
+      city: '',
+      instrumentname: '',
+      level:'',
+      description: '',
+      streetname: '',
+      postcode: '',
+      housenumber: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -29,9 +32,9 @@ class SignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { name, email, address, image, password, age, city, instruments, description} = this.state;
+    const { name, email, image, password, age, instruments, description, streetname, postcode, city, housenumber } = this.state;
     try {
-      const user = await SignUpView({ name, email, address, image, password, age, city, instruments, description});
+      const user = await SignUpView({ name, email, image, password, age, instruments, description, streetname, postcode, city, housenumber });
       console.log(user);
       this.props.history.push(`/private`);
     } catch (error) {
@@ -42,7 +45,7 @@ class SignUpView extends Component {
   render() {
     return (
       <main>
-        <form onSubmit={this.handleFormSubmission}>
+        <form action="/profile/{{user._id}}" method="POST" enctype="multipart/form-data" onSubmit={this.handleFormSubmission}>
           <input
             type="name"
             placeholder="name"
@@ -55,13 +58,6 @@ class SignUpView extends Component {
             placeholder="email"
             value={this.state.email}
             name="email"
-            onChange={this.handleInputChange}
-          />
-          <input
-            type="text"
-            placeholder="address"
-            value={this.state.address}
-            name="address"
             onChange={this.handleInputChange}
           />
           <input
@@ -78,18 +74,49 @@ class SignUpView extends Component {
             name="age"
             onChange={this.handleInputChange}
           />
+          <label htmlFor="instruments">Choose your instrument</label>
+          <input
+            type="instrumentname"
+            placeholder="instrumentname"
+            value={this.state.instrumentname}
+            name="instrumentname"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="level"
+            placeholder="level"
+            value={this.state.level}
+            name="level"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="address">Address</label>
+
+          <input
+            type="streetname"
+            placeholder="streetname"
+            value={this.state.streetname}
+            name="streetname"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="housenumber"
+            placeholder="housenumber"
+            value={this.state.housenumber}
+            name="housenumber"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="postcode"
+            placeholder="postcode"
+            value={this.state.postcode}
+            name="postcode"
+            onChange={this.handleInputChange}
+          />
           <input
             type="city"
             placeholder="city"
             value={this.state.city}
             name="city"
-            onChange={this.handleInputChange}
-          />
-          <input
-            type="instruments"
-            placeholder="instruments"
-            value={this.state.instruments}
-            name="instruments"
             onChange={this.handleInputChange}
           />
           <input
@@ -99,6 +126,7 @@ class SignUpView extends Component {
             name="description"
             onChange={this.handleInputChange}
           />
+          <input type="file" id="file" name="photo" />
           <button>Sign Up</button>
         </form>
       </main>

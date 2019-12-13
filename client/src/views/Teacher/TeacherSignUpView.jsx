@@ -7,14 +7,17 @@ class TeacherSignUpView extends Component {
     this.state = {
       name: '',
       email: '',
-      address: '',
-      image:'',
+      image: '',
       password: '',
-      levels: '',
+      levelsname: '',
+      levelsprice:'',
       gender: '',
-      age:'',
-      city:'',
-      description: ''
+      age: '',
+      city: '',
+      description: '',
+      streetname: '',
+      postcode: '',
+      housenumber: ''
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -30,9 +33,9 @@ class TeacherSignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { name, email, address, image, password, levels, gender, age, city, description} = this.state;
+    const { name, email, image, password, levelsname, levelsprice, gender, age, description, streetname, postcode, city, housenumber } = this.state;
     try {
-      const user = await TeacherSignUpView({ name, email, address, image, password, levels, gender, age, city, description});
+      const user = await TeacherSignUpView({ name, email, image, password, levelsname, levelsprice, gender, age, description, streetname, postcode, city, housenumber });
       console.log(user);
       this.props.history.push(`/private`);
     } catch (error) {
@@ -43,7 +46,7 @@ class TeacherSignUpView extends Component {
   render() {
     return (
       <main>
-        <form onSubmit={this.handleFormSubmission}>
+        <form action='/TeacherProfileView' method='POST' onSubmit={this.handleFormSubmission} >
           <input
             type="name"
             placeholder="name"
@@ -59,27 +62,13 @@ class TeacherSignUpView extends Component {
             onChange={this.handleInputChange}
           />
           <input
-            type="text"
-            placeholder="address"
-            value={this.state.address}
-            name="address"
-            onChange={this.handleInputChange}
-          />
-          <input
             type="password"
             placeholder="password"
             value={this.state.password}
             name="password"
             onChange={this.handleInputChange}
           />
-          <input
-            type="levels"
-            placeholder="levels"
-            value={this.state.levels}
-            name="levels"
-            onChange={this.handleInputChange}
-          />
-          <input
+           <input
             type="gender"
             placeholder="gender"
             value={this.state.gender}
@@ -91,6 +80,46 @@ class TeacherSignUpView extends Component {
             placeholder="age"
             value={this.state.age}
             name="age"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="Levels">Price according to level</label>
+          <input
+            type="levelsname"
+            placeholder="levelsname"
+            value={this.state.levelsname}
+            name="levelsname"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="levelsprice"
+            placeholder="levelsprice"
+            value={this.state.levelsprice}
+            name="levelsprice"
+            onChange={this.handleInputChange}
+          />
+         
+
+          <label htmlFor="address">Address</label>
+
+          <input
+            type="streetname"
+            placeholder="streetname"
+            value={this.state.streetname}
+            name="streetname"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="housenumber"
+            placeholder="housenumber"
+            value={this.state.housenumber}
+            name="housenumber"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="postcode"
+            placeholder="postcode"
+            value={this.state.postcode}
+            name="postcode"
             onChange={this.handleInputChange}
           />
           <input
@@ -107,6 +136,7 @@ class TeacherSignUpView extends Component {
             name="description"
             onChange={this.handleInputChange}
           />
+          <input type="file" id="file" name="photo" />
           <button>Sign Up</button>
         </form>
       </main>

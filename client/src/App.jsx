@@ -40,6 +40,7 @@ function App() {
         <Route path="/sign-up" component={SignUpView} />
         <Route path="/sign-in" component={SignInView} />
         <Route path="/sign-up-teacher" component={TeacherSignUpView} />
+        <Route path="/teacher-profile" component={TeacherProfileView} />
       </Switch>
      
     </BrowserRouter>

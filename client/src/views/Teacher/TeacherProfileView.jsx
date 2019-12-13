@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { load as loadUserService } from "./../../services/authentification";
 
+
+
 class TeacherProfileView extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +33,7 @@ class TeacherProfileView extends Component {
     return (
       <div>
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={user.image} />
+          <Card.Img variant="top" src='#' />
           <Card.Body>
             <Card.Title>
               <p>{user.name}</p>
@@ -41,7 +43,7 @@ class TeacherProfileView extends Component {
               <p>{user.adress}</p>
               {this.state.user.levels.map(level => (
                 <p>
-                  {level.name} - {level.price}
+                  {level.levelsname} - {level.levesprice}
                 </p>
               ))}
             </Card.Title>

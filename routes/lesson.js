@@ -28,8 +28,8 @@ router.get("/list", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const note = await Lesson.findById(req.params.id).exec();
-    res.json({ note });
+    const lesson = await Lesson.findById(req.params.id).exec();
+    res.json({ lesson });
   } catch (error) {
     next(error);
   }
@@ -51,7 +51,7 @@ router.patch("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
   try {
     await Lesson.findByIdAndRemove(req.params.id).exec();
-    res.json({});
+    res.json({ message: "lesson deleted" });
   } catch (error) {
     next(error);
   }

@@ -49,6 +49,11 @@ class StudentSingleLessonView extends Component {
             <Button variant="primary">Go somewhere</Button>
           </Card.Body>
         </Card>
+        <div className="lesson-info">
+          <p>{lesson.date}</p>
+          <p>{lesson.status}</p>
+          <p>{lesson.status}</p>
+        </div>
         <div className="_teacherMapLocation">
           <p>Here goes the house location on the map</p>
         </div>

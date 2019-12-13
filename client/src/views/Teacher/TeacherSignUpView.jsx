@@ -32,37 +32,9 @@ class TeacherSignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-<<<<<<< HEAD
     const { name, email, image, password, levelsname, levelsprice, gender, age, description, streetname, postcode, city, housenumber } = this.state;
     try {
       const user = await TeacherSignUpView({ name, email, image, password, levelsname, levelsprice, gender, age, description, streetname, postcode, city, housenumber });
-=======
-    const {
-      name,
-      email,
-      address,
-      image,
-      password,
-      levels,
-      gender,
-      age,
-      city,
-      description
-    } = this.state;
-    try {
-      const user = await TeacherSignUpView({
-        name,
-        email,
-        address,
-        image,
-        password,
-        levels,
-        gender,
-        age,
-        city,
-        description
-      });
->>>>>>> bbf0b50017c97293439928fc9dbc3b5f7baa4c02
       console.log(user);
       this.props.history.push(`/${name}`);
     } catch (error) {

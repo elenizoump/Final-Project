@@ -1,53 +1,43 @@
 import React, { Component } from "react";
 
-import { create as createLessonService } from './../../services/lesson.js';
+import { create as createLessonService } from "./../../services/lesson.js";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 class StudentLessonFormView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      /* lesson: {
+      lesson: {
         instrument: "",
-        hoursOfStudy: 0,
-        student: "",
-        teacher: "",
-        date: "",
-        status: "Pending"
-      } */
+        hoursOfStudy: 0
+      }
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
-    //this.handleFileChange = this.handleFileChange.bind(this);
+
     console.log(this.props);
   }
 
   handleInputChange(event) {
-    const lesson = event.target.lesson;
+    const name = event.target.name;
     const value = event.target.value;
-    // console.log(name, value);
+    console.log(name, value);
     this.setState({
       // [name]: value
       lesson: {
         ...this.state.lesson,
-        [lesson]: value
-      }
-    });
-    /*
-    this.setState(previousState => ({
-      lesson: {
-        ...previousState.note,
         [name]: value
       }
-    }));
-    */
+    });
   }
 
   async handleFormSubmission(event) {
     event.preventDefault();
     const lesson = this.state.lesson;
-    console.log(lesson);
     try {
       const lessonDocument = await createLessonService(lesson);
+      console.log(lessonDocument);
       const id = lessonDocument._id;
       this.props.history.push(`/${id}`);
     } catch (error) {
@@ -70,26 +60,42 @@ class StudentLessonFormView extends Component {
     const lesson = this.state.lesson;
     return (
       <main>
-        {lesson && (
-          <form onSubmit={this.handleFormSubmission}>
-            <input
+        <Form onSubmit={this.handleFormSubmission}>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Instrument</Form.Label>
+            <Form.Control
+              as="select"
               type="text"
               placeholder="instrument"
               value={lesson.instrument || ""}
               name="instrument"
               onChange={this.handleInputChange}
-            />
-            <input
+            >
+              <option>Piano</option>
+              <option>Guitar</option>
+              <option>Violin</option>
+              <option>Drums</option>
+              <option>Saxophone</option>
+              <option>Flute</option>
+              <option>Clarinet</option>
+              <option>Cello</option>
+              <option>Vocals</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Hours of Study</Form.Label>
+            <Form.Control
               type="number"
               placeholder="Hours of study this week"
               value={lesson.hoursOfStudy || ""}
               name="hoursOfStudy"
               onChange={this.handleInputChange}
             />
-
-            <button>Confirm Lesson</button>
-          </form>
-        )}
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Create Lesson
+          </Button>
+        </Form>
       </main>
     );
   }

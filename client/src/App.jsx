@@ -74,11 +74,12 @@ class App extends Component {
           </Fragment>
 
           <Switch>
+            <Route path="/lesson/create" component={StudentLessonFormView} />
+            <Route path="/lesson/list" component={StudentListOfLessonsView} />
             <Route path="/sign-up" component={SignUpView} />
             <Route path="/student/:id" component={StudentProfileView} />
             <Route path="/sign-in" component={SignInView} />
             <Route path="/sign-up-teacher" component={TeacherSignUpView} />
-            <Route path="/lesson/create" component={StudentLessonFormView} />
             {/* <ProtectedRoute
               path="/create"
               // component={NoteCreateView}

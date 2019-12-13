@@ -5,12 +5,13 @@ const apiService = axios.create({
   // baseURL: 'http://localhost:3020/api'
   // After proxying
   // baseURL: 'http://localhost:3000/api'
-  baseURL: "/lesson"
+  baseURL: "http://localhost:5000/lesson"
 });
 
 export const list = async () => {
   try {
     const response = await apiService.get("/list");
+    console.log(response);
     const lessons = response.data.lessons;
     return lessons;
   } catch (error) {

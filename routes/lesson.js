@@ -5,22 +5,40 @@ const router = new Router();
 
 const Lesson = require("./../models/Lesson");
 
-/*
-router.get('/list', (req, res, next) => {
-  Note.find()
-    .then(lesson => {
-      res.json({ notes });
+/* router.get("/list", (req, res, next) => {
+  Lesson.find()
+    .then(lessons => {
+      res.json({ lessons });
     })
     .catch(error => {
       next(error);
     });
-});
-*/
+}); */
 
+router.post("/create", async (req, res, next) => {
+  // const { title, body } = req.body;
+  const instrument = req.body.instrument;
+  const hours = req.body.hoursOfStudy;
+  const creator = req.session.user;
+
+  try {
+    // const note = await Note.create({ title, body }).exec();
+    const data = {
+      instrument: instrument,
+      hoursOfStudy: hours,
+      _student: creator
+    };
+    const lesson = await Lesson.create(data);
+    console.log("ROUTE: ", lesson);
+    res.json({ lesson });
+  } catch (error) {
+    next(error);
+  }
+});
 router.get("/list", async (req, res, next) => {
   try {
-    const lesson = await Lesson.find().exec();
-    res.json({ lesson });
+    const lessons = await Lesson.find().exec();
+    res.json({ lessons });
   } catch (error) {
     next(error);
   }
@@ -60,26 +78,5 @@ router.delete("/:id", async (req, res, next) => {
 });
 
 //const multerMiddleware = require('./../../middleware/multer-configuration');
-
-router.post("/create", async (req, res, next) => {
-  // const { title, body } = req.body;
-  const instrument = req.body.instrument;
-  const hours = req.body.hoursOfStudy;
-  const creator = req.session.user;
-  try {
-    // const note = await Note.create({ title, body }).exec();
-    const data = {
-      instrument: instrument,
-      hoursOfStudy: hours,
-      student: creator
-    };
-    const lesson = await Lesson.create(data);
-    console.log("ROUTE: ", lesson);
-    res.json({ lesson });
-  } catch (error) {
-    next(error);
-  }
-});
-
 
 module.exports = router;

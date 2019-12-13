@@ -11,6 +11,7 @@ class StudentLessonFormView extends Component {
       lesson: {
         instrument: "",
         hoursOfStudy: 0
+        
       }
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -35,9 +36,10 @@ class StudentLessonFormView extends Component {
   async handleFormSubmission(event) {
     event.preventDefault();
     const lesson = this.state.lesson;
+    console.log("LESSON --------->", lesson);
     try {
       const lessonDocument = await createLessonService(lesson);
-      console.log(lessonDocument);
+      console.log("DOCUMENT---------->", lessonDocument);
       const id = lessonDocument._id;
       this.props.history.push(`/${id}`);
     } catch (error) {

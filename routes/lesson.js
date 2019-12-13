@@ -28,7 +28,9 @@ router.get("/list", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const lesson = await Lesson.findById(req.params.id).exec();
+    const lesson = await Lesson.findById(req.params.id)
+      .exec()
+      .populate("");
     res.json({ lesson });
   } catch (error) {
     next(error);

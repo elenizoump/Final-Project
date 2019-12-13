@@ -54,3 +54,25 @@ export const load = async id => {
   }
 };
 //export default load;
+
+//loading teacher
+export const teacher = async id => {
+  try {
+    const response = await apiAuthenticationService.get(`/teacher/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//loading teachers
+export const teacherList = async () => {
+  try {
+    const response = await apiService.get("teacher/list");
+    console.log(response);
+    const lessons = response.data.lessons;
+    return lessons;
+  } catch (error) {
+    throw error;
+  }
+};

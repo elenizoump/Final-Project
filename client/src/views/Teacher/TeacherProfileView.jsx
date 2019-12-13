@@ -31,17 +31,16 @@ class TeacherProfileView extends Component {
     return (
       <div>
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={user.image} />
+          <Card.Img variant="top" src="#" />
           <Card.Body>
             <Card.Title>
               <p>{user.name}</p>
               <p>{user.gender}</p>
               <p>{user.age}</p>
-              <p>{user.name}</p>
               <p>{user.adress}</p>
               {this.state.user.levels.map(level => (
                 <p>
-                  {level.name} - {level.price}
+                  {level.levelsname} - {level.levesprice}
                 </p>
               ))}
             </Card.Title>

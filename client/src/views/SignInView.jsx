@@ -7,14 +7,12 @@ class SignInView extends Component {
         <form>
           <input
             type="text"
-            placeholder="Username"
-           
+            placeholder="Email"
             name="text"
           />
           <input
             type="password"
             placeholder="Password"
-          
             name="password"
           />
           <button>Sign In</button>

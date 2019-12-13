@@ -1,10 +1,10 @@
-/* import React, { Component } from "react";
+import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { load as loadLessonService } from "./../../services/lesson";
 
-class StudentSingleLessonView extends Component {
+class TeacherSingleLessonView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,22 +30,22 @@ class StudentSingleLessonView extends Component {
     return (
       <div>
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={lesson._teacher.image} />
+          <Card.Img variant="top" src={lesson._student.image} />
           <Card.Body>
             <Card.Title>
-              <p>{lesson._teacher.name}</p>
-              <p>{lesson._teacher.gender}</p>
-              <p>{lesson._teacher.age}</p>
-              <p>{lesson._teacher.name}</p>
-              <p>{lesson._teacher.adress}</p>
-              {this.state.lesson._teacher.levels.map(level => (
+              <p>{lesson._student.name}</p>
+              <p>{lesson._student.gender}</p>
+              <p>{lesson._student.age}</p>
+              <p>{lesson._student.name}</p>
+              <p>{lesson._student.adress}</p>
+              {this.state.lesson._student.instruments.map(instrument => (
                 <p>
-                  {level.levelsname} - {level.levelsprice}
+                  {instrument.instrumentname} - {instrument.level}
                 </p>
               ))}
             </Card.Title>
 
-            <Card.Text>{lesson._teacher.description}</Card.Text>
+            <Card.Text>{lesson._student.description}</Card.Text>
             <Button variant="primary">Go somewhere</Button>
           </Card.Body>
         </Card>
@@ -54,7 +54,7 @@ class StudentSingleLessonView extends Component {
           <p>{lesson.status}</p>
           <p>{lesson.status}</p>
         </div>
-        <div className="_teacherMapLocation">
+        <div className="_studentMapLocation">
           <p>Here goes the house location on the map</p>
         </div>
       </div>
@@ -62,4 +62,4 @@ class StudentSingleLessonView extends Component {
   }
 }
 
-export default StudentSingleLessonView; */
+export default TeacherSingleLessonView;

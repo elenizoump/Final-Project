@@ -51,11 +51,11 @@ const schema = new mongoose.Schema({
   },
   levels: [
     {
-      name: {
+      levelsname: {
         type: [String],
         enum: ["Beginner", "Intermediate", "Advanced"]
       },
-      price: {
+      levelsprice: {
         type: Number,
         min: 10,
         max: 100
@@ -78,7 +78,7 @@ const schema = new mongoose.Schema({
         type: String,
         enum: ["Beginner", "Intermediate", "Advanced"]
       },
-      name: {
+      instrumentname: {
         type: String,
         enum: [
           "Piano",

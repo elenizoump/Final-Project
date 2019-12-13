@@ -8,7 +8,7 @@ class StudentProfileView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
+      user: '',
       levels: []
     };
   }
@@ -16,22 +16,26 @@ class StudentProfileView extends Component {
     const id = this.props.match.params.id;
     try {
       const user = await loadUserService(id);
+      
       this.setState({
         user
       });
     } catch (error) {
-      console.log(error);
+      
       this.props.history.push("/error/404");
     }
   }
 
   render() {
     const user = this.state.user;
+      console.log(user)
     const id = this.props.match.params.id;
     return (
+      <form action="/profile/:_id">
+        
       <div>
         <Card style={{ width: "18rem" }}>
-          <Card.Img variant="top" src={user.image} />
+          {/* <Card.Img variant="top" src='#' /> */}
           <Card.Body>
             <Card.Title>
               <p>{user.name}</p>
@@ -40,7 +44,7 @@ class StudentProfileView extends Component {
               <p>{user.adress}</p>
               {this.state.user.instruments.map(instrument => (
                 <p>
-                  {instrument.name} - {instrument.level}
+                  {instrument.instrumentname}  {instrument.level}
                 </p>
               ))}
             </Card.Title>
@@ -49,11 +53,12 @@ class StudentProfileView extends Component {
             <Button variant="primary">Go somewhere</Button>
           </Card.Body>
         </Card>
-        <div className="UsersMapLocation">
+        {/* <div className="UsersMapLocation">
           <p>Here goes the house location on the map</p>
-        </div>
+        </div> */}
         <Link to={`/${id}/edit`}>Edit Profile</Link>
       </div>
+      </form>
     );
   }
 }

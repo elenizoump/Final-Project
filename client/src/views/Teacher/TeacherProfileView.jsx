@@ -36,7 +36,6 @@ class TeacherProfileView extends Component {
           <Card.Img variant="top" src='#' />
           <Card.Body>
             <Card.Title>
-              <p>{user.name}</p>
               <p>{user.gender}</p>
               <p>{user.age}</p>
               <p>{user.name}</p>

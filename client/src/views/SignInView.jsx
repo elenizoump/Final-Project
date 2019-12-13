@@ -4,7 +4,7 @@ class SignInView extends Component {
   render() {
     return (
       <main>
-        <form>
+        <form action='/student-profile' method='GET'>
           <input
             type="text"
             placeholder="Email"

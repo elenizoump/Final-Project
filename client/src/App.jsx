@@ -29,22 +29,24 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-  
-          <Fragment>
-            <Link to="/sign-in">Sign In</Link>
-            <Link to="/sign-up">Sign Up</Link>
-            <Link to='/sign-up-teacher' >Become a Teacher</Link>
-          </Fragment>
-        
-      <Switch>
-        <Route path="/sign-up" component={SignUpView} />
-        <Route path="/sign-in" component={SignInView} />
-        <Route path="/sign-up-teacher" component={TeacherSignUpView} />
-        <Route path="/teacher-profile" component={TeacherProfileView} />
-      </Switch>
-     
-    </BrowserRouter>
-     
+
+        <Fragment>
+          <Link to="/sign-in">Sign In</Link>
+          <Link to="/sign-up">Sign Up</Link>
+          <Link to='/sign-up-teacher' >Become a Teacher</Link>
+        </Fragment>
+
+        <Switch>
+          <Route path="/sign-up" component={SignUpView} />
+          <Route path="/sign-in" component={SignInView} />
+          <Route path="/sign-up-teacher" component={TeacherSignUpView} />
+          <Route path="/teacher-profile" component={TeacherProfileView} />
+          <Route path="/profile/:_id" component={StudentProfileView} />
+
+        </Switch>
+
+      </BrowserRouter>
+
     </div>
   );
 }

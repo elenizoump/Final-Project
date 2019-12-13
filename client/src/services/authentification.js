@@ -24,17 +24,17 @@ export const signUp = async data => {
 };
 //export default signUp;
 
-// export const signUpTeacher = async data => {
-//   try {
-//     const response = await apiAuthenticationService.post(
-//       `/sign-up-teacher`,
-//       data
-//     );
-//     return response.data.user;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const signUpTeacher = async data => {
+  try {
+    const response = await apiAuthenticationService.post(
+      `/sign-up-teacher`,
+      data
+    );
+    return response.data.user;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const signOut = async () => {
   try {
@@ -54,3 +54,25 @@ export const load = async id => {
   }
 };
 //export default load;
+
+//loading teacher
+export const teacher = async id => {
+  try {
+    const response = await apiAuthenticationService.get(`/teacher/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+//loading teachers
+export const teacherList = async () => {
+  try {
+    const response = await apiService.get("teacher/list");
+    console.log(response);
+    const lessons = response.data.lessons;
+    return lessons;
+  } catch (error) {
+    throw error;
+  }
+};

@@ -45,11 +45,14 @@ router.post("/sign-up", async (req, res, next) => {
       instruments,
       description,
       postcode,
-      housenumber
+      housenumber,
+      type: "student"
     });
     req.session.user = user._id;
     res.json({ user });
   } catch (error) {
+    console.log(error);
+
     next(error);
   }
 });
@@ -66,6 +69,8 @@ router.get("/teacher/:id", async (req, res, next) => {
 });
 
 router.post("/sign-up-teacher", async (req, res, next) => {
+  console.log("signup teacher route====================>", req.body);
+
   const {
     name,
     email,
@@ -94,17 +99,19 @@ router.post("/sign-up-teacher", async (req, res, next) => {
       gender,
       description,
       postcode,
-      housenumber
+      housenumber,
+      type: "teacher"
     });
     req.session.user = user._id;
     res.json({ user });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 });
 
 // user sign-in
-router.get(`/:userType/id`, async (req, res, next) => {
+router.get(`/:userType/:id`, async (req, res, next) => {
   try {
     const userId = req.params.id;
     //const userType = user.type;
@@ -127,6 +134,8 @@ router.post("/sign-in", async (req, res, next) => {
     req.session.user = user._id;
     res.json({ user });
   } catch (error) {
+    console.log(error);
+
     next(error);
   }
 });

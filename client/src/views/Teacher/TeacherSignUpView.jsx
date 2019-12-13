@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { signUp } from "./../../services/authentification";
+import { signUpTeacher } from "./../../services/authentification";
 
 class TeacherSignUpView extends Component {
   constructor(props) {
@@ -34,23 +34,23 @@ class TeacherSignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const {
-      name,
-      email,
-      image,
-      password,
-      levelsname,
-      levelsprice,
-      gender,
-      age,
-      description,
-      streetname,
-      postcode,
-      city,
-      housenumber
-    } = this.state;
+    // const {
+    //   name,
+    //   email,
+    //   image,
+    //   password,
+    //   levelsname,
+    //   levelsprice,
+    //   gender,
+    //   age,
+    //   description,
+    //   streetname,
+    //   postcode,
+    //   city,
+    //   housenumber
+    // } = this.state;
     try {
-      const user = await signUp(this.state);
+      const user = await signUpTeacher(this.state);
       this.props.history.push(`/teacher/${user._id}`);
     } catch (error) {
       console.log(error);

@@ -1,19 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 export default class ListOfTeachersView extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    this.state = {};
   }
 
-  
   render() {
-    return (
-      <div>
-        
-      </div>
-    )
+    return <div></div>;
   }
 }

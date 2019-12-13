@@ -3,12 +3,12 @@
 const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
-  student: {
+  _student: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
 
-  teacher: {
+  _teacher: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },

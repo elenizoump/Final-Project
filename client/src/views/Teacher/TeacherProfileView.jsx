@@ -55,7 +55,7 @@ class TeacherProfileView extends Component {
         <div className="UsersMapLocation">
           <p>Here goes the house location on the map</p>
         </div>
-        <Link to={`/${id}/edit`}>Edit Profile</Link>
+        <Link to={`/${user.name}/edit`}>Edit Profile</Link>
       </div>
     );
   }

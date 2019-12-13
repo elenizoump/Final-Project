@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { load as loadUserInformationService } from "./services/authentification.js";
 
 // student views
 import ListOfTeachersView from "./views/Student/ListOfTeachersView";
@@ -25,30 +27,68 @@ import SignUpView from "./views/SignUpView";
 
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null,
+      loaded: false
+    };
+    this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
+      this
+    );
+    this.verifyAuthentication = this.verifyAuthentication.bind(this);
+  }
 
-        <Fragment>
-          <Link to="/sign-in">Sign In</Link>
-          <Link to="/sign-up">Sign Up</Link>
-          <Link to='/sign-up-teacher' >Become a Teacher</Link>
-        </Fragment>
+  async componentDidMount() {
+    try {
+      const user = await loadUserInformationService();
+      this.setState({
+        user,
+        loaded: true
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-        <Switch>
-          <Route path="/sign-up" component={SignUpView} />
-          <Route path="/sign-in" component={SignInView} />
-          <Route path="/sign-up-teacher" component={TeacherSignUpView} />
-          <Route path="/teacher-profile" component={TeacherProfileView} />
-          <Route path="/profile/:_id" component={StudentProfileView} />
+  changeAuthenticationStatus(user) {
+    this.setState({
+      user
+    });
+  }
 
-        </Switch>
+  verifyAuthentication() {
+    return this.state.user;
+  }
 
-      </BrowserRouter>
+  render() {
+    const user = this.state.user;
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Fragment>
+            <Link to="/sign-in">Sign In</Link>
+            <Link to="/sign-up">Sign Up</Link>
+            <Link to="/sign-up-teacher">Become a Teacher</Link>
+          </Fragment>
 
-    </div>
-  );
+          <Switch>
+            <Route path="/sign-up" component={SignUpView} />
+            <Route path="/sign-in" component={SignInView} />
+            <Route path="/sign-up-teacher" component={TeacherSignUpView} />
+            <Route path="/lesson/create" component={StudentLessonFormView} />
+            {/* <ProtectedRoute
+              path="/create"
+              // component={NoteCreateView}
+              render={props => <StudentLessonFormView {...props} />}
+              verify={this.verifyAuthentication}
+              redirect="/error/401"
+            /> */}
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
-
 export default App;

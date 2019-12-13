@@ -47,6 +47,7 @@ export const remove = async id => {
 export const create = async lesson => {
   try {
     const response = await apiService.post(`/create`, lesson);
+    console.log("SERVICE: ", response);
     return response.data.lesson;
   } catch (error) {
     throw error;

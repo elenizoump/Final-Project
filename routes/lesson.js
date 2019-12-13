@@ -28,7 +28,9 @@ router.get("/list", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    const lesson = await Lesson.findById(req.params.id).exec();
+    const lesson = await Lesson.findById(req.params.id)
+      .exec()
+      .populate("_student", "_teacher");
     res.json({ lesson });
   } catch (error) {
     next(error);
@@ -72,10 +74,12 @@ router.post("/create", async (req, res, next) => {
       student: creator
     };
     const lesson = await Lesson.create(data);
+    console.log("ROUTE: ", lesson);
     res.json({ lesson });
   } catch (error) {
     next(error);
   }
 });
+
 
 module.exports = router;

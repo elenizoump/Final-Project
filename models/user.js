@@ -30,20 +30,16 @@ const schema = new mongoose.Schema({
   address: [
     {
       streetname: {
-        type: String,
-        required: true
+        type: String
       },
       postcode: {
-        type: Number,
-        required: true
+        type: Number
       },
       city: {
-        type: String,
-        required: true
+        type: String
       },
       houseNumber: {
-        type: Number,
-        required: true
+        type: Number
       }
     }
   ],
@@ -64,10 +60,6 @@ const schema = new mongoose.Schema({
       }
     }
   ],
-  gender: {
-    type: String,
-    enum: ["Male", "Female"]
-  },
   age: {
     type: Number
   },

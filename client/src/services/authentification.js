@@ -24,17 +24,17 @@ export const signUp = async data => {
 };
 //export default signUp;
 
-// export const signUpTeacher = async data => {
-//   try {
-//     const response = await apiAuthenticationService.post(
-//       `/sign-up-teacher`,
-//       data
-//     );
-//     return response.data.user;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
+export const signUpTeacher = async data => {
+  try {
+    const response = await apiAuthenticationService.post(
+      `/sign-up-teacher`,
+      data
+    );
+    return response.data.user;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const signOut = async () => {
   try {

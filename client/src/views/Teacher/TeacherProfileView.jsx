@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { load as loadUserService } from "./../../services/authentification";
 
+import renderMap from './../../components/Map';
+
 class TeacherProfileView extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +64,7 @@ class TeacherProfileView extends Component {
           </div>
         )}
         <div className="UsersMapLocation">
-          <p>Here goes the house location on the map</p>
+          < renderMap />
         </div>
 
         <button onClick={() => this.toggle()}>

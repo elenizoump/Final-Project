@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 
 class SignInView extends Component {
+  // constructor
+
+
+  // handleChange
+
+
+  // handleSubmit
+  
   render() {
     return (
       <main>
@@ -9,13 +17,14 @@ class SignInView extends Component {
             type="text"
             placeholder="Email"
             name="text"
+            onChange
           />
           <input
             type="password"
             placeholder="Password"
             name="password"
           />
-          <button>Sign In</button>
+          <button onClick>Sign In</button>
         </form>
       </main>
     );

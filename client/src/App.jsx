@@ -76,6 +76,7 @@ class App extends Component {
 
           <Switch>
             <Route path="/sign-up" component={SignUpView} />
+            <Route path="/student/:id" component={StudentProfileView} />
             <Route path="/sign-in" component={SignInView} />
             <Route path="/sign-up-teacher" component={TeacherSignUpView} />
             <Route path="/lesson/create" component={StudentLessonFormView} />

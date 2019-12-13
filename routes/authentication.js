@@ -6,19 +6,23 @@ const User = require("./../models/user");
 const bcryptjs = require("bcryptjs");
 
 router.post("/sign-up", async (req, res, next) => {
-  const { name, email, address, image, password, age, city, instruments, description } = req.body;
+  console.log('signup route====================>',req.body);
+
+  const { name, email, streetname, image, password, age, city, instruments, description, postcode, housenumber } = req.body;
   try {
     const hash = await bcryptjs.hash(password, 10);
     const user = await User.create({
         name,
         email,
         passwordHash: hash,
-        address,
+        streetname,
         image,
         age,
         city,
         instruments,
-        description
+        description,
+        postcode,
+        housenumber
       });
     req.session.user = user._id;
     res.json({ user });
@@ -29,24 +33,36 @@ router.post("/sign-up", async (req, res, next) => {
 });
 
 router.post("/sign-up-teacher", async (req, res, next) => {
-  const { name, email, address, image, password, levels, gender, age, city, description } = req.body;
+  const { name, email, streetname, postcode, housenumber, image, password, levels, gender, age, city, description } = req.body;
   try {
     const hash = await bcryptjs.hash(password, 10);
     const user = await User.create({
         name,
         email,
         passwordHash: hash,
-        address,
+        streetname,
         image,
         age,
         city,
         levels,
         gender,
-        description
+        description,
+        postcode,
+        housenumber
       });
       req.session.user = user._id;
       res.json({ user });
     } catch (error) {
+      next(error);
+    }
+  });
+
+  router.get('/student/:id', async (req, res, next) => {
+    try {
+      const user = await User.findById(req.params.id).exec();
+      res.json(user);
+    } catch (error) {
+      console.log("Error on the GET STUDENT", error);
       next(error);
     }
   });

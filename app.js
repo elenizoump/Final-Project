@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const cors = require('cors');
 //const serveFavicon = require('serve-favicon');
 const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
@@ -18,8 +19,9 @@ const lessonRouter = require("./routes/lesson");
 const app = express();
 
 //app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
+app.use(cors());
 app.use(logger("dev"));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
 app.use(
   expressSession({

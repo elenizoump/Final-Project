@@ -30,7 +30,7 @@ class SignInView extends Component {
       const user = await signIn({ email, password });
       //this.props.changeAuthenticationStatus(user);
       console.log("USER", user);
-      this.props.history.push(`/${user.type}:/${user._id}`);
+      this.props.history.push(`/${user.type}/${user._id}`);
     } catch (error) {
       console.log(error);
     }

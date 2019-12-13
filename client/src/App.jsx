@@ -75,16 +75,12 @@ class App extends Component {
           </Fragment>
 
           <Switch>
-<<<<<<< HEAD
             {/* routes to forms */}
-=======
             <Route path="/lesson/create" component={StudentLessonFormView} />
             <Route path="/lesson/list" component={StudentListOfLessonsView} />
->>>>>>> 3265676187dc2173825c1f90cbae37fefb23ba66
             <Route path="/sign-up" component={SignUpView} />
             <Route path="/sign-in" component={SignInView} />
             <Route path="/sign-up-teacher" component={TeacherSignUpView} />
-<<<<<<< HEAD
             {/* routes from forms to profiles */}
             {/* <Route path="/teacher/:id" component={TeacherProfileView} />
             <Route path="/student/:id" component={StudentProfileView} /> */}
@@ -108,8 +104,6 @@ class App extends Component {
               component={StudentSingleLessonView}
             /> */}
 
-=======
->>>>>>> 3265676187dc2173825c1f90cbae37fefb23ba66
             {/* <ProtectedRoute
               path="/create"
               // component={NoteCreateView}

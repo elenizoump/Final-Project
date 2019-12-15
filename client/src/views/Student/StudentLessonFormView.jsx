@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-
-import { create as createLessonService } from "./../../services/lesson.js";
+import React, { Component, Link } from "react";
+import { withRouter } from "react-router-dom";
+import { createLesson as createLessonService } from "./../../services/lesson.js";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
@@ -8,42 +8,50 @@ class StudentLessonFormView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lesson: {
-        instrument: "",
-        hoursOfStudy: 0
-        
-      }
+      instrumentName: "",
+      hoursOfStudy: 0,
+      teacherId: ""
     };
-    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
-
-    console.log(this.props);
+    this.onTeacherChange = this.onTeacherChange.bind(this);
+    this.onInstrumentNameChange = this.onInstrumentNameChange.bind(this);
+    this.onStudyHoursChange = this.onStudyHoursChange.bind(this);
   }
 
-  handleInputChange(event) {
-    const name = event.target.name;
-    const value = event.target.value;
-    console.log(name, value);
+  onTeacherChange(event) {
     this.setState({
-      // [name]: value
-      lesson: {
-        ...this.state.lesson,
-        [name]: value
-      }
+      teacherId: event.target.value
+    });
+  }
+
+  onInstrumentNameChange(event) {
+    this.setState({
+      instrumentName: event.target.value
+    });
+  }
+
+  onStudyHoursChange(event) {
+    this.setState({
+      hoursOfStudy: event.target.value
     });
   }
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const lesson = this.state.lesson;
-    console.log("LESSON --------->", lesson);
-    try {
-      const lessonDocument = await createLessonService(lesson);
-      console.log("DOCUMENT---------->", lessonDocument);
-      const id = lessonDocument._id;
-      this.props.history.push(`/${id}`);
-    } catch (error) {
-      console.log(error);
+    const { instrumentName, hoursOfStudy, teacherId } = this.state;
+    if (instrumentName && hoursOfStudy > 0 && teacherId) {
+      try {
+        const lessonDocument = await createLessonService({
+          instrument: instrumentName,
+          hours: hoursOfStudy,
+          teacherId
+        });
+        this.props.fetchLessonData();
+        const id = lessonDocument._id;
+        this.props.history.push(`/lesson/selectTeacher`);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 
@@ -60,6 +68,8 @@ class StudentLessonFormView extends Component {
 
   render() {
     const lesson = this.state.lesson;
+    const teachers = this.props.teachers;
+    const style = { maxHeight: "90vh", overflow: "scroll" };
     return (
       <main>
         <Form onSubmit={this.handleFormSubmission}>
@@ -69,19 +79,44 @@ class StudentLessonFormView extends Component {
               as="select"
               type="text"
               placeholder="instrument"
-              value={lesson.instrument || ""}
+              value={this.state.instrumentName}
               name="instrument"
-              onChange={this.handleInputChange}
+              onChange={this.onInstrumentNameChange}
             >
-              <option>Piano</option>
-              <option>Guitar</option>
-              <option>Violin</option>
-              <option>Drums</option>
-              <option>Saxophone</option>
-              <option>Flute</option>
-              <option>Clarinet</option>
-              <option>Cello</option>
-              <option>Vocals</option>
+              <option value="">Please select an instrument</option>
+              {[
+                "Piano",
+                "Guitar",
+                "Violin",
+                "Drums",
+                "Saxophone",
+                "Flute",
+                "Clarinet",
+                "Cello",
+                "Vocals"
+              ].map(instrumentName => (
+                <option key={instrumentName} value={instrumentName}>
+                  {instrumentName}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Teacher</Form.Label>
+            <Form.Control
+              as="select"
+              type="text"
+              placeholder="Teacher"
+              value={this.state.teacherId}
+              name="teacher"
+              onChange={this.onTeacherChange}
+            >
+              <option value="">Please select a teacher</option>
+              {teachers.map(teacher => (
+                <option key={teacher._id} value={teacher._id}>
+                  {teacher.name}
+                </option>
+              ))}
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="formBasicPassword">
@@ -89,11 +124,32 @@ class StudentLessonFormView extends Component {
             <Form.Control
               type="number"
               placeholder="Hours of study this week"
-              value={lesson.hoursOfStudy || ""}
+              value={this.state.hoursOfStudy}
               name="hoursOfStudy"
-              onChange={this.handleInputChange}
+              onChange={this.onStudyHoursChange}
             />
           </Form.Group>
+          {/*<div>
+            <div className="container">
+              <div className="row">
+                <div className="col-5" style={style}>
+                  <div className="list-group">
+                    {teachers.map(teacher => {
+                      return (
+                        <Link
+                          key={teacher._id}
+                          className="list-group-item list-group-item-action"
+                          to={`/teacher/${teacher._id}`}
+                        >
+                          {teacher.name} {teacher.image} {teacher.popularity}
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  */}
           <Button variant="primary" type="submit">
             Create Lesson
           </Button>
@@ -103,4 +159,4 @@ class StudentLessonFormView extends Component {
   }
 }
 
-export default StudentLessonFormView;
+export default withRouter(StudentLessonFormView);

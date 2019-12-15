@@ -11,22 +11,9 @@ class TeacherProfileView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
       levels: [],
       toggleEditForm: false
     };
-  }
-  async componentDidMount() {
-    const id = this.props.match.params.id;
-    try {
-      const user = await loadUserService(id);
-      this.setState({
-        user
-      });
-    } catch (error) {
-      console.log(error);
-      this.props.history.push("/error/404");
-    }
   }
 
   toggle() {
@@ -36,8 +23,7 @@ class TeacherProfileView extends Component {
   }
 
   render() {
-    const user = this.state.user;
-    const id = this.props.match.params.id;
+    const user = this.props.user;
     return (
       <div>
         {user && (
@@ -50,8 +36,7 @@ class TeacherProfileView extends Component {
                   <p>{user.gender}</p>
                   <p>{user.age}</p>
                   <p>{user.adress}</p>
-
-                  {this.state.user.levels.map(level => (
+                  {user.levels.map(level => (
                     <p>
                       {level.levelsname} - {level.levesprice}
                     </p>

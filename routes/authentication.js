@@ -128,18 +128,18 @@ router.post("/sign-up/teacher", async (req, res, next) => {
 });
 
 //user sign-in
-router.get(`/:userType/:id`, async (req, res, next) => {
-  try {
-    const userId = req.params.id;
-    //const userType = user.type;
-    const userType = req.params.userType;
-    const user = await User.findById(userId).exec();
-    res.json(user);
-  } catch (error) {
-    console.log("Error on the GET STUDENT", error);
-    next(error);
-  }
-});
+// router.get(`/:userType/:id`, async (req, res, next) => {
+//   try {
+//     const userId = req.params.id;
+//     //const userType = user.type;
+//     const userType = req.params.userType;
+//     const user = await User.findById(userId).exec();
+//     res.json(user);
+//   } catch (error) {
+//     console.log("Error on the GET STUDENT", error);
+//     next(error);
+//   }
+// });
 
 router.post("/sign-in", async (req, res, next) => {
   const { email, password } = req.body;

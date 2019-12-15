@@ -7,14 +7,13 @@ const schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
-
   _teacher: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
   date: {
     type: Date,
-    default: Date.now
+    default: Date.now()
   },
   status: {
     type: String,

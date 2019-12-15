@@ -1,37 +1,21 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import { listLessons as listService } from "./../../services/lesson.js";
 
 export default class StudentListOfLessonsView extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: []
-    };
-  }
-
-  async componentDidMount() {
-    try {
-      const list = await listService();
-      this.setState({
-        list: list
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   render() {
-    const lessonList = this.state.list;
+    const lessonList = this.props.lessons;
     return (
       <div>
         <h1>List here:</h1>
         <ul>
           {lessonList.map(lesson => (
-            <div key={lesson._id}>
+            <Link key={lesson._id} to={`/lesson/${lesson._id}/view`}>
               <li>{lesson.instrument}</li>
               <li>{lesson.hoursOfStudy}</li>
               <li>{lesson.status}</li>
-            </div>
+            </Link>
           ))}
         </ul>
       </div>

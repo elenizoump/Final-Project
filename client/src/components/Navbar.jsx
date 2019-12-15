@@ -30,27 +30,26 @@ class Navbar extends Component {
 
   render() {
     const user = this.props.user;
-    console.log("USER ON NAVBAR", this.props);
     return (
       <nav>
         {user ? (
           <>
-            <Link className="addLesson" to="/lesson/create">
+            <Link className="addLesson" to="/lessons/create">
               +
             </Link>
-            <Link className="allLesson" to="/lesson/viewAllLessons">
+            <Link className="allLesson" to="/lessons/view">
               <img src="" alt="lessons icon" />
               All Lessons
             </Link>
-            <Link className="progress" to="/progress">
+            <Link className="progress" to="/lessons/progress">
               <img src="" alt="progress icon" />
               Progress
             </Link>
-            <Link className="lessonWall" to="/lessonWall">
+            <Link className="lessonWall" to="/lessons/wall">
               <img src="" alt="board icon" />
               Lesson Wall
             </Link>
-            <Link className="profile" to={`/${user.type}`}>
+            <Link className="profile" to="/profile">
               Profile
             </Link>
             <button onClick={this.props.onSignOut}>Sign Out</button>

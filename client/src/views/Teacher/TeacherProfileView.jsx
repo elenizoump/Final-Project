@@ -20,7 +20,7 @@ class TeacherProfileView extends Component {
   }
 
   render() {
-    const user = this.state.user;
+    const user = this.props.user;
     return (
       <div>
         {user && (
@@ -33,7 +33,7 @@ class TeacherProfileView extends Component {
                   <p>{user.gender}</p>
                   <p>{user.age}</p>
                   <p>{user.adress}</p>
-                  {this.state.user.levels.map(level => (
+                  {user.levels.map(level => (
                     <p>
                       {level.levelsname} - {level.levesprice}
                     </p>

@@ -40,7 +40,7 @@ class StudentProfileView extends Component {
         {/* <div className="UsersMapLocation">
           <p>Here goes the house location on the map</p>
         </div> */}
-        <Link to={`/lesson/create`}>Book a lesson</Link>
+        <Link to={`/lessons/create`}>Book a lesson</Link>
       </div>
     );
   }

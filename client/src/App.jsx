@@ -28,6 +28,7 @@ import SignUpView from "./views/SignUpView";
 
 import "./App.css";
 
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -111,6 +112,7 @@ class App extends Component {
               verify={this.verifyAuthentication}
               redirect="/error/401"
             /> */}
+             
           </Switch>
         </BrowserRouter>
       </div>

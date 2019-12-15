@@ -68,7 +68,7 @@ export const teacher = async id => {
 //loading teachers
 export const teacherList = async () => {
   try {
-    const response = await apiService.get("teacher/list");
+    const response = await apiAuthenticationService.get("teacher/list");
     console.log(response);
     const lessons = response.data.lessons;
     return lessons;

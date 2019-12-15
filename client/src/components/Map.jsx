@@ -1,21 +1,24 @@
-import React from 'react';
-import {GoogleMap, withScriptjs, withGoogleMap, Marker} from 'react-google-maps';
+import React, { Component } from 'react'
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 
-function Map() {
-    return (<GoogleMap defaultZoom={10} defaultCenter={{lat: 10, lng: 12}}/>);
-}
-
-const wrapper = withScriptjs(withGoogleMap(Map));
-
-export default function renderMap() {
-    return (
-        <div style={{width: '100px', height: '100px'}}>
-            <wrapper googleMapuRL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDGD7_VrYPlO5F-qYuZSo_KSNAjHWev2Tg`}
-            loadingElement = {<div style = {{ height: "100%" }} />}
-            containerElement = {<div style ={{ height: '100%' }} />}
-            mapElement={<div style={{ height: '100%' }} />}
+export class renderMap extends Component {
+    render() {
+        return (
+            <Map
+              google={this.props.google}
+              zoom={8}
+              style={mapStyles}
+              initialCenter={{ lat: 47.444, lng: -122.176}}
             />
-            
-        </div>
-    )
+        );
+      }
 }
+
+export default GoogleApiWrapper({
+    apiKey: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBr1pVA3qkMszfSNm2lMcpR4TbikezP4uE'
+  })(renderMap);
+
+  const mapStyles = {
+    width: '100%',
+    height: '100%',
+  };

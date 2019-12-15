@@ -1,22 +1,26 @@
 import React, { Component } from "react";
-import { signUp } from "./../services/authentification";
 
-class SignUpView extends Component {
+class StudentSignUpView extends Component {
   constructor(props) {
     super(props);
+    // this.state = {
+    //   name: "",
+    //   email: "",
+    //   image: "",
+    //   password: "",
+    //   age: "",
+    //   city: "",
+    //   instrumentname: "",
+    //   level: "",
+    //   description: "",
+    //   streetname: "",
+    //   postcode: "",
+    //   housenumber: ""
+    // };
     this.state = {
-      name: "",
-      email: "",
-      image: "",
-      password: "",
-      age: "",
-      city: "",
-      instrumentname: "",
-      level: "",
-      description: "",
-      streetname: "",
-      postcode: "",
-      housenumber: ""
+      nameValue: "",
+      emailValue: "",
+      passwordValue: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -27,31 +31,31 @@ class SignUpView extends Component {
     const name = event.target.name;
     const value = event.target.value;
     this.setState({
-      [name]: value
+      [`${name}Value`]: value
     });
   }
 
   async handleFormSubmission(event) {
     event.preventDefault();
+    // const {
+    //   name,
+    //   email,
+    //   image,
+    //   password,
+    //   age,
+    //   instruments,
+    //   description,
+    //   streetname,
+    //   postcode,
+    //   city,
+    //   housenumber
+    // } = this.state;
     const {
-      name,
-      email,
-      image,
-      password,
-      age,
-      instruments,
-      description,
-      streetname,
-      postcode,
-      city,
-      housenumber
+      nameValue: name,
+      emailValue: email,
+      passwordValue: password
     } = this.state;
-    try {
-      const user = await signUp(this.state);
-      this.props.history.push(`/student/${user._id}`);
-    } catch (error) {
-      console.log(error);
-    }
+    this.props.onSignUp({ name, email, password, type: "student" });
   }
 
   render() {
@@ -60,22 +64,22 @@ class SignUpView extends Component {
         <form onSubmit={this.handleFormSubmission}>
           <input
             type="text"
-            placeholder="name"
-            value={this.state.name}
+            placeholder="Insert your Full Name"
+            value={this.state.nameValue}
             name="name"
             onChange={this.handleInputChange}
           />
           <input
             type="text"
-            placeholder="email"
-            value={this.state.email}
+            placeholder="Insert your Email"
+            value={this.state.emailValue}
             name="email"
             onChange={this.handleInputChange}
           />
           <input
             type="password"
-            placeholder="password"
-            value={this.state.password}
+            placeholder="Use a strong Password"
+            value={this.state.passwordValue}
             name="password"
             onChange={this.handleInputChange}
           />
@@ -140,11 +144,11 @@ class SignUpView extends Component {
             onChange={this.handleInputChange}
           />
           <input type="file" id="file" name="photo" /> */}
-          <button>Sign Up</button>
+          <button type="submit">Sign Up</button>
         </form>
       </main>
     );
   }
 }
 
-export default SignUpView;
+export default StudentSignUpView;

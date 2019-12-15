@@ -1,17 +1,10 @@
 import axios from "axios";
 
 const apiAuthenticationService = axios.create({
-  baseURL: "http://localhost:5000/auth"
+  baseURL: "http://localhost:5000/auth",
+  withCredentials: true
 });
 
-export const signIn = async data => {
-  try {
-    const response = await apiAuthenticationService.post(`/sign-in`, data);
-    return response.data.user;
-  } catch (error) {
-    throw error;
-  }
-};
 //export default signIn;
 
 export const signUp = async data => {
@@ -36,13 +29,6 @@ export const signUpTeacher = async data => {
   }
 };
 
-export const signOut = async () => {
-  try {
-    await apiAuthenticationService.post(`/sign-out`);
-  } catch (error) {
-    throw error;
-  }
-};
 //export default signOut;
 
 export const load = async id => {
@@ -54,6 +40,17 @@ export const load = async id => {
   }
 };
 //export default load;
+
+export const loadUser = async () => await apiAuthenticationService.get(`/user`);
+
+export const signOutUser = async () =>
+  await apiAuthenticationService.post(`/sign-out`);
+
+export const signInUser = async data =>
+  await apiAuthenticationService.post(`/sign-in`, data);
+
+export const signUpUser = async data =>
+  await apiAuthenticationService.post(`/sign-up`, data);
 
 //loading teacher
 export const teacher = async id => {
@@ -68,7 +65,7 @@ export const teacher = async id => {
 //loading teachers
 export const teacherList = async () => {
   try {
-    const response = await apiService.get("teacher/list");
+    const response = await apiAuthenticationService.get("teacher/list");
     console.log(response);
     const lessons = response.data.lessons;
     return lessons;

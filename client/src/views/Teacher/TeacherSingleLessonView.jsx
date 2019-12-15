@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { load as loadLessonService } from "./../../services/lesson";
+import { loadLesson as loadLessonService } from "./../../services/lesson";
 
 class TeacherSingleLessonView extends Component {
   constructor(props) {

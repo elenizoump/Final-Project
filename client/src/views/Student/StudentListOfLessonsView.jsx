@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { list as listService } from "./../../services/lesson.js";
+import { listLessons as listService } from "./../../services/lesson.js";
 
 export default class StudentListOfLessonsView extends Component {
   constructor(props) {

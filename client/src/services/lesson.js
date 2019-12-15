@@ -8,9 +8,9 @@ const apiService = axios.create({
   baseURL: "http://localhost:5000/lesson"
 });
 
-export const list = async () => {
+export const listLessons = async () => {
   try {
-    const response = await apiService.get("/list");
+    const response = await apiService.get("/viewAllLessons");
     console.log(response);
     const lessons = response.data.lessons;
     return lessons;
@@ -19,7 +19,20 @@ export const list = async () => {
   }
 };
 
-export const load = async id => {
+export const listTeachers = async () => {
+  try {
+    const response = await apiService.get(`/selectTeacher`);
+    console.log("What is the respomse???", response);
+    const users = response.data.users;
+    return users;
+  } catch (error) {
+    console.log("What is the respomse???", error);
+
+    throw error;
+  }
+};
+
+export const loadLesson = async id => {
   try {
     const response = await apiService.get(`/${id}`);
     const lesson = response.data.lesson;
@@ -29,7 +42,7 @@ export const load = async id => {
   }
 };
 
-export const edit = async (id, lesson) => {
+export const editLesson = async (id, lesson) => {
   try {
     await apiService.patch(`/${id}`, lesson);
   } catch (error) {
@@ -37,7 +50,7 @@ export const edit = async (id, lesson) => {
   }
 };
 
-export const remove = async id => {
+export const removeLesson = async id => {
   try {
     await apiService.delete(`/${id}`);
   } catch (error) {
@@ -45,7 +58,7 @@ export const remove = async id => {
   }
 };
 
-export const create = async lesson => {
+export const createLesson = async lesson => {
   try {
     const response = await apiService.post(`/create`, lesson);
     console.log("SERVICE: ", response);

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
-import { create as createLessonService } from "./../../services/lesson.js";
+import { withRouter } from "react-router-dom";
+import { createLesson as createLessonService } from "./../../services/lesson.js";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
@@ -11,7 +11,6 @@ class StudentLessonFormView extends Component {
       lesson: {
         instrument: "",
         hoursOfStudy: 0
-        
       }
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -39,9 +38,10 @@ class StudentLessonFormView extends Component {
     console.log("LESSON --------->", lesson);
     try {
       const lessonDocument = await createLessonService(lesson);
+      console.log("PROPS OF LESSON", this.props.history);
       console.log("DOCUMENT---------->", lessonDocument);
       const id = lessonDocument._id;
-      this.props.history.push(`/${id}`);
+      this.props.history.push(`/lesson/selectTeacher`);
     } catch (error) {
       console.log(error);
     }
@@ -103,4 +103,4 @@ class StudentLessonFormView extends Component {
   }
 }
 
-export default StudentLessonFormView;
+export default withRouter(StudentLessonFormView);

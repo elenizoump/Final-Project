@@ -2,7 +2,6 @@
 
 const { Router } = require("express");
 const router = new Router();
-
 const Lesson = require("./../models/Lesson");
 
 /* router.get("/list", (req, res, next) => {
@@ -35,10 +34,20 @@ router.post("/create", async (req, res, next) => {
     next(error);
   }
 });
-router.get("/list", async (req, res, next) => {
+
+router.get("/viewAllLessons", async (req, res, next) => {
   try {
     const lessons = await Lesson.find().exec();
     res.json({ lessons });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.get("/selectTeacher", async (req, res, next) => {
+  try {
+    const users = await User.find().exec();
+    res.json({ users });
   } catch (error) {
     next(error);
   }

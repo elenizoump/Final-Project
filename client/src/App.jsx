@@ -8,6 +8,8 @@ import {
   signOutUser
 } from "./services/authentification.js";
 
+//import Single from './components/Single.jsx';
+
 import {
   listLessons
   // loadLesson,
@@ -317,6 +319,7 @@ class App extends Component {
               ) : (
                 <Switch>
                   <Redirect exact="true" from="/" to="/sign-in" />
+                  {/* <Route path="/view/:postId" component={Single}></Route> */}
                   <Route
                     path="/sign-in"
                     render={() => (
@@ -342,6 +345,7 @@ class App extends Component {
                         user={this.state.user}
                         onSignUp={this.onSignUp}
                       />
+                      
                     )}
                   />
                 </Switch>

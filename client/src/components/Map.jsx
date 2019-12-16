@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
-export class renderMap extends Component {
+class renderMap extends Component {
     render() {
         return (
             <Map
@@ -15,7 +15,7 @@ export class renderMap extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBr1pVA3qkMszfSNm2lMcpR4TbikezP4uE'
+    apiKey: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAuejCccWrZFvhkizxQtdoStKKN9apHpEQ'
   })(renderMap);
 
   const mapStyles = {

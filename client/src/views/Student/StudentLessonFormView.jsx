@@ -4,6 +4,7 @@ import { createLesson as createLessonService } from "./../../services/lesson.js"
 import Form from "react-bootstrap/Form";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import { PopUpView } from "./PopUpView.jsx";
+import Calendar from "react-calendar";
 
 class StudentLessonFormView extends Component {
   constructor(props) {
@@ -12,13 +13,16 @@ class StudentLessonFormView extends Component {
       instrumentName: "",
       hoursOfStudy: 0,
       teacherId: "",
-      popUpViewShow: false
+      popUpViewShow: false,
+      date: new Date()
     };
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
     this.onTeacherChange = this.onTeacherChange.bind(this);
     this.onInstrumentNameChange = this.onInstrumentNameChange.bind(this);
     this.onStudyHoursChange = this.onStudyHoursChange.bind(this);
   }
+
+  onChange = date => this.setState({ date });
 
   onTeacherChange(event) {
     this.setState({
@@ -160,6 +164,11 @@ class StudentLessonFormView extends Component {
               </div>
             </div>
           </div>  */}
+          <hr />
+
+          <Calendar onChange={this.onChange} value={this.state.date} />
+          <p>Picked date: {this.state.date.toLocaleDateString()} </p>
+          <hr />
           <ButtonToolbar>
             <Button variant="primary" type="submit">
               Create Lesson

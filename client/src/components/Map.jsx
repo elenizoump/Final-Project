@@ -1,21 +1,62 @@
-import React from 'react';
-import {GoogleMap, withScriptjs, withGoogleMap, Marker} from 'react-google-maps';
+import React, { Component } from 'react';
+import mapStyles from './MapStyles';
 
-function Map() {
-    return (<GoogleMap defaultZoom={10} defaultCenter={{lat: 10, lng: 12}}/>);
-}
 
-const wrapper = withScriptjs(withGoogleMap(Map));
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 
-export default function renderMap() {
+export class MapContainer extends Component {
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  };
+
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
+
+  render() {
     return (
-        <div style={{width: '100px', height: '100px'}}>
-            <wrapper googleMapuRL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDGD7_VrYPlO5F-qYuZSo_KSNAjHWev2Tg`}
-            loadingElement = {<div style = {{ height: "100%" }} />}
-            containerElement = {<div style ={{ height: '100%' }} />}
-            mapElement={<div style={{ height: '100%' }} />}
-            />
-            
-        </div>
+      <Map initialCenter={{
+        lat: 38.7881531,
+        lng: -9.1124146
+      }}
+        defaultOptions={{ styles: mapStyles }}
+        defaultZoom={10}
+        google={this.props.google}
+        onClick={this.onMapClicked}>
+
+
+        <Marker
+          onClick={this.onMarkerClick}
+          title={'Beta-I'}
+          name={'Beta-I'}
+          position={{ lat: 38.7881531, lng: -9.1124146 }} />
+
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+          <div>
+            <h1>{this.state.selectedPlace.name}</h1>
+          </div>
+        </InfoWindow>
+      </Map>
     )
+  }
 }
+
+export default GoogleApiWrapper({
+  apiKey: ('AIzaSyBr1pVA3qkMszfSNm2lMcpR4TbikezP4uE')
+})(MapContainer)

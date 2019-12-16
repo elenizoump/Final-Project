@@ -2,7 +2,9 @@ import React, { Component, Link } from "react";
 import { withRouter } from "react-router-dom";
 import { createLesson as createLessonService } from "./../../services/lesson.js";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Button, ButtonToolbar } from "react-bootstrap";
+import { PopUpView } from "./PopUpView.jsx";
+import Calendar from "react-calendar";
 
 class StudentLessonFormView extends Component {
   constructor(props) {
@@ -10,13 +12,17 @@ class StudentLessonFormView extends Component {
     this.state = {
       instrumentName: "",
       hoursOfStudy: 0,
-      teacherId: ""
+      teacherId: "",
+      popUpViewShow: false,
+      date: new Date()
     };
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
     this.onTeacherChange = this.onTeacherChange.bind(this);
     this.onInstrumentNameChange = this.onInstrumentNameChange.bind(this);
     this.onStudyHoursChange = this.onStudyHoursChange.bind(this);
   }
+
+  onChange = date => this.setState({ date });
 
   onTeacherChange(event) {
     this.setState({
@@ -36,6 +42,11 @@ class StudentLessonFormView extends Component {
     });
   }
 
+  handlePopUp(event) {
+    event.preventDefault();
+    this.props.history.push(`/lesson/selectTeacher`);
+  }
+
   async handleFormSubmission(event) {
     event.preventDefault();
     const { instrumentName, hoursOfStudy, teacherId } = this.state;
@@ -48,7 +59,8 @@ class StudentLessonFormView extends Component {
         });
         this.props.fetchLessonData();
         const id = lessonDocument._id;
-        this.props.history.push(`/lesson/selectTeacher`);
+        this.setState({ popUpViewShow: true });
+        //this.props.history.push(`/lesson/selectTeacher`);
       } catch (error) {
         console.log(error);
       }
@@ -67,6 +79,8 @@ class StudentLessonFormView extends Component {
   } */
 
   render() {
+    let popUpViewClose = () => this.setState({ popUpViewShow: false });
+
     const lesson = this.state.lesson;
     const teachers = this.props.teachers;
     const style = { maxHeight: "90vh", overflow: "scroll" };
@@ -150,9 +164,20 @@ class StudentLessonFormView extends Component {
               </div>
             </div>
           </div>  */}
-          <Button variant="primary" type="submit">
-            Create Lesson
-          </Button>
+          <hr />
+
+          <Calendar onChange={this.onChange} value={this.state.date} />
+          <p>Picked date: {this.state.date.toLocaleDateString()} </p>
+          <hr />
+          <ButtonToolbar>
+            <Button variant="primary" type="submit">
+              Create Lesson
+            </Button>
+            <PopUpView
+              show={this.state.popUpViewShow}
+              onHide={event => this.handlePopUp(event)}
+            />
+          </ButtonToolbar>
         </Form>
       </main>
     );

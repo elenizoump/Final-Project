@@ -8,6 +8,8 @@ import {
   signOutUser
 } from "./services/authentification.js";
 
+
+
 import {
   listLessons
   // loadLesson,
@@ -42,6 +44,7 @@ import StudentSignUpView from "./views/StudentSignUpView";
 import Navbar from "./components/Navbar";
 
 import "./App.css";
+
 
 class App extends Component {
   constructor(props) {
@@ -102,7 +105,8 @@ class App extends Component {
         console.log(response);
         this.setState({
           lessons: data,
-          lessonsLoaded: true
+          lessonsLoaded: true,
+          yesIWantToUseGoogleMapApiInternals: true
         });
       } else {
         this.setState({
@@ -330,6 +334,9 @@ class App extends Component {
               ) : (
                 <Switch>
                   <Redirect exact="true" from="/" to="/sign-in" />
+
+
+
                   <Route
                     path="/sign-in"
                     render={() => (
@@ -355,6 +362,7 @@ class App extends Component {
                         user={this.state.user}
                         onSignUp={this.onSignUp}
                       />
+                      
                     )}
                   />
                 </Switch>

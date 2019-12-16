@@ -1,3 +1,15 @@
+import React, { Component } from "react";
+
+export default class ListOfTeachersView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return <div></div>;
+  }
+}
 // import React, { Component } from "react";
 // import { listTeachers } from "./../../services/lesson";
 

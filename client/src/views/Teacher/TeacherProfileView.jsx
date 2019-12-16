@@ -49,9 +49,16 @@ class TeacherProfileView extends Component {
             </Card>
           </div>
         )}
+<<<<<<< HEAD
         <div className="UsersMapLocation">
             < MapContainer />
         </div>
+=======
+        {/* <div className="UsersMapLocation">
+            < GoogleApiWrapper />
+          Map goes here
+        </div> */}
+>>>>>>> 23e076227895ece04eee5a7a1a1bccb816af3e8f
 
         <button onClick={() => this.toggle()}>
           CLICK HERE TO SEE A POSSIBLE EDIT FORM ONCE ELENI GET IT

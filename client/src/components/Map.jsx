@@ -1,24 +1,62 @@
-/* import React, { Component } from 'react'
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import React, { Component } from 'react';
+import mapStyles from './MapStyles';
 
-class renderMap extends Component {
-    render() {
-        return (
-            <Map
-              google={this.props.google}
-              zoom={8}
-              style={mapStyles}
-              initialCenter={{ lat: 47.444, lng: -122.176}}
-            />
-        );
-      }
+
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+
+export class MapContainer extends Component {
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  };
+
+  onMarkerClick = (props, marker, e) =>
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+
+  onMapClicked = (props) => {
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  };
+
+  render() {
+    return (
+      <Map initialCenter={{
+        lat: 38.7881531,
+        lng: -9.1124146
+      }}
+        defaultOptions={{ styles: mapStyles }}
+        defaultZoom={10}
+        google={this.props.google}
+        onClick={this.onMapClicked}>
+
+
+        <Marker
+          onClick={this.onMarkerClick}
+          title={'Beta-I'}
+          name={'Beta-I'}
+          position={{ lat: 38.7881531, lng: -9.1124146 }} />
+
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}>
+          <div>
+            <h1>{this.state.selectedPlace.name}</h1>
+          </div>
+        </InfoWindow>
+      </Map>
+    )
+  }
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAuejCccWrZFvhkizxQtdoStKKN9apHpEQ'
-  })(renderMap);
-
-  const mapStyles = {
-    width: '100%',
-    height: '100%',
-  }; */
+  apiKey: ('AIzaSyBr1pVA3qkMszfSNm2lMcpR4TbikezP4uE')
+})(MapContainer)

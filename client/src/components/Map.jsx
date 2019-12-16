@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+/* import React, { Component } from 'react'
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 export class renderMap extends Component {
@@ -21,4 +21,4 @@ export default GoogleApiWrapper({
   const mapStyles = {
     width: '100%',
     height: '100%',
-  };
+  }; */

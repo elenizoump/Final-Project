@@ -4,8 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { load as loadUserService } from "./../../services/authentification";
 
-
-import GoogleApiWrapper from './../../components/Map';
+//import GoogleApiWrapper from './../../components/Map';
 
 class TeacherProfileView extends Component {
   constructor(props) {
@@ -49,10 +48,10 @@ class TeacherProfileView extends Component {
             </Card>
           </div>
         )}
-        <div className="UsersMapLocation">
+        {/* <div className="UsersMapLocation">
             < GoogleApiWrapper />
           Map goes here
-        </div>
+        </div> */}
 
         <button onClick={() => this.toggle()}>
           CLICK HERE TO SEE A POSSIBLE EDIT FORM ONCE ELENI GET IT

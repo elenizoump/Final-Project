@@ -16,7 +16,7 @@ const bcryptjs = require("bcryptjs");
 //   }
 // });
 
-router.get("/user", async (req, res) => {
+router.get("/user", async (req, res, next) => {
   // if (req && req.session && req.session.user) {
   const userId = req.session.user;
   if (!userId) {

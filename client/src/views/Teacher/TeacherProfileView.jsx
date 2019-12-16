@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { load as loadUserService } from "./../../services/authentification";
 
 
-import GoogleApiWrapper from './../../components/Map';
+import MapContainer from './../../components/Map';
 
 class TeacherProfileView extends Component {
   constructor(props) {
@@ -50,8 +50,7 @@ class TeacherProfileView extends Component {
           </div>
         )}
         <div className="UsersMapLocation">
-            < GoogleApiWrapper />
-          Map goes here
+            < MapContainer />
         </div>
 
         <button onClick={() => this.toggle()}>

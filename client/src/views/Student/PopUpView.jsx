@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Modal, Button, Row, Col } from "react-bootstrap";
 
-export default class PopUpView extends Component {
+export class PopUpView extends Component {
   constructor(props) {
     super(props);
   }
@@ -9,28 +9,29 @@ export default class PopUpView extends Component {
   render() {
     return (
       <Modal
-        {...props}
+        {...this.props}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Modal heading
+            Quick information
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>Centered Modal</h4>
+          <h4>Lesson created</h4>
           <p>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
+            A request has been sent for the teacher to accept, check your lesson
+            status soon.
           </p>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
+          <Button onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>
       </Modal>
     );
   }
 }
+
+export default PopUpView;

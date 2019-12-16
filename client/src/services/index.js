@@ -6,4 +6,7 @@ const apiAuthenticationService = axios.create({
 });
 
 export const listTeachers = async () =>
-  await apiAuthenticationService.get(`/viewAllTeachers`);
+  await apiAuthenticationService.get(`/teachers`);
+
+export const loadTeacher = async teacherId =>
+  await apiAuthenticationService.get(`/teachers/${teacherId}/view`);

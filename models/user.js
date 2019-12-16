@@ -47,19 +47,15 @@ const schema = new mongoose.Schema({
   image: {
     type: String
   },
-  levels: [
-    {
-      levelsname: {
-        type: [String],
-        enum: ["Beginner", "Intermediate", "Advanced"]
-      },
-      levelsprice: {
-        type: Number,
-        min: 10,
-        max: 100
-      }
-    }
-  ],
+  levelsname: {
+    type: String,
+    enum: ["Beginner", "Intermediate", "Advanced"]
+  },
+  levelsprice: {
+    type: Number,
+    min: 10,
+    max: 100
+  },
   age: {
     type: Number
   },
@@ -69,28 +65,20 @@ const schema = new mongoose.Schema({
   popularity: {
     type: Number
   },
-  instruments: [
-    {
-      level: {
-        type: String,
-        enum: ["Beginner", "Intermediate", "Advanced"]
-      },
-      instrumentname: {
-        type: String,
-        enum: [
-          "Piano",
-          "Guitar",
-          "Violin",
-          "Drums",
-          "Saxophone",
-          "Flute",
-          "Clarinet",
-          "Cello",
-          "Vocals"
-        ]
-      }
-    }
-  ]
+  instrumentname: {
+    type: String,
+    enum: [
+      "Piano",
+      "Guitar",
+      "Violin",
+      "Drums",
+      "Saxophone",
+      "Flute",
+      "Clarinet",
+      "Cello",
+      "Vocals"
+    ]
+  }
 });
 
 module.exports = mongoose.model("User", schema);

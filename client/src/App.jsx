@@ -25,6 +25,7 @@ import StudentListOfLessonsView from "./views/Student/StudentListOfLessonsView";
 import StudentProfileView from "./views/Student/StudentProfileView";
 // import StudentProgressView from "./views/Student/StudentProgressView";
 import StudentSingleLessonView from "./views/Student/StudentSingleLessonView";
+import StudentSingleTeacherView from "./views/Student/StudentSingleTeacherView";
 //teacher views
 // import TeacherCalendarView from "./views/Teacher/TeacherCalendarView";
 // import TeacherListOfLessonsView from "./views/Teacher/TeacherListOfLessonsView";
@@ -60,6 +61,7 @@ class App extends Component {
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignOut = this.onSignOut.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
+    this.fetchUserData = this.fetchUserData.bind(this);
     this.fetchLessonData = this.fetchLessonData.bind(this);
     this.fetchTeacherData = this.fetchTeacherData.bind(this);
   }
@@ -224,13 +226,22 @@ class App extends Component {
                   <Redirect from="/sign-up" to="/profile" />
                   <Redirect from="/sign-in" to="/profile" />
                   <Route
+                    exact
                     path="/teachers/view"
                     render={() => (
                       <ListOfTeachersView
                         user={this.state.user}
-                        lessons={this.state.lessons}
+                        teachers={this.state.teachers}
                       />
                     )}
+                  />
+                  <Route
+                    path="/teachers/:teacherId/view"
+                    render={({
+                      match: {
+                        params: { teacherId }
+                      }
+                    }) => <StudentSingleTeacherView teacherId={teacherId} />}
                   />
                   <Route
                     path="/profile"
@@ -238,7 +249,10 @@ class App extends Component {
                       this.state.user.type === "teacher" ? (
                         <TeacherProfileView user={this.state.user} />
                       ) : (
-                        <StudentProfileView user={this.state.user} />
+                        <StudentProfileView
+                          user={this.state.user}
+                          onUpdateUser={this.fetchUserData}
+                        />
                       )
                     }
                   />

@@ -5,25 +5,30 @@ const router = new Router();
 const User = require("./../models/user");
 const bcryptjs = require("bcryptjs");
 
-//student Sign-Up
-// router.get("/student/:id", async (req, res, next) => {
-//   try {
-//     const user = await User.findById(req.params.id).exec();
-//     res.json(user);
-//   } catch (error) {
-//     console.log("Error on the GET STUDENT", error);
-//     next(error);
-//   }
-// });
-
-router.get("/user", async (req, res) => {
-  // if (req && req.session && req.session.user) {
+router.get("/user", async (req, res, next) => {
   const userId = req.session.user;
   if (!userId) {
     res.sendStatus(401);
   } else {
     try {
       const user = await User.findById(userId).exec();
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+});
+
+router.patch("/user", async (req, res, next) => {
+  const userId = req.session.user;
+  if (!userId) {
+    res.sendStatus(401);
+  } else {
+    try {
+      const newName = req.body.name;
+      const user = await User.findByIdAndUpdate(userId, {
+        name: newName
+      }).exec();
       res.json(user);
     } catch (error) {
       next(error);
@@ -38,15 +43,11 @@ router.post("/sign-up", async (req, res, next) => {
     name,
     email,
     password,
+    instrumentname,
+    levelsname,
+    levelsprice,
+    city,
     type
-    // streetname,
-    // image,
-    // age,
-    // city,
-    // instruments,
-    // description,
-    // postcode,
-    // housenumber
   } = req.body;
   try {
     const hash = await bcryptjs.hash(password, 10);
@@ -54,15 +55,11 @@ router.post("/sign-up", async (req, res, next) => {
       name,
       email,
       passwordHash: hash,
+      instrumentname,
+      levelsname,
+      levelsprice,
+      city,
       type
-      // streetname,
-      // image,
-      // age,
-      // city,
-      // instruments,
-      // description,
-      // postcode,
-      // housenumber,
     });
     req.session.user = user._id;
     res.json({ user });
@@ -72,74 +69,6 @@ router.post("/sign-up", async (req, res, next) => {
     next(error);
   }
 });
-
-//teacher sign-up
-// router.get("/teacher/:id", async (req, res, next) => {
-//   try {
-//     const user = await User.findById(req.params.id).exec();
-//     res.json(user);
-//   } catch (error) {
-//     console.log("Error on the GET STUDENT", error);
-//     next(error);
-//   }
-// });
-
-router.post("/sign-up/teacher", async (req, res, next) => {
-  console.log("signup teacher route====================>", req.body);
-
-  const {
-    name,
-    email,
-    password,
-    type
-    // streetname,
-    // postcode,
-    // housenumber,
-    // image,
-    // levels,
-    // gender,
-    // age,
-    // city,
-    // description,
-  } = req.body;
-  try {
-    const hash = await bcryptjs.hash(password, 10);
-    const user = await User.create({
-      name,
-      email,
-      passwordHash: hash,
-      type
-      // streetname,
-      // image,
-      // age,
-      // city,
-      // levels,
-      // gender,
-      // description,
-      // postcode,
-      // housenumber
-    });
-    req.session.user = user._id;
-    res.json({ user });
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
-});
-
-//user sign-in
-// router.get(`/:userType/:id`, async (req, res, next) => {
-//   try {
-//     const userId = req.params.id;
-//     //const userType = user.type;
-//     const userType = req.params.userType;
-//     const user = await User.findById(userId).exec();
-//     res.json(user);
-//   } catch (error) {
-//     console.log("Error on the GET STUDENT", error);
-//     next(error);
-//   }
-// });
 
 router.post("/sign-in", async (req, res, next) => {
   const { email, password } = req.body;

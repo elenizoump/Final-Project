@@ -13,7 +13,7 @@ router.get("/private", routeGuard, (req, res, next) => {
   res.render("private");
 });
 
-router.get("/viewAllTeachers", async (req, res, next) => {
+router.get("/teachers", async (req, res, next) => {
   const userId = req.session.user;
   if (!userId) {
     res.sendStatus(401);
@@ -21,6 +21,21 @@ router.get("/viewAllTeachers", async (req, res, next) => {
     try {
       const teachers = await User.find({ type: "teacher" }).exec();
       res.json(teachers);
+    } catch (error) {
+      next(error);
+    }
+  }
+});
+
+router.get("/teachers/:teacherId/view", async (req, res, next) => {
+  const teacherId = req.params.teacherId;
+  const userId = req.session.user;
+  if (!userId) {
+    res.sendStatus(401);
+  } else {
+    try {
+      const teacher = await User.findById(teacherId).exec();
+      res.json(teacher);
     } catch (error) {
       next(error);
     }

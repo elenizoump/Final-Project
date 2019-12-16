@@ -8,7 +8,6 @@ class TeacherProfileView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      levels: [],
       toggleEditForm: false
     };
   }
@@ -33,11 +32,10 @@ class TeacherProfileView extends Component {
                   <p>{user.gender}</p>
                   <p>{user.age}</p>
                   <p>{user.adress}</p>
-                  {user.levels.map(level => (
-                    <p>
-                      {level.levelsname} - {level.levesprice}
-                    </p>
-                  ))}
+                  <p>
+                    {user.levelsname}
+                    {user.levesprice}
+                  </p>
                 </Card.Title>
 
                 <Card.Text>{user.description}</Card.Text>

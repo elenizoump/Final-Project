@@ -8,7 +8,7 @@ import DayPicker, { DateUtils } from "react-day-picker";
 import "react-day-picker/lib/style.css";
 //import DatePicker from "react-date-picker";
 //import SimpleReactCalendar from 'simple-react-calendar'
-//import GoogleApiWrapper from './../../components/Map';
+import MapContainer from "./../../components/Map";
 
 class TeacherProfileView extends Component {
   constructor(props) {
@@ -75,11 +75,6 @@ class TeacherProfileView extends Component {
                   <p>{user.gender}</p>
                   <p>{user.age}</p>
                   <p>{user.adress}</p>
-                  {user.levels.map(level => (
-                    <p>
-                      {level.levelsname} - {level.levesprice}
-                    </p>
-                  ))}
                 </Card.Title>
 
                 <Card.Text>{user.description}</Card.Text>

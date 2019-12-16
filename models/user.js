@@ -66,6 +66,9 @@ const schema = new mongoose.Schema({
   city: {
     type: String
   },
+  popularity: {
+    type: Number
+  },
   instruments: [
     {
       level: {

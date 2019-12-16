@@ -8,18 +8,18 @@ const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const cors = require('cors');
+const cors = require("cors");
 //const serveFavicon = require('serve-favicon');
 const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
 const lessonRouter = require("./routes/lesson");
-
+const MongoStore = connectMongo(expressSession);
 const app = express();
 
 //app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
-app.use(cors());
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(cookieParser());
@@ -29,17 +29,29 @@ app.use(
     resave: true,
     saveUninitialized: false,
     cookie: {
-      maxAge: 60 * 60 * 24 * 15,
+      maxAge: 1000 * 60 * 60 * 24 * 15,
       sameSite: "lax",
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production"
+      secure: process.env.NODE_ENV !== "development"
     },
-    store: new (connectMongo(expressSession))({
+    store: new MongoStore({
       mongooseConnection: mongoose.connection,
       ttl: 60 * 60 * 24
     })
   })
 );
+// app.get("/cookie", (req, res) => {
+//   const options = {
+//     secure: false,
+//     httpOnly: false,
+//     domain: "http://localhost:3000"
+//   };
+//   return res
+//     .cookie("cookieName", "cookieValue", options)
+//     .status(200)
+//     .send("cookie sent");
+// });
+
 app.use(basicAuthenticationDeserializer);
 app.use(bindUserToViewLocals);
 

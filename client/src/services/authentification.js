@@ -41,6 +41,9 @@ export const load = async id => {
 };
 //export default load;
 
+export const updateUser = async data =>
+  await apiAuthenticationService.patch(`/user`, data);
+
 export const loadUser = async () => await apiAuthenticationService.get(`/user`);
 
 export const signOutUser = async () =>

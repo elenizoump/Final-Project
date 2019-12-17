@@ -3,25 +3,14 @@ import React, { Component } from "react";
 class TeacherSignUpView extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   name: "",
-    //   email: "",
-    //   image: "",
-    //   password: "",
-    //   levelsname: "",
-    //   levelsprice: "",
-    //   gender: "",
-    //   age: "",
-    //   city: "",
-    //   description: "",
-    //   streetname: "",
-    //   postcode: "",
-    //   housenumber: ""
-    // };
     this.state = {
       nameValue: "",
       emailValue: "",
-      passwordValue: ""
+      passwordValue: "",
+      instrumentnameValue: "",
+      levelsnameValue: "",
+      levelspriceValue: "",
+      cityValue: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
@@ -38,27 +27,25 @@ class TeacherSignUpView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    // const {
-    //   name,
-    //   email,
-    //   image,
-    //   password,
-    //   levelsname,
-    //   levelsprice,
-    //   gender,
-    //   age,
-    //   description,
-    //   streetname,
-    //   postcode,
-    //   city,
-    //   housenumber
-    // } = this.state;
     const {
       nameValue: name,
       emailValue: email,
-      passwordValue: password
+      passwordValue: password,
+      instrumentnameValue: instrumentname,
+      levelsnameValue: levelsname,
+      levelspriceValue: levelsprice,
+      cityValue: city
     } = this.state;
-    this.props.onSignUp({ name, email, password, type: "teacher" });
+    this.props.onSignUp({
+      name,
+      email,
+      password,
+      instrumentname,
+      levelsname,
+      levelsprice,
+      city,
+      type: "teacher"
+    });
   }
 
   render() {
@@ -84,6 +71,35 @@ class TeacherSignUpView extends Component {
             placeholder="Use a strong Password"
             value={this.state.passwordValue}
             name="password"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="text"
+            placeholder="Instrument taught"
+            value={this.state.instrumentnameValue}
+            name="instrumentname"
+            onChange={this.handleInputChange}
+          />
+          <label htmlFor="Levels">Price according to level</label>
+          <input
+            type="text"
+            placeholder="Level of Classes"
+            value={this.state.levelsnameValue}
+            name="levelsname"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="number"
+            placeholder="Price/hour"
+            value={this.state.levelspriceValue}
+            name="levelsprice"
+            onChange={this.handleInputChange}
+          />
+          <input
+            type="text"
+            placeholder="Choose your city"
+            value={this.state.cityValue}
+            name="city"
             onChange={this.handleInputChange}
           />
           {/* These can be added in the profile edit */}

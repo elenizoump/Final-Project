@@ -153,7 +153,6 @@ class StudentSignUpView extends Component {
             Sign Up
           </Button>
         </Form>
-
         {/* <input type="file" id="file" name="photo" /> */}
       </main>
     );

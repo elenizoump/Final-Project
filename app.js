@@ -12,9 +12,17 @@ const cors = require("cors");
 //const serveFavicon = require('serve-favicon');
 const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
+
+
+
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
 const lessonRouter = require("./routes/lesson");
+const notesRouter  = require("./routes/notes");
+const homeworkRouter  = require("./routes/homework");
+
+
+
 const MongoStore = connectMongo(expressSession);
 const app = express();
 
@@ -58,6 +66,8 @@ app.use(bindUserToViewLocals);
 app.use("/", indexRouter);
 app.use("/auth", authenticationRouter);
 app.use("/lesson", lessonRouter);
+app.use("/notes", notesRouter);
+app.use("/homework", homeworkRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

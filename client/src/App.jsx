@@ -8,6 +8,11 @@ import {
   signOutUser
 } from "./services/authentification.js";
 
+import NoteListView from "./views/NoteListView";
+import NoteCreateView from "./views/NoteCreateView";
+import NoteEditView from "./views/NoteEditView";
+import NoteItemView from "./views/NoteItemView";
+import ErrorView from "./views/ErrorView";
 import {
   listLessons
   // loadLesson,
@@ -42,6 +47,10 @@ import StudentSignUpView from "./views/StudentSignUpView";
 import NavbarComponent from "./components/Navbar";
 
 import "./App.css";
+import LessonWallView from "./views/LessonWallView";
+
+import AddHomework from "./views/HomeworkView";
+import HomeworkListView from "./views/HomeworkListView";
 
 class App extends Component {
   constructor(props) {
@@ -261,6 +270,14 @@ class App extends Component {
                     }
                   />
                   <Route
+                    path="/create"
+                    // component={NoteCreateView}
+                    render={props => <NoteCreateView {...props} />}
+                    verify={this.verifyAuthentication}
+                    redirect="/error/401"
+                    user={this.state.user}
+                  />
+                  <Route
                     path="/lesson/:lessonId/view"
                     render={({
                       match: {
@@ -290,6 +307,16 @@ class App extends Component {
                     )}
                   />
                   <Route
+                    path="/homework"
+                    render={() =>
+                      this.state.user.type === "teacher" ? (
+                        <AddHomework user={this.state.user} />
+                      ) : (
+                        <ErrorView />
+                      )
+                    }
+                  />
+                  <Route
                     path="/lessons/create"
                     render={() => (
                       <StudentLessonFormView
@@ -299,6 +326,24 @@ class App extends Component {
                       />
                     )}
                   />
+
+                  <Route path="/lesson-wall" component={LessonWallView} />
+
+                  <Route
+                    path="/list"
+                    render={() => <NoteListView user={this.state.user} />}
+                  />
+
+                  <Route
+                    path="/homeworkList"
+                    render={() => <HomeworkListView user={this.state.user} />}
+                  />
+
+                  {/* // <Route path="/list" exact component={NoteListView} /> */}
+                  <Route path="/:id/edit" component={NoteEditView} />
+                  <Route path="/:id" component={NoteItemView} />
+                  <Redirect to="/error/404" />
+
                   {/* <Route
                   path="/:userType/:id"
                   render={props =>

@@ -23,6 +23,14 @@ export const editLesson = async (id, lesson) => {
   }
 };
 
+export const addComment = async (id, comment) => {
+  try {
+  await apiService.patch(`/comments/${id}`, comment);
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const removeLesson = async id => {
   try {
     await apiService.delete(`/${id}`);

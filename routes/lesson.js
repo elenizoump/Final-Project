@@ -151,6 +151,8 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
+
+
 //const multerMiddleware = require('./../../middleware/multer-configuration');
 
 module.exports = router;

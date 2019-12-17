@@ -1,0 +1,45 @@
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+import { load as loadNoteService } from './../services/notes';
+
+class NoteItemView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      note: null
+    };
+  }
+
+  async componentDidMount() {
+    const id = this.props.match.params.id;
+    try {
+      const note = await loadNoteService(id);
+      this.setState({
+        note
+      });
+    } catch (error) {
+      console.log(error);
+      this.props.history.push('/error/404');
+    }
+  }
+
+  render() {
+    const note = this.state.note;
+    const id = this.props.match.params.id;
+    return (
+      <main>
+        {note && (
+          <div>
+            <img src={note.image} />
+            <h1>{note.author}</h1>
+            <p>{note.content}</p>
+            <Link to={`/${id}/edit`}>Edit Note</Link>
+          </div>
+        )}
+      </main>
+    );
+  }
+}
+
+export default NoteItemView;

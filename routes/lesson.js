@@ -95,6 +95,21 @@ router.get("/lesson/:lessonId", async (req, res, next) => {
   }
 });
 
+router.patch("/lesson/:lessonId", async (req, res, next) => {
+  const userId = req.session.user;
+  if (!userId) {
+    res.sendStatus(401);
+  } else {
+    try {
+      const lesson = await Lesson.findByIdAndUpdate(req.params.lessonId, {
+        status: "Booked"
+      }).exec();
+      res.json(lesson);
+    } catch (error) {
+      next(error);
+    }
+  }
+});
 // router.get("/lesson/:lessonId", async (req, res, next) => {
 //   const userId = req.session.user;
 //   console.log("IS THIS SOMETHING", req.params.id);

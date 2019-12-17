@@ -1,69 +1,88 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-
-import { signOut as signOutService } from "./../services/authentification";
-//import { load as loadUserService } from "./../services/authentification";
-
-class Navbar extends Component {
-  // async componentDidMount() {
-  //   console.log("DID MOUNT");
-
-  //   const id = this.props.match.params.id;
-  //   try {
-  //     const user = await loadUserService(id);
-  //     this.setState({
-  //       user
-  //     });
-  //   } catch (error) {
-  //     this.props.history.push("/error/404");
-  //   }
-  // }
-
-  // async onSignOutTrigger() {
-  //   try {
-  //     await signOutService();
-  //     this.props.changeAuthenticationStatus(null);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
+import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
+import Navbar from "react-bootstrap/Navbar";
+class NavbarComponent extends Component {
   render() {
     const user = this.props.user;
     return (
-      <nav>
+      <>
         {user ? (
-          <>
-            <Link className="addLesson" to="/lessons/create">
-              +
-            </Link>
-            <Link className="allLesson" to="/lessons/view">
-              <img src="" alt="lessons icon" />
-              All Lessons
-            </Link>
-            <Link className="progress" to="/lessons/progress">
-              <img src="" alt="progress icon" />
-              Progress
-            </Link>
-            <Link className="lessonWall" to="/create">
-              <img src="" alt="board icon" />
-              Lesson Wall
-            </Link>
-            <Link className="profile" to="/profile">
-              Profile
-            </Link>
-            <button onClick={this.props.onSignOut}>Sign Out</button>
-          </>
+          <Navbar sticky="bottom" bg="dark" variant="dark">
+            <Nav className="mr-auto">
+              <Nav.Link className="addLesson" as={Link} to="lessons/create">
+                +
+              </Nav.Link>
+              <Nav.Link as={Link} to="/lessons/view">
+                <img
+                  src=""
+                  width="30"
+                  height="30"
+                  className="d-inline-block align-top"
+                  alt="allLesson"
+                />
+              </Nav.Link>
+              <Nav.Link as={Link} to="/lessons/progress">
+                <img
+                  src=""
+                  width="30"
+                  height="30"
+                  className="d-inline-block align-top"
+                  alt="progress"
+                />
+              </Nav.Link>
+              <Nav.Link as={Link} to="/create">
+                <img
+                  src=""
+                  width="30"
+                  height="30"
+                  className="d-inline-block align-top"
+                  alt="lessonWall"
+                />
+              </Nav.Link>
+              <Nav.Link as={Link} to="/profile">
+                <img
+                  src=""
+                  width="30"
+                  height="30"
+                  className="d-inline-block align-top"
+                  alt="profile"
+                />
+              </Nav.Link>
+              <Button variant="outline-info" onClick={this.props.onSignOut}>
+                Sign Out
+              </Button>
+            </Nav>
+          </Navbar>
         ) : (
-          <>
-            <Link to="/sign-in">Sign In</Link>
-            <Link to="/sign-up/student">Sign Up</Link>
-            <Link to="/sign-up/teacher">Become a Teacher</Link>
-          </>
+          <Navbar bg="dark" variant="dark">
+            <Navbar.Brand as={Link} to="#home">
+              <img
+                alt="AppLogo"
+                src=""
+                width="30"
+                height="30"
+                className="d-inline-block align-top"
+              />
+              AppName
+            </Navbar.Brand>
+            <Nav className="mr-auto">
+              <Nav.Link as={Link} to="/sign-in">
+                Sign In
+              </Nav.Link>
+              <Nav.Link as={Link} to="/sign-up/student">
+                Sign Up
+              </Nav.Link>
+              <Nav.Link as={Link} to="/sign-up/teacher">
+                Become a Teacher
+              </Nav.Link>
+            </Nav>
+          </Navbar>
         )}
-      </nav>
+      </>
     );
   }
 }
 
-export default Navbar;
+export default NavbarComponent;

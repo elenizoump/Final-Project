@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 class TeacherSignUpView extends Component {
   constructor(props) {
@@ -51,7 +55,143 @@ class TeacherSignUpView extends Component {
   render() {
     return (
       <main>
-        <form onSubmit={this.handleFormSubmission}>
+        <Form onSubmit={this.handleFormSubmission}>
+          <Form.Group as={Row} controlId="formHorizontalName">
+            <Form.Label column sm={2}>
+              Name
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="text"
+                placeholder="Insert your Full Name"
+                value={this.state.nameValue}
+                name="name"
+                onChange={this.handleInputChange}
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} controlId="formHorizontalEmail">
+            <Form.Label column sm={2}>
+              Email
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="email"
+                placeholder="Insert your Email"
+                value={this.state.emailValue}
+                name="email"
+                onChange={this.handleInputChange}
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalPassword">
+            <Form.Label column sm={2}>
+              Password
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={this.state.passwordValue}
+                name="password"
+                onChange={this.handleInputChange}
+              />
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalInstrumentName">
+            <Form.Label column sm={2}>
+              Instrument
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                as="select"
+                value={this.state.instrumentnameValue}
+                name="instrumentname"
+                onChange={this.handleInputChange}
+              >
+                <option value="">Please select taught Instrument</option>
+                {[
+                  "Piano",
+                  "Guitar",
+                  "Violin",
+                  "Drums",
+                  "Saxophone",
+                  "Flute",
+                  "Clarinet",
+                  "Cello",
+                  "Vocals"
+                ].map(instrumentname => (
+                  <option key={instrumentname} value={instrumentname}>
+                    {instrumentname}
+                  </option>
+                ))}
+              </Form.Control>
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalInstrumentLevel">
+            <Form.Label column sm={2}>
+              Level
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                as="select"
+                value={this.state.levelsnameValue}
+                name="levelsname"
+                onChange={this.handleInputChange}
+              >
+                <option value="">Please select taught level</option>
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+              </Form.Control>
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalInstrumentLevel">
+            <Form.Label column sm={2}>
+              Price
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                type="number"
+                min="10"
+                max="100"
+                value={this.state.levelspriceValue}
+                name="levelsprice"
+                placeholder="Please insert Price/hour"
+                onChange={this.handleInputChange}
+              ></Form.Control>
+            </Col>
+          </Form.Group>
+
+          <Form.Group as={Row} controlId="formHorizontalInstrumentLevel">
+            <Form.Label column sm={2}>
+              City
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control
+                as="select"
+                value={this.state.cityValue}
+                name="city"
+                onChange={this.handleInputChange}
+              >
+                <option value="">Please select your city</option>
+                <option>Lisbon</option>
+                <option>Porto</option>
+                <option>Algarve</option>
+              </Form.Control>
+            </Col>
+          </Form.Group>
+
+          <Button variant="outline-info" type="submit">
+            Sign Up
+          </Button>
+        </Form>
+
+        {/*<form onSubmit={this.handleFormSubmission}>
           <input
             type="text"
             placeholder="Insert your Full Name"
@@ -103,7 +243,7 @@ class TeacherSignUpView extends Component {
             onChange={this.handleInputChange}
           />
           {/* These can be added in the profile edit */}
-          {/* <input
+        {/* <input
             type="gender"
             placeholder="gender"
             value={this.state.gender}
@@ -170,11 +310,11 @@ class TeacherSignUpView extends Component {
             value={this.state.description}
             name="description"
             onChange={this.handleInputChange}
-          />
-          <input type="file" id="file" name="photo" />
-          */}
-          <button type="submit">Sign Up</button>
-        </form>
+          /> */}
+        {/* <input type="file" id="file" name="photo" /> */}
+
+        {/* </form>
+         */}
       </main>
     );
   }

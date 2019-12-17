@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { loadLesson } from "./../../services/lesson";
+import { loadLesson, updateStatus } from "./../../services/lesson";
 import { withRouter } from "react-router-dom";
 
 class TeacherSingleLessonView extends Component {
@@ -10,8 +10,11 @@ class TeacherSingleLessonView extends Component {
     super(props);
     this.state = {
       lesson: null,
-      loaded: false
+      loaded: false,
+      //status: "Pending",
+      statusPeding: true
     };
+    this.statusChange = this.statusChange.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +45,23 @@ class TeacherSingleLessonView extends Component {
     }
   }
 
+  statusChange() {
+    updateStatus(this.props.lessonId);
+    this.setState({
+      //status: "Booked",
+      statusPeding: false
+    });
+  }
+  // async submitChangedStatus() {
+  //   try {
+  //     const response = await updateStatus({
+  //       status: this.state.status
+  //     });
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
+
   render() {
     const lesson = this.state.lesson;
     return this.state.loaded && this.state.lesson ? (
@@ -59,11 +79,9 @@ class TeacherSingleLessonView extends Component {
               <p>{lesson._student.name}</p>
               <p>{lesson._student.adress}</p>
               <p>{lesson._student.description}</p>
-              {/* {lesson._student.instruments.map(level => (
-                <p>
-                  {level.name} - {level.price}
-                </p>
-              ))} */}
+              <p>
+                {lesson._student.levelsname} - {lesson._student.levelsprice}
+              </p>
             </Card.Text>
             <Button variant="primary">Go somewhere</Button>
           </Card.Body>
@@ -73,6 +91,9 @@ class TeacherSingleLessonView extends Component {
           <p>{lesson.date}</p>
           <p>{lesson.status}</p>
         </div>
+        {this.state.statusPeding && (
+          <button onClick={this.statusChange}>Confirm Lesson</button>
+        )}
         <div className="_teacherMapLocation">
           <p>Here goes the house location on the map</p>
         </div>

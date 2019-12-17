@@ -14,19 +14,26 @@ import { loadMyCalendar as loadMyCalendarService } from "./../../services/calend
 //import DatePicker from "react-date-picker";
 //import SimpleReactCalendar from 'simple-react-calendar'
 import MapContainer from "./../../components/Map";
+import { updateUser } from "../../services/authentification.js";
 
 class TeacherProfileView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       levels: [],
-      toggleEditForm: false,
-      availableDays: []
-      //startDate: new Date()
+      modalShown: false,
+      newName: props.user.name,
+      selectedDays: [],
+      showDate: false
     };
     this.handleDayClick = this.handleDayClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleShow = this.handleShow.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.saveDays = this.saveDays.bind(this);
   }
+  //calendar for teacher----------------------------------------------------------
 
   handleDayClick(day, event) {
     const { selected, disabled } = event;
@@ -77,9 +84,44 @@ class TeacherProfileView extends Component {
     });
   }; */
 
-  toggle() {
+  //edit profile for teacher-----------------------------------------------
+  handleNameChange(event) {
     this.setState({
-      toggleEditForm: !this.state.toggleEditForm
+      newName: event.target.value
+    });
+  }
+
+  async submitChangedData() {
+    try {
+      const response = await updateUser({ name: this.state.newName });
+      if (response.statusText === "OK") {
+        this.props.onUpdateUser();
+      } else {
+        console.error(response);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  handleSubmit() {
+    if (this.state.newName && this.state.newName !== this.props.user.name) {
+      this.submitChangedData();
+      this.setState({
+        modalShown: false
+      });
+    }
+  }
+
+  handleClose() {
+    this.setState({
+      modalShown: false
+    });
+  }
+
+  handleShow() {
+    this.setState({
+      modalShown: true
     });
   }
 
@@ -111,24 +153,9 @@ class TeacherProfileView extends Component {
           <MapContainer />
         </div> */}
 
-        {/* <div className="UsersMapLocation">
-            < GoogleApiWrapper />
-          Map goes here
-        </div> */}
-
         <br />
 
-        <button onClick={() => this.toggle()}>
-          CLICK HERE TO SEE A POSSIBLE EDIT FORM ONCE ELENI GET IT
-        </button>
-        {this.state.toggleEditForm && (
-          <form>
-            <label htmlFor="">Edit me</label>
-            <input type="text" value={user.name} />
-          </form>
-        )}
-        <hr />
-        {/* <Link to={`/${id}/edit`}>Edit Profile</Link> */}
+        {/* calendar for teacher -----------------------------------------------*/}
         <h4>Select available days</h4>
         <hr />
 

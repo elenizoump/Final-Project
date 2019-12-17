@@ -21,7 +21,17 @@ const schema = new mongoose.Schema({
     default: "Pending"
   },
   instrument: String,
-  hoursOfStudy: Number
+  hoursOfStudy: Number,
+  comments: [{
+    text: {
+      type: String,
+      required: true
+    },
+    _creator: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  }]
 });
 
 module.exports = mongoose.model("Lesson", schema);

@@ -173,6 +173,8 @@ class StudentSignUpView extends Component {
             name="password"
             onChange={this.handleInputChange}
           />
+          <input type="file" id="file"  name="photo" />
+           <button class="btn btn-success custom-file-control">Upload</button>
           {/* These can be added in the profile edit */}
         {/* <input
             type="number"

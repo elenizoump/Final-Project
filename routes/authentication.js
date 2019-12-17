@@ -4,6 +4,7 @@ const { Router } = require("express");
 const router = new Router();
 const User = require("./../models/user");
 const bcryptjs = require("bcryptjs");
+const uploadCloud = require('./../middleware/Upload');
 
 router.get("/user", async (req, res, next) => {
   const userId = req.session.user;
@@ -36,8 +37,38 @@ router.patch("/user", async (req, res, next) => {
   }
 });
 
-router.post("/sign-up", async (req, res, next) => {
-  console.log("signup route====================>", req.body);
+router.get('/uploadPhoto/:id', (req, res, next) => {
+  res.render('uploadProfilePhoto');
+});
+
+router.post('/photoUpload/:id', uploadCloud.single('photo'), (req, res, next) => {
+  const id = req.params.id;
+  console.log(req.file);
+
+  User.findByIdAndUpdate(id, {
+          photo: req.file.url
+      })
+      .then(user => {
+          res.redirect('/profile/' + user._id);
+      })
+      .catch(error => {
+          next(error);
+      });
+});
+
+//teacher sign-up
+// router.get("/teacher/:id", async (req, res, next) => {
+//   try {
+//     const user = await User.findById(req.params.id).exec();
+//     res.json(user);
+//   } catch (error) {
+//     console.log("Error on the GET STUDENT", error);
+//     next(error);
+//   }
+// });
+
+router.post("/sign-up/teacher", async (req, res, next) => {
+  console.log("signup teacher route====================>", req.body);
 
   const {
     name,
@@ -89,5 +120,7 @@ router.post("/sign-out", (req, res, next) => {
   req.session.destroy();
   res.json({});
 });
+
+
 
 module.exports = router;

@@ -8,6 +8,13 @@ import {
   signOutUser
 } from "./services/authentification.js";
 
+import NoteListView from './views/NoteListView';
+import NoteCreateView from './views/NoteCreateView';
+import NoteEditView from './views/NoteEditView';
+import NoteItemView from './views/NoteItemView';
+
+
+
 import {
   listLessons
   // loadLesson,
@@ -40,8 +47,13 @@ import TeacherSingleLessonView from "./views/Teacher/TeacherSingleLessonView";
 import SignInView from "./views/SignInView";
 import StudentSignUpView from "./views/StudentSignUpView";
 import Navbar from "./components/Navbar";
+import ErrorView from './views/ErrorView'
 
 import "./App.css";
+import LessonWallView from "./views/LessonWallView";
+
+import AddHomework from './views/HomeworkView';
+import HomeworkListView from './views/HomeworkListView'
 
 class App extends Component {
   constructor(props) {
@@ -54,10 +66,6 @@ class App extends Component {
       lessonsLoaded: false,
       teachersLoaded: false
     };
-    // this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
-    //   this
-    // );
-    // this.verifyAuthentication = this.verifyAuthentication.bind(this);
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignOut = this.onSignOut.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
@@ -193,17 +201,6 @@ class App extends Component {
       console.error(error);
     }
   }
-
-  // changeAuthenticationStatus(user) {
-  //   this.setState({
-  //     user
-  //   });
-  // }
-
-  // verifyAuthentication() {
-  //   return this.state.user;
-  // }
-
   render() {
     return (
       (this.state.userLoaded &&
@@ -212,11 +209,6 @@ class App extends Component {
           <div className="App">
             <BrowserRouter>
               <Navbar user={this.state.user} onSignOut={this.onSignOut} />
-              {/* <Fragment>
-              <Link to="/sign-in">Sign In</Link>
-              <Link to="/sign-up">Sign Up</Link>
-              <Link to="/sign-up-teacher">Become a Teacher</Link>
-            </Fragment> */}
               {this.state.user ? (
                 <Switch>
                   {/* routes to forms */}
@@ -261,12 +253,20 @@ class App extends Component {
                       this.state.user.type === "teacher" ? (
                         <TeacherProfileView user={this.state.user} />
                       ) : (
-                        <StudentProfileView
-                          user={this.state.user}
-                          onUpdateUser={this.fetchUserData}
-                        />
-                      )
+                          <StudentProfileView
+                            user={this.state.user}
+                            onUpdateUser={this.fetchUserData}
+                          />
+                        )
                     }
+                  />
+                  <Route
+                    path="/create"
+                    // component={NoteCreateView}
+                    render={props => <NoteCreateView {...props} />}
+                    verify={this.verifyAuthentication}
+                    redirect="/error/401"
+                    user={this.state.user}
                   />
                   <Route
                     path="/lesson/:lessonId/view"
@@ -281,11 +281,11 @@ class App extends Component {
                           lessonId={lessonId}
                         />
                       ) : (
-                        <StudentSingleLessonView
-                          user={this.state.user}
-                          lessonId={lessonId}
-                        />
-                      )
+                          <StudentSingleLessonView
+                            user={this.state.user}
+                            lessonId={lessonId}
+                          />
+                        )
                     }
                   />
                   <Route
@@ -328,45 +328,91 @@ class App extends Component {
               verify={this.verifyAuthentication}
               redirect="/error/401"
             /> */}
+                 <Route
+                      path="/homework"
+                      render={() =>
+                        this.state.user.type === "teacher" ? (
+                          <AddHomework user={this.state.user} />
+                        ) : (
+                            < ErrorView />
+                          )
+                      }
+                    />
+                  <Route
+                    path="/lessons/create"
+                    render={() => (
+                      <StudentLessonFormView
+                        user={this.state.user}
+                        teachers={this.state.teachers}
+                        fetchLessonData={this.fetchLessonData}
+                      />
+                    )}
+                  />
                 </Switch>
               ) : (
-                <Switch>
-                  <Redirect exact="true" from="/" to="/sign-in" />
+                  <Switch>
+                    <Redirect exact="true" from="/" to="/sign-in" />
+                    <Route
+                      path="/sign-in"
+                      render={() => (
+                        <SignInView
+                          user={this.state.user}
+                          onSignIn={this.onSignIn}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/sign-up/student"
+                      render={() => (
+                        <StudentSignUpView
+                          user={this.state.user}
+                          onSignUp={this.onSignUp}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/sign-up/teacher"
+                      render={() => (
+                        <TeacherSignUpView
+                          user={this.state.user}
+                          onSignUp={this.onSignUp}
+                        />
 
-                  <Route
-                    path="/sign-in"
-                    render={() => (
-                      <SignInView
-                        user={this.state.user}
-                        onSignIn={this.onSignIn}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/sign-up/student"
-                    render={() => (
-                      <StudentSignUpView
-                        user={this.state.user}
-                        onSignUp={this.onSignUp}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/sign-up/teacher"
-                    render={() => (
-                      <TeacherSignUpView
-                        user={this.state.user}
-                        onSignUp={this.onSignUp}
-                      />
-                    )}
-                  />
-                </Switch>
-              )}
+                      )}
+                    />
+                    <Route
+                      path="/lesson-wall"
+                      component={LessonWallView}
+                    />
+
+                    <Route
+                      path="/list"
+                      render={() => (
+                        <NoteListView
+                          user={this.state.user}/>
+                          )}
+                        />
+
+                    <Route
+                      path="/homeworkList"
+                      render={() => (
+                        <HomeworkListView
+                          user={this.state.user}/>
+                          )}
+                        />
+
+                        {/* // <Route path="/list" exact component={NoteListView} /> */}
+                        <Route path="/:id/edit" component={NoteEditView} />
+                        <Route path="/:id" component={NoteItemView} />
+                        <Redirect to="/error/404" />
+
+                  </Switch>
+                  )}
             </BrowserRouter>
           </div>
-        )) ||
-      null
-    );
-  }
-}
-export default App;
+            )) ||
+          null
+        );
+      }
+    }
+    export default App;

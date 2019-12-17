@@ -14,9 +14,12 @@ const basicAuthenticationDeserializer = require("./middleware/basic-authenticati
 const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
 
 // ROUTERS
+
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
 const lessonRouter = require("./routes/lesson");
+const notesRouter = require("./routes/notes");
+const homeworkRouter = require("./routes/homework");
 const calendarRouter = require("./routes/calendar");
 
 const MongoStore = connectMongo(expressSession);
@@ -63,6 +66,8 @@ app.use("/", indexRouter);
 app.use("/auth", authenticationRouter);
 app.use("/lesson", lessonRouter);
 app.use("/calendar", calendarRouter);
+app.use("/notes", notesRouter);
+app.use("/homework", homeworkRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {

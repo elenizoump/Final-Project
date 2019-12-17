@@ -45,7 +45,7 @@ class Navbar extends Component {
               <img src="" alt="progress icon" />
               Progress
             </Link>
-            <Link className="lessonWall" to="/lessons/wall">
+            <Link className="lessonWall" to="/create">
               <img src="" alt="board icon" />
               Lesson Wall
             </Link>

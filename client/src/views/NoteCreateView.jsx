@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { create as createNoteService } from './../services/notes';
-import NoteListView from './NoteListView';
-import NoteItemView from './NoteItemView';
-import { Link } from 'react-router-dom';
+import { create as createNoteService } from "./../services/notes";
+import NoteListView from "./NoteListView";
+import NoteItemView from "./NoteItemView";
+import { Link } from "react-router-dom";
 
-import HomeworkListView from './HomeworkListView';
-
+import HomeworkListView from "./HomeworkListView";
 
 class NoteCreateView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       note: {
-        content: '',
+        content: "",
         image: null
       }
     };
@@ -47,7 +46,7 @@ class NoteCreateView extends Component {
   async handleFormSubmission(event) {
     event.preventDefault();
     const note = this.state.note;
-   // console.log(note);
+    // console.log(note);
     try {
       const noteDocument = await createNoteService(note);
       const id = noteDocument._id;
@@ -70,31 +69,39 @@ class NoteCreateView extends Component {
 
   render() {
     const note = this.state.note;
-    const user = this.props.user
-   
+    const user = this.props.user;
+
     return (
-      <div className='chat-container'>
+      <div className="chat-container">
+        <p>This is a lesson wall</p>
         <div>
-          < HomeworkListView />
+          <HomeworkListView />
         </div>
 
-         <Link to='/homework'>Add Homework </Link>
-      
-      <main>
-       < NoteListView  />
-        {note && (
-          <form onSubmit={this.handleFormSubmission} enctype="multipart/form-data">
-            <textarea
-              placeholder="message.."
-              value={note.content || ''}
-              name="content"
-              onChange={this.handleInputChange}
-            ></textarea>
-            <input type="file" name="photo" onChange={this.handleFileChange} />
-            <button>Post</button>
-          </form>
-        )}
-      </main>
+        <Link to="/homework">Add Homework </Link>
+
+        <main>
+          <NoteListView />
+          {note && (
+            <form
+              onSubmit={this.handleFormSubmission}
+              enctype="multipart/form-data"
+            >
+              <textarea
+                placeholder="message.."
+                value={note.content || ""}
+                name="content"
+                onChange={this.handleInputChange}
+              ></textarea>
+              <input
+                type="file"
+                name="photo"
+                onChange={this.handleFileChange}
+              />
+              <button>Post</button>
+            </form>
+          )}
+        </main>
       </div>
     );
   }

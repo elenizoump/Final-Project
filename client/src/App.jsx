@@ -63,10 +63,6 @@ class App extends Component {
       lessonsLoaded: false,
       teachersLoaded: false
     };
-    // this.changeAuthenticationStatus = this.changeAuthenticationStatus.bind(
-    //   this
-    // );
-    // this.verifyAuthentication = this.verifyAuthentication.bind(this);
     this.onSignIn = this.onSignIn.bind(this);
     this.onSignOut = this.onSignOut.bind(this);
     this.onSignUp = this.onSignUp.bind(this);
@@ -202,17 +198,6 @@ class App extends Component {
       console.error(error);
     }
   }
-
-  // changeAuthenticationStatus(user) {
-  //   this.setState({
-  //     user
-  //   });
-  // }
-
-  // verifyAuthentication() {
-  //   return this.state.user;
-  // }
-
   render() {
     return (
       (this.state.userLoaded &&
@@ -326,60 +311,10 @@ class App extends Component {
                       />
                     )}
                   />
-
-                  <Route path="/lesson-wall" component={LessonWallView} />
-
-                  <Route
-                    path="/list"
-                    render={() => <NoteListView user={this.state.user} />}
-                  />
-
-                  <Route
-                    path="/homeworkList"
-                    render={() => <HomeworkListView user={this.state.user} />}
-                  />
-
-                  {/* // <Route path="/list" exact component={NoteListView} /> */}
-                  <Route path="/:id/edit" component={NoteEditView} />
-                  <Route path="/:id" component={NoteItemView} />
-                  <Redirect to="/error/404" />
-
-                  {/* <Route
-                  path="/:userType/:id"
-                  render={props =>
-                    props.match.params.userType === "teacher" ? (
-                      <TeacherProfileView user={this.state.user} {...props} />
-                    ) : (
-                      <StudentProfileView user={this.state.user} {...props} />
-                    )
-                  }
-                /> */}
-                  {/* <Route
-                  path="lesson/selectTeacher"
-                  render={() => <ListOfTeachersView user={this.state.user} />}
-                /> */}
-
-                  {/* <Route
-              path="/TeacherSingleLessonView"
-              component={TeacherSingleLessonView}
-            />
-            <Route
-              path="/StudentSingleLessonView"
-              component={StudentSingleLessonView}
-            /> */}
-
-                  {/* <ProtectedRoute
-              path="/create"
-              // component={NoteCreateView}
-              render={props => <StudentLessonFormView {...props} />}
-              verify={this.verifyAuthentication}
-              redirect="/error/401"
-            /> */}
                 </Switch>
               ) : (
                 <Switch>
                   <Redirect exact="true" from="/" to="/sign-in" />
-
                   <Route
                     path="/sign-in"
                     render={() => (
@@ -407,6 +342,22 @@ class App extends Component {
                       />
                     )}
                   />
+                  <Route path="/lesson-wall" component={LessonWallView} />
+
+                  <Route
+                    path="/list"
+                    render={() => <NoteListView user={this.state.user} />}
+                  />
+
+                  <Route
+                    path="/homeworkList"
+                    render={() => <HomeworkListView user={this.state.user} />}
+                  />
+
+                  {/* // <Route path="/list" exact component={NoteListView} /> */}
+                  <Route path="/:id/edit" component={NoteEditView} />
+                  <Route path="/:id" component={NoteItemView} />
+                  <Redirect to="/error/404" />
                 </Switch>
               )}
             </BrowserRouter>

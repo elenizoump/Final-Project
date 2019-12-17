@@ -11,7 +11,7 @@ class NavbarComponent extends Component {
         {user ? (
           <Navbar sticky="bottom" bg="dark" variant="dark">
             <Nav className="mr-auto">
-              <Nav.Link className="addLesson" as={Link} to="/lessons/create">
+              <Nav.Link className="addLesson" as={Link} to="lessons/create">
                 +
               </Nav.Link>
               <Nav.Link as={Link} to="/lessons/view">
@@ -32,7 +32,7 @@ class NavbarComponent extends Component {
                   alt="progress"
                 />
               </Nav.Link>
-              <Nav.Link as={Link} to="/lessons/wall">
+              <Nav.Link as={Link} to="/create">
                 <img
                   src=""
                   width="30"

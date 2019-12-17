@@ -23,7 +23,7 @@ class TeacherProfileView extends Component {
       levels: [],
       modalShown: false,
       newName: props.user.name,
-      selectedDays: [],
+      availableDays: [],
       showDate: false
     };
     this.handleDayClick = this.handleDayClick.bind(this);

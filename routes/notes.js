@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = new Router();
-
-const Note = require('./../../models/note');
+const User = require("./../models/user");
+const Note = require('../models/note');
 
 /*
 router.get('/list', (req, res, next) => {
@@ -55,24 +55,27 @@ router.delete('/:id', async (req, res, next) => {
   }
 });
 
-const multerMiddleware = require('./../../middleware/multer-configuration');
+const multerMiddleware = require('./../middleware/Upload');
 
 router.post('/create', multerMiddleware.single('image'), async (req, res, next) => {
-  console.log(req.body);
+  console.log("REQ BODYYYYY", req.body);
   console.log(req.file);
   // const { title, body } = req.body;
-  const title = req.body.title;
+  const userId = req.session.user;
   const content = req.body.content;
   try {
     // const note = await Note.create({ title, body }).exec();
+    const user = await User.findById(userId).exec();
+    res.json(user);
     const data = {
-      title: title,
       content: content,
-      image: req.file.url
+      image: req.file.url,
+      
     };
     const note = await Note.create(data);
     res.json({ note });
   } catch (error) {
+    console.log(error)
     next(error);
   }
 });

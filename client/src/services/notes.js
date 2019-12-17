@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiAuthenticationService = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "http://localhost:5000/notes",
   withCredentials: true
 });
 
@@ -44,7 +44,6 @@ export const remove = async id => {
 
 export const create = async note => {
   const data = new FormData();
-  data.append('title', note.title);
   data.append('content', note.content);
   data.append('image', note.image);
   try {
@@ -52,6 +51,7 @@ export const create = async note => {
     const response = await apiAuthenticationService.post(`/create`, data);
     return response.data.note;
   } catch (error) {
+    console.log(error)
     throw error;
   }
 };

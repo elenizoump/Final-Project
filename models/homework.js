@@ -7,12 +7,9 @@ const schema = new mongoose.Schema({
   },
   image: {
     type: String
-  },
-  author: {
-    type: String
   }
 });
 
-const Note = mongoose.model('Note', schema);
+const Homework = mongoose.model('Homework', schema);
 
-module.exports = Note;
+module.exports = Homework;

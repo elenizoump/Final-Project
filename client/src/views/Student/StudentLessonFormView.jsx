@@ -4,7 +4,7 @@ import { createLesson as createLessonService } from "./../../services/lesson.js"
 import Form from "react-bootstrap/Form";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import { PopUpView } from "./PopUpView.jsx";
-import Calendar from "react-calendar";
+//import Calendar from "react-calendar";
 
 class StudentLessonFormView extends Component {
   constructor(props) {
@@ -166,7 +166,7 @@ class StudentLessonFormView extends Component {
           </div>  */}
           <hr />
 
-          <Calendar onChange={this.onChange} value={this.state.date} />
+          {/* <Calendar onChange={this.onChange} value={this.state.date} /> */}
           <p>Picked date: {this.state.date.toLocaleDateString()} </p>
           <hr />
           <ButtonToolbar>

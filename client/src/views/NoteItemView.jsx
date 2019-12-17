@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { load as loadNoteService } from './../services/notes';
 
-class NoteListView extends Component {
+class NoteItemView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +32,7 @@ class NoteListView extends Component {
         {note && (
           <div>
             <img src={note.image} />
-            <h1>{note.title}</h1>
+            <h1>{note.author}</h1>
             <p>{note.content}</p>
             <Link to={`/${id}/edit`}>Edit Note</Link>
           </div>
@@ -42,4 +42,4 @@ class NoteListView extends Component {
   }
 }
 
-export default NoteListView;
+export default NoteItemView;

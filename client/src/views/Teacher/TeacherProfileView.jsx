@@ -3,9 +3,9 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { load as loadUserService } from "./../../services/authentification";
-import Calendar from "react-calendar";
+//import Calendar from "react-calendar";
 import DayPicker, { DateUtils } from "react-day-picker";
-import "react-day-picker/lib/style.css";
+//import "react-day-picker/lib/style.css";
 //import DatePicker from "react-date-picker";
 //import SimpleReactCalendar from 'simple-react-calendar'
 import MapContainer from "./../../components/Map";

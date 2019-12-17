@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 
-import { list as listNoteService } from './../services/notes';
+import { list as listHomeworkService } from './../services/homework';
 
-class NoteListView extends Component {
+class HomeworkListView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: []
+      homeworks: []
     };
   }
 
   async componentDidMount() {
     try {
-      const notes = await listNoteService();
+      const homeworks = await listHomeworkService();
       this.setState({
-        notes
+        homeworks
       });
     } catch (error) {
       console.log(error);
@@ -25,9 +25,9 @@ class NoteListView extends Component {
 
   async componentDidUpdate() {
     try {
-      const notes = await listNoteService();
+      const homeworks = await listHomeworkService();
       this.setState({
-        notes
+        homeworks
       });
     } catch (error) {
       console.log(error);
@@ -36,13 +36,12 @@ class NoteListView extends Component {
 
   render() {
     const user = this.props.user
-    console.log('THIS IS USER ', user);
     return (
       <main>
-        {this.state.notes.map(note => {
+        {this.state.homeworks.map(homework => {
           return <div>
-            <p>{note.content}</p>
-            <p>Attachements: <img src={note.image} /></p>
+            <p>{homework.content}</p>
+            <p>Attachements: <img src={homework.image} /></p>
           </div>
         })}
       </main>
@@ -50,5 +49,5 @@ class NoteListView extends Component {
   }
 }
 
-export default NoteListView;
+export default HomeworkListView;
 

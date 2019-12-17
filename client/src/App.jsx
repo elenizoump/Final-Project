@@ -47,9 +47,13 @@ import TeacherSingleLessonView from "./views/Teacher/TeacherSingleLessonView";
 import SignInView from "./views/SignInView";
 import StudentSignUpView from "./views/StudentSignUpView";
 import Navbar from "./components/Navbar";
+import ErrorView from './views/ErrorView'
 
 import "./App.css";
 import LessonWallView from "./views/LessonWallView";
+
+import AddHomework from './views/HomeworkView';
+import HomeworkListView from './views/HomeworkListView'
 
 
 class App extends Component {
@@ -259,20 +263,21 @@ class App extends Component {
                       this.state.user.type === "teacher" ? (
                         <TeacherProfileView user={this.state.user} />
                       ) : (
-                        <StudentProfileView
-                          user={this.state.user}
-                          onUpdateUser={this.fetchUserData}
-                        />
-                      )
+                          <StudentProfileView
+                            user={this.state.user}
+                            onUpdateUser={this.fetchUserData}
+                          />
+                        )
                     }
                   />
-                   <Route
-                path="/create"
-                // component={NoteCreateView}
-                render={props => <NoteCreateView {...props} />}
-                verify={this.verifyAuthentication}
-                redirect="/error/401"
-              />
+                  <Route
+                    path="/create"
+                    // component={NoteCreateView}
+                    render={props => <NoteCreateView {...props} />}
+                    verify={this.verifyAuthentication}
+                    redirect="/error/401"
+                    user={this.state.user}
+                  />
                   <Route
                     path="/lesson/:lessonId/view"
                     render={({
@@ -302,6 +307,16 @@ class App extends Component {
                       />
                     )}
                   />
+                 <Route
+                      path="/homework"
+                      render={() =>
+                        this.state.user.type === "teacher" ? (
+                          <AddHomework user={this.state.user} />
+                        ) : (
+                            < ErrorView />
+                          )
+                      }
+                    />
                   <Route
                     path="/lessons/create"
                     render={() => (
@@ -312,7 +327,7 @@ class App extends Component {
                       />
                     )}
                   />
-                 
+
                   {/* <Route
                   path="/:userType/:id"
                   render={props =>
@@ -384,17 +399,34 @@ class App extends Component {
                       component={LessonWallView}
                     />
 
-                    <Route path="/list" exact component={NoteListView} />
-                    <Route path="/:id/edit" component={NoteEditView} />
-                    <Route path="/:id" component={NoteItemView} />
-                    <Redirect to="/error/404" />
+                    <Route
+                      path="/list"
+                      render={() => (
+                        <NoteListView
+                          user={this.state.user}/>
+                          )}
+                        />
+
+                    <Route
+                      path="/homeworkList"
+                      render={() => (
+                        <HomeworkListView
+                          user={this.state.user}/>
+                          )}
+                        />
+
+                        {/* // <Route path="/list" exact component={NoteListView} /> */}
+                        <Route path="/:id/edit" component={NoteEditView} />
+                        <Route path="/:id" component={NoteItemView} />
+                        <Redirect to="/error/404" />
+
                   </Switch>
-                )}
+                  )}
             </BrowserRouter>
           </div>
-        )) ||
-      null
-    );
-  }
-}
-export default App;
+            )) ||
+          null
+        );
+      }
+    }
+    export default App;

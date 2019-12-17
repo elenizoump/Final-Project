@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
+import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
-import { create as createNoteService } from './../services/notes';
-import NoteListView from './NoteListView';
-import NoteItemView from './NoteItemView';
+import { create as createHomeworkService } from './../services/homework';
 import { Link } from 'react-router-dom';
+//import HomeworkListView from './HomeworkListView';
 
-import HomeworkListView from './HomeworkListView';
 
-
-class NoteCreateView extends Component {
+class AddHomework extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      note: {
+      homework: {
         content: '',
         image: null
       }
@@ -29,8 +27,8 @@ class NoteCreateView extends Component {
     // console.log(name, value);
     this.setState({
       // [name]: value
-      note: {
-        ...this.state.note,
+      homework: {
+        ...this.state.homework,
         [name]: value
       }
     });
@@ -46,58 +44,52 @@ class NoteCreateView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const note = this.state.note;
-   // console.log(note);
+    const homework = this.state.homework;
+   console.log("HOMEWORK PAGE", homework);
     try {
-      const noteDocument = await createNoteService(note);
+      const noteDocument = await createHomeworkService(homework);
       const id = noteDocument._id;
-      //this.props.history.push(`/${id}`);
+      //this.props.history.push(`/create`);
     } catch (error) {
       console.log(error);
     }
   }
 
   handleFileChange(event) {
-    //console.dir(event.target.files);
+    console.dir("HOMEWORK PAGE", event.target.files);
     const file = event.target.files[0];
     this.setState({
-      note: {
-        ...this.state.note,
+      homework: {
+        ...this.state.homework,
         image: file
       }
     });
   }
 
   render() {
-    const note = this.state.note;
-    const user = this.props.user
-   
+    const homework = this.state.homework;
     return (
-      <div className='chat-container'>
-        <div>
-          < HomeworkListView />
-        </div>
-
-         <Link to='/homework'>Add Homework </Link>
-      
+        
       <main>
-       < NoteListView  />
-        {note && (
+          
+        {homework && (
           <form onSubmit={this.handleFormSubmission} enctype="multipart/form-data">
             <textarea
-              placeholder="message.."
-              value={note.content || ''}
+              placeholder="Content..."
+              value={homework.content || ''}
               name="content"
               onChange={this.handleInputChange}
             ></textarea>
             <input type="file" name="photo" onChange={this.handleFileChange} />
-            <button>Post</button>
+            
+            <button>Add</button>
           </form>
         )}
+
       </main>
-      </div>
+    
     );
   }
 }
 
-export default NoteCreateView;
+export default AddHomework;

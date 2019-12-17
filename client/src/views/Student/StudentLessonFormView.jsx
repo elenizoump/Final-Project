@@ -41,13 +41,13 @@ class StudentLessonFormView extends Component {
 
   onChange = date => this.setState({ date });
 
-  /* onTeacherChange(event) {
+  onTeacherChange(event) {
     //const result = await loadMyCalendarService()
     this.setState({
-      teacherId: event.target.value
+      chosenDay: event.target.value
       //availableDays: result
     });
-  } */
+  }
 
   onInstrumentNameChange(event) {
     this.setState({
@@ -151,24 +151,24 @@ class StudentLessonFormView extends Component {
               ))}
             </Form.Control>
           </Form.Group>
-          {/* <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>Teacher</Form.Label>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Available Days</Form.Label>
             <Form.Control
               as="select"
               type="text"
-              placeholder="Teacher"
-              value={this.state.teacherId}
-              name="teacher"
+              placeholder="Days"
+              value={this.state.availableDays}
+              name="days"
               onChange={this.onTeacherChange}
             >
-              <option value="">Please select a teacher</option>
-              {teachers.map(teacher => (
-                <option key={teacher._id} value={teacher._id}>
-                  {teacher.name}
+              <option value="">Please select a day</option>
+              {this.state.availableDays.map(day => (
+                <option key={day._id} value={day._id}>
+                  {day.name}
                 </option>
               ))}
             </Form.Control>
-          </Form.Group> */}
+          </Form.Group>
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Hours of Study</Form.Label>
             <Form.Control

@@ -10,7 +10,12 @@ const schema = new mongoose.Schema({
   description: {
     type: String
   },
-
+  calendar: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "availableDays"
+    }
+  ],
   name: {
     type: String,
     trim: true,

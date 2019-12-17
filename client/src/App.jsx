@@ -242,6 +242,17 @@ class App extends Component {
                     }) => <StudentSingleTeacherView teacherId={teacherId} />}
                   />
                   <Route
+                    path="/teachers/:teacherId/book"
+                    render={props => (
+                      <StudentLessonFormView
+                        {...props}
+                        user={this.state.user}
+                        teachers={this.state.teachers}
+                        fetchLessonData={this.fetchLessonData}
+                      />
+                    )}
+                  />
+                  <Route
                     path="/profile"
                     render={() =>
                       this.state.user.type === "teacher" ? (

@@ -69,7 +69,7 @@ class TeacherSingleLessonView extends Component {
         <Card style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>
-              <p>Single lesson view</p>
+              <h3>Single lesson view</h3>
               <Card.Img variant="top" src={lesson._teacher.image} />
             </Card.Title>
             <Card.Text>

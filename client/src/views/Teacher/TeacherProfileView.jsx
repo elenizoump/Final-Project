@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 import { load as loadUserService } from "./../../services/authentification";
 //import Calendar from "react-calendar";
 import DayPicker, { DateUtils } from "react-day-picker";
-//import "react-day-picker/lib/style.css";
+import "react-day-picker/lib/style.css";
+import { createCalendar as createCalendarService } from "./../../services/calendar.js";
+import { loadCalendar as loadCalendarService } from "./../../services/calendar.js";
+import { editCalendar as editCalendarService } from "./../../services/calendar.js";
+import { loadTeacher as loadTeacherService } from "./../../services/authentification";
+import { loadMyCalendar as loadMyCalendarService } from "./../../services/calendar.js";
 //import DatePicker from "react-date-picker";
 //import SimpleReactCalendar from 'simple-react-calendar'
 import MapContainer from "./../../components/Map";
@@ -18,7 +23,6 @@ class TeacherProfileView extends Component {
       levels: [],
       modalShown: false,
       newName: props.user.name,
-
       selectedDays: [],
       showDate: false
     };
@@ -27,19 +31,23 @@ class TeacherProfileView extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.saveDays = this.saveDays.bind(this);
   }
   //calendar for teacher----------------------------------------------------------
-  handleDayClick(day, { selected }) {
-    const { selectedDays } = this.state;
+
+  handleDayClick(day, event) {
+    const { selected, disabled } = event;
+    if (disabled) return;
+    const { availableDays } = this.state;
     if (selected) {
-      const selectedIndex = selectedDays.findIndex(selectedDay =>
+      const selectedIndex = availableDays.findIndex(selectedDay =>
         DateUtils.isSameDay(selectedDay, day)
       );
-      selectedDays.splice(selectedIndex, 1);
+      availableDays.splice(selectedIndex, 1);
     } else {
-      selectedDays.push(day);
+      availableDays.push(day);
     }
-    this.setState({ selectedDays });
+    this.setState({ availableDays });
   }
 
   onChange = date => {
@@ -48,11 +56,27 @@ class TeacherProfileView extends Component {
     });
   };
 
-  validation = () => {
-    this.setState({
-      showDate: true
-    });
-  };
+  async saveDays() {
+    await createCalendarService(this.state.availableDays);
+  }
+
+  async componentDidMount() {
+    if (this.props.user) {
+      const result = await loadMyCalendarService();
+      console.log(result);
+      const calendar = result.data.calendar;
+      if (calendar) {
+        console.log(calendar.availableDays);
+        console.log(calendar.availableDays.map(string => new Date(string)));
+        const days = calendar.availableDays.map(string => new Date(string));
+        this.setState({
+          availableDays: days
+        });
+      }
+      // TODO - ADD SERVICE TO DISPLAY THE CALENDAR THAT MATCH TH USER ID WITH THE TEACHER ID
+      // backend - calendar.findOne({_teacher: req.session.user})
+    }
+  }
 
   /*  handleChange = date => {
     this.setState({
@@ -124,9 +148,10 @@ class TeacherProfileView extends Component {
             </Card>
           </div>
         )}
-        <div className="UsersMapLocation">
+
+        {/* <div className="UsersMapLocation">
           <MapContainer />
-        </div>
+        </div> */}
 
         <br />
 
@@ -135,29 +160,27 @@ class TeacherProfileView extends Component {
         <hr />
 
         <div>
-          {/* <div onClick={this.reset}>
-            <Calendar
-              onChange={this.onChange}
-              value={this.state.date}
-              selectRange={true}
-            />
-          </div> */}
           <DayPicker
-            selectedDays={this.state.selectedDays}
+            fromMonth={new Date()}
+            selectedDays={this.state.availableDays}
             onDayClick={this.handleDayClick}
+            disabledDays={[
+              {
+                before: new Date()
+              }
+            ]}
           />
-          <button onClick={this.validation}>Validate</button>
-          {this.state.showDate && (
+          {!!this.state.availableDays.length && (
             <div>
-              <p>
-                <ul>
-                  {this.state.selectedDays.map(day => {
-                    return <li>{day.toLocaleDateString()}</li>;
-                  })}
-                </ul>
-              </p>
+              <ul>
+                {this.state.availableDays.map(day => {
+                  return <li key={day}>{day.toLocaleDateString()}</li>;
+                })}
+              </ul>
             </div>
           )}
+
+          <button onClick={this.saveDays}>Save !</button>
         </div>
         <hr />
       </div>

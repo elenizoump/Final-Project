@@ -13,15 +13,14 @@ const cors = require("cors");
 const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
 
-
+// ROUTERS
 
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
 const lessonRouter = require("./routes/lesson");
-const notesRouter  = require("./routes/notes");
-const homeworkRouter  = require("./routes/homework");
-
-
+const notesRouter = require("./routes/notes");
+const homeworkRouter = require("./routes/homework");
+const calendarRouter = require("./routes/calendar");
 
 const MongoStore = connectMongo(expressSession);
 const app = express();
@@ -66,6 +65,7 @@ app.use(bindUserToViewLocals);
 app.use("/", indexRouter);
 app.use("/auth", authenticationRouter);
 app.use("/lesson", lessonRouter);
+app.use("/calendar", calendarRouter);
 app.use("/notes", notesRouter);
 app.use("/homework", homeworkRouter);
 

@@ -4,7 +4,9 @@ import { createLesson as createLessonService } from "./../../services/lesson.js"
 import Form from "react-bootstrap/Form";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import { PopUpView } from "./PopUpView.jsx";
-//import Calendar from "react-calendar";
+import Calendar from "react-calendar";
+import { loadMyCalendar as loadMyCalendarService } from "./../../services/calendar.js";
+import { loadCalendar as loadCalendarService } from "./../../services/calendar.js";
 
 class StudentLessonFormView extends Component {
   constructor(props) {
@@ -14,21 +16,46 @@ class StudentLessonFormView extends Component {
       hoursOfStudy: 0,
       teacherId: "",
       popUpViewShow: false,
+      availableDays: [],
+      chosenDay: "",
       date: new Date()
     };
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
-    this.onTeacherChange = this.onTeacherChange.bind(this);
+    //this.onTeacherChange = this.onTeacherChange.bind(this);
     this.onInstrumentNameChange = this.onInstrumentNameChange.bind(this);
     this.onStudyHoursChange = this.onStudyHoursChange.bind(this);
   }
 
+  async componentDidMount() {
+    const teacherId = this.props.match.params.teacherId;
+    console.log(teacherId);
+    if (this.props.user) {
+      const result = await loadCalendarService(teacherId);
+      console.log("result after service", result);
+      const calendar = result.data;
+      if (calendar) {
+        console.log(calendar.availableDays);
+        const days = calendar.availableDays.map(string => new Date(string));
+        this.setState({
+          availableDays: days
+        });
+      }
+      console.log(
+        "THIS IS THE STATE--------------->",
+        this.state.availableDays
+      );
+    }
+  }
+
   onChange = date => this.setState({ date });
 
-  onTeacherChange(event) {
+  /* onTeacherChange(event) {
+    //const result = await loadMyCalendarService()
     this.setState({
       teacherId: event.target.value
+      //availableDays: result
     });
-  }
+  } */
 
   onInstrumentNameChange(event) {
     this.setState({
@@ -49,13 +76,14 @@ class StudentLessonFormView extends Component {
 
   async handleFormSubmission(event) {
     event.preventDefault();
-    const { instrumentName, hoursOfStudy, teacherId } = this.state;
+    const { instrumentName, hoursOfStudy, teacherId, chosenDay } = this.state;
     if (instrumentName && hoursOfStudy > 0 && teacherId) {
       try {
         const lessonDocument = await createLessonService({
           instrument: instrumentName,
           hours: hoursOfStudy,
-          teacherId
+          teacherId,
+          chosenDay
         });
         this.props.fetchLessonData();
         const id = lessonDocument._id;
@@ -80,7 +108,7 @@ class StudentLessonFormView extends Component {
 
   render() {
     let popUpViewClose = () => this.setState({ popUpViewShow: false });
-
+    console.log("CALENDAR", this.state.availableDays);
     const lesson = this.state.lesson;
     const teachers = this.props.teachers;
     const style = { maxHeight: "90vh", overflow: "scroll" };
@@ -115,7 +143,7 @@ class StudentLessonFormView extends Component {
               ))}
             </Form.Control>
           </Form.Group>
-          <Form.Group controlId="exampleForm.ControlSelect1">
+          {/* <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Teacher</Form.Label>
             <Form.Control
               as="select"
@@ -132,7 +160,7 @@ class StudentLessonFormView extends Component {
                 </option>
               ))}
             </Form.Control>
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Hours of Study</Form.Label>
             <Form.Control
@@ -166,9 +194,9 @@ class StudentLessonFormView extends Component {
           </div>  */}
           <hr />
 
-          {/* <Calendar onChange={this.onChange} value={this.state.date} /> */}
+          {/* <Calendar onChange={this.onChange} value={this.state.date} />
           <p>Picked date: {this.state.date.toLocaleDateString()} </p>
-          <hr />
+          <hr /> */}
           <ButtonToolbar>
             <Button variant="primary" type="submit">
               Create Lesson

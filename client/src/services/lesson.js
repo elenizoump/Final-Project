@@ -13,6 +13,8 @@ export const listLessons = async () => await apiService.get("/viewAllLessons");
 
 export const loadLesson = async id => await apiService.get(`/lesson/${id}`);
 
+export const updateStatus = async id => await apiService.patch(`/lesson/${id}`);
+
 export const editLesson = async (id, lesson) => {
   try {
     await apiService.patch(`/${id}`, lesson);

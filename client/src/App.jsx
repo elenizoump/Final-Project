@@ -8,8 +8,6 @@ import {
   signOutUser
 } from "./services/authentification.js";
 
-
-
 import {
   listLessons
   // loadLesson,
@@ -41,10 +39,9 @@ import TeacherSingleLessonView from "./views/Teacher/TeacherSingleLessonView";
 // import LessonWallView from "./views/LessonWallView";
 import SignInView from "./views/SignInView";
 import StudentSignUpView from "./views/StudentSignUpView";
-import Navbar from "./components/Navbar";
+import NavbarComponent from "./components/Navbar";
 
 import "./App.css";
-
 
 class App extends Component {
   constructor(props) {
@@ -214,7 +211,10 @@ class App extends Component {
         this.state.teachersLoaded && (
           <div className="App">
             <BrowserRouter>
-              <Navbar user={this.state.user} onSignOut={this.onSignOut} />
+              <NavbarComponent
+                user={this.state.user}
+                onSignOut={this.onSignOut}
+              />
               {/* <Fragment>
               <Link to="/sign-in">Sign In</Link>
               <Link to="/sign-up">Sign Up</Link>
@@ -335,8 +335,6 @@ class App extends Component {
                 <Switch>
                   <Redirect exact="true" from="/" to="/sign-in" />
 
-
-
                   <Route
                     path="/sign-in"
                     render={() => (
@@ -362,7 +360,6 @@ class App extends Component {
                         user={this.state.user}
                         onSignUp={this.onSignUp}
                       />
-                      
                     )}
                   />
                 </Switch>

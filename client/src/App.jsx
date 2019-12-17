@@ -8,8 +8,6 @@ import {
   signOutUser
 } from "./services/authentification.js";
 
-
-
 import {
   listLessons
   // loadLesson,
@@ -44,7 +42,6 @@ import StudentSignUpView from "./views/StudentSignUpView";
 import Navbar from "./components/Navbar";
 
 import "./App.css";
-
 
 class App extends Component {
   constructor(props) {
@@ -248,6 +245,17 @@ class App extends Component {
                     }) => <StudentSingleTeacherView teacherId={teacherId} />}
                   />
                   <Route
+                    path="/teachers/:teacherId/book"
+                    render={props => (
+                      <StudentLessonFormView
+                        {...props}
+                        user={this.state.user}
+                        teachers={this.state.teachers}
+                        fetchLessonData={this.fetchLessonData}
+                      />
+                    )}
+                  />
+                  <Route
                     path="/profile"
                     render={() =>
                       this.state.user.type === "teacher" ? (
@@ -289,16 +297,6 @@ class App extends Component {
                       />
                     )}
                   />
-                  <Route
-                    path="/lessons/create"
-                    render={() => (
-                      <StudentLessonFormView
-                        user={this.state.user}
-                        teachers={this.state.teachers}
-                        fetchLessonData={this.fetchLessonData}
-                      />
-                    )}
-                  />
                   {/* <Route
                   path="/:userType/:id"
                   render={props =>
@@ -335,8 +333,6 @@ class App extends Component {
                 <Switch>
                   <Redirect exact="true" from="/" to="/sign-in" />
 
-
-
                   <Route
                     path="/sign-in"
                     render={() => (
@@ -362,7 +358,6 @@ class App extends Component {
                         user={this.state.user}
                         onSignUp={this.onSignUp}
                       />
-                      
                     )}
                   />
                 </Switch>

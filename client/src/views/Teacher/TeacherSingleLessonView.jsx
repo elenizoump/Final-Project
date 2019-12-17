@@ -49,7 +49,7 @@ class TeacherSingleLessonView extends Component {
         <Card style={{ width: "18rem" }}>
           <Card.Body>
             <Card.Title>
-              <p>Single lesson view</p>
+              <h3>Single lesson view</h3>
               <Card.Img variant="top" src={lesson._teacher.image} />
             </Card.Title>
             <Card.Text>
@@ -59,11 +59,11 @@ class TeacherSingleLessonView extends Component {
               <p>{lesson._student.name}</p>
               <p>{lesson._student.adress}</p>
               <p>{lesson._student.description}</p>
-              {lesson._student.instruments.map(level => (
+              {/* {lesson._student.instruments.map(level => (
                 <p>
-                  {level.levelsname} - {level.levelsprice}
+                  {level.name} - {level.price}
                 </p>
-              ))}
+              ))} */}
             </Card.Text>
             <Button variant="primary">Go somewhere</Button>
           </Card.Body>
@@ -71,7 +71,6 @@ class TeacherSingleLessonView extends Component {
 
         <div className="lesson-info">
           <p>{lesson.date}</p>
-          <p>{lesson.status}</p>
           <p>{lesson.status}</p>
         </div>
         <div className="_teacherMapLocation">

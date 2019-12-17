@@ -78,7 +78,9 @@ class StudentSingleTeacherView extends Component {
         <div className="_teacherMapLocation">
           <p>Here goes the house location on the map</p>
         </div>
-        <Link to={`/lessons/create`}>Book a lesson</Link>
+        <Link to={`/teachers/${this.props.match.params.teacherId}/book`}>
+          Book a lesson
+        </Link>
       </div>
     ) : null;
   }

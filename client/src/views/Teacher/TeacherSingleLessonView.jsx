@@ -45,12 +45,20 @@ class TeacherSingleLessonView extends Component {
     }
   }
 
-  statusChange() {
-    updateStatus(this.props.lessonId);
-    this.setState({
-      //status: "Booked",
-      statusPeding: false
-    });
+  async statusChange() {
+    try {
+      const response = await updateStatus(this.props.lessonId);
+      if (response.statusText === "OK") {
+        this.fetchLesson(this.props.lessonId);
+        this.setState({
+          statusPeding: false
+        });
+      } else {
+        console.error(response);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
   // async submitChangedStatus() {
   //   try {

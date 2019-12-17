@@ -223,6 +223,7 @@ class App extends Component {
                   <Redirect exact="true" from="/" to="/lessons/view" />
                   <Redirect from="/sign-up" to="/profile" />
                   <Redirect from="/sign-in" to="/profile" />
+
                   <Route
                     exact
                     path="/teachers/view"
@@ -243,10 +244,14 @@ class App extends Component {
                   />
                   <Route
                     path="/teachers/:teacherId/book"
-                    render={props => (
+                    render={({
+                      match: {
+                        params: { teacherId }
+                      }
+                    }) => (
                       <StudentLessonFormView
-                        {...props}
                         user={this.state.user}
+                        teacherId={teacherId}
                         teachers={this.state.teachers}
                         fetchLessonData={this.fetchLessonData}
                       />
@@ -364,10 +369,10 @@ class App extends Component {
                     path="/homeworkList"
                     render={() => <HomeworkListView user={this.state.user} />}
                   />
-
+                  {/* <Route path="/note/:id/edit" component={NoteEditView} />
+                  <Route path="/note/:id" component={NoteItemView} /> */}
                   {/* // <Route path="/list" exact component={NoteListView} /> */}
-                  <Route path="/:id/edit" component={NoteEditView} />
-                  <Route path="/:id" component={NoteItemView} />
+
                   <Redirect to="/error/404" />
                 </Switch>
               )}

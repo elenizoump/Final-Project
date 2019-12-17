@@ -14,48 +14,40 @@ class StudentLessonFormView extends Component {
     this.state = {
       instrumentName: "",
       hoursOfStudy: 0,
-      teacherId: "",
       popUpViewShow: false,
       availableDays: [],
-      chosenDay: "",
+      chosenDay: -1,
       date: new Date()
     };
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
     //this.onTeacherChange = this.onTeacherChange.bind(this);
     this.onInstrumentNameChange = this.onInstrumentNameChange.bind(this);
     this.onStudyHoursChange = this.onStudyHoursChange.bind(this);
+    this.onAvailableDayChange = this.onAvailableDayChange.bind(this);
   }
 
   async componentDidMount() {
-    const teacherId = this.props.match.params.teacherId;
-    console.log(teacherId);
     if (this.props.user) {
-      const result = await loadCalendarService(teacherId);
-      console.log("result after service", result);
+      const result = await loadCalendarService(this.props.teacherId);
       const calendar = result.data;
       if (calendar) {
-        console.log(calendar.availableDays);
         const days = calendar.availableDays.map(string => new Date(string));
         this.setState({
           availableDays: days
         });
       }
-      console.log(
-        "THIS IS THE STATE--------------->",
-        this.state.availableDays
-      );
     }
   }
 
   onChange = date => this.setState({ date });
 
-  /* onTeacherChange(event) {
+  onTeacherChange(event) {
     //const result = await loadMyCalendarService()
     this.setState({
-      teacherId: event.target.value
+      chosenDay: event.target.value
       //availableDays: result
     });
-  } */
+  }
 
   onInstrumentNameChange(event) {
     this.setState({
@@ -71,28 +63,44 @@ class StudentLessonFormView extends Component {
 
   handlePopUp(event) {
     event.preventDefault();
-    this.props.history.push(`/lesson/selectTeacher`);
+    this.props.history.push(`/lessons/view`);
   }
 
-  async handleFormSubmission(event) {
-    event.preventDefault();
-    const { instrumentName, hoursOfStudy, teacherId, chosenDay } = this.state;
-    if (instrumentName && hoursOfStudy > 0 && teacherId) {
-      try {
-        const lessonDocument = await createLessonService({
-          instrument: instrumentName,
-          hours: hoursOfStudy,
-          teacherId,
-          chosenDay
-        });
-        this.props.fetchLessonData();
-        const id = lessonDocument._id;
-        this.setState({ popUpViewShow: true });
-        //this.props.history.push(`/lesson/selectTeacher`);
-      } catch (error) {
-        console.log(error);
-      }
+  async submitForm() {
+    const {
+      instrumentName,
+      hoursOfStudy,
+      availableDays,
+      chosenDay
+    } = this.state;
+    try {
+      const lessonDocument = await createLessonService({
+        instrument: instrumentName,
+        hours: hoursOfStudy,
+        teacherId: this.props.teacherId,
+        chosenDay: availableDays[chosenDay]
+      });
+      this.props.fetchLessonData();
+      const id = lessonDocument._id;
+      this.setState({ popUpViewShow: true });
+      //this.props.history.push(`/lesson/selectTeacher`);
+    } catch (error) {
+      console.log(error);
     }
+  }
+
+  handleFormSubmission(event) {
+    event.preventDefault();
+    const { instrumentName, hoursOfStudy, chosenDay } = this.state;
+    if (instrumentName && hoursOfStudy > 0 && chosenDay > -1) {
+      this.submitForm();
+    }
+  }
+
+  onAvailableDayChange(event) {
+    this.setState({
+      chosenDay: parseInt(event.target.value, 10)
+    });
   }
 
   /* handleFileChange(event) {
@@ -143,24 +151,24 @@ class StudentLessonFormView extends Component {
               ))}
             </Form.Control>
           </Form.Group>
-          {/* <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>Teacher</Form.Label>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Available Days</Form.Label>
             <Form.Control
               as="select"
               type="text"
-              placeholder="Teacher"
-              value={this.state.teacherId}
-              name="teacher"
+              placeholder="Days"
+              value={this.state.availableDays}
+              name="days"
               onChange={this.onTeacherChange}
             >
-              <option value="">Please select a teacher</option>
-              {teachers.map(teacher => (
-                <option key={teacher._id} value={teacher._id}>
-                  {teacher.name}
+              <option value="">Please select a day</option>
+              {this.state.availableDays.map(day => (
+                <option key={day._id} value={day._id}>
+                  {day.name}
                 </option>
               ))}
             </Form.Control>
-          </Form.Group> */}
+          </Form.Group>
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Hours of Study</Form.Label>
             <Form.Control
@@ -170,6 +178,32 @@ class StudentLessonFormView extends Component {
               name="hoursOfStudy"
               onChange={this.onStudyHoursChange}
             />
+          </Form.Group>
+          <div>
+            Teacher:
+            {
+              this.props.teachers.find(
+                teacher => teacher._id === this.props.teacherId
+              ).name
+            }
+          </div>
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Select from available days</Form.Label>
+            <Form.Control
+              as="select"
+              type="text"
+              placeholder="day"
+              value={this.state.chosenDay}
+              name="instrument"
+              onChange={this.onAvailableDayChange}
+            >
+              <option value="-1">Please select a day</option>
+              {this.state.availableDays.map((availableDay, index) => (
+                <option key={index} value={index}>
+                  {availableDay.toString()}
+                </option>
+              ))}
+            </Form.Control>
           </Form.Group>
           {/*<div>
             <div className="container">

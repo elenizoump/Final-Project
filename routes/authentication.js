@@ -4,6 +4,7 @@ const { Router } = require("express");
 const router = new Router();
 const User = require("./../models/user");
 const bcryptjs = require("bcryptjs");
+const uploadCloud = require('./../middleware/Upload');
 
 //student Sign-Up
 // router.get("/student/:id", async (req, res, next) => {
@@ -71,6 +72,25 @@ router.post("/sign-up", async (req, res, next) => {
 
     next(error);
   }
+});
+
+router.get('/uploadPhoto/:id', (req, res, next) => {
+  res.render('uploadProfilePhoto');
+});
+
+router.post('/photoUpload/:id', uploadCloud.single('photo'), (req, res, next) => {
+  const id = req.params.id;
+  console.log(req.file);
+
+  User.findByIdAndUpdate(id, {
+          photo: req.file.url
+      })
+      .then(user => {
+          res.redirect('/profile/' + user._id);
+      })
+      .catch(error => {
+          next(error);
+      });
 });
 
 //teacher sign-up
@@ -160,5 +180,7 @@ router.post("/sign-out", (req, res, next) => {
   req.session.destroy();
   res.json({});
 });
+
+
 
 module.exports = router;

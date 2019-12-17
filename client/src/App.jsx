@@ -8,6 +8,11 @@ import {
   signOutUser
 } from "./services/authentification.js";
 
+import NoteListView from './views/NoteListView';
+import NoteCreateView from './views/NoteCreateView';
+import NoteEditView from './views/NoteEditView';
+import NoteItemView from './views/NoteItemView';
+
 
 
 import {
@@ -43,6 +48,7 @@ import StudentSignUpView from "./views/StudentSignUpView";
 import Navbar from "./components/Navbar";
 
 import "./App.css";
+import LessonWallView from "./views/LessonWallView";
 
 
 class App extends Component {
@@ -242,10 +248,17 @@ class App extends Component {
                       this.state.user.type === "teacher" ? (
                         <TeacherProfileView user={this.state.user} />
                       ) : (
-                        <StudentProfileView user={this.state.user} />
-                      )
+                          <StudentProfileView user={this.state.user} />
+                        )
                     }
                   />
+                   <Route
+                path="/create"
+                // component={NoteCreateView}
+                render={props => <NoteCreateView {...props} />}
+                verify={this.verifyAuthentication}
+                redirect="/error/401"
+              />
                   <Route
                     path="/lesson/:lessonId/view"
                     render={({
@@ -259,11 +272,11 @@ class App extends Component {
                           lessonId={lessonId}
                         />
                       ) : (
-                        <StudentSingleLessonView
-                          user={this.state.user}
-                          lessonId={lessonId}
-                        />
-                      )
+                          <StudentSingleLessonView
+                            user={this.state.user}
+                            lessonId={lessonId}
+                          />
+                        )
                     }
                   />
                   <Route
@@ -285,6 +298,7 @@ class App extends Component {
                       />
                     )}
                   />
+                 
                   {/* <Route
                   path="/:userType/:id"
                   render={props =>
@@ -318,41 +332,50 @@ class App extends Component {
             /> */}
                 </Switch>
               ) : (
-                <Switch>
-                  <Redirect exact="true" from="/" to="/sign-in" />
+                  <Switch>
+                    <Redirect exact="true" from="/" to="/sign-in" />
 
 
 
-                  <Route
-                    path="/sign-in"
-                    render={() => (
-                      <SignInView
-                        user={this.state.user}
-                        onSignIn={this.onSignIn}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/sign-up/student"
-                    render={() => (
-                      <StudentSignUpView
-                        user={this.state.user}
-                        onSignUp={this.onSignUp}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/sign-up/teacher"
-                    render={() => (
-                      <TeacherSignUpView
-                        user={this.state.user}
-                        onSignUp={this.onSignUp}
-                      />
-                      
-                    )}
-                  />
-                </Switch>
-              )}
+                    <Route
+                      path="/sign-in"
+                      render={() => (
+                        <SignInView
+                          user={this.state.user}
+                          onSignIn={this.onSignIn}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/sign-up/student"
+                      render={() => (
+                        <StudentSignUpView
+                          user={this.state.user}
+                          onSignUp={this.onSignUp}
+                        />
+                      )}
+                    />
+                    <Route
+                      path="/sign-up/teacher"
+                      render={() => (
+                        <TeacherSignUpView
+                          user={this.state.user}
+                          onSignUp={this.onSignUp}
+                        />
+
+                      )}
+                    />
+                    <Route
+                      path="/lesson-wall"
+                      component={LessonWallView}
+                    />
+
+                    <Route path="/list" exact component={NoteListView} />
+                    <Route path="/:id/edit" component={NoteEditView} />
+                    <Route path="/:id" component={NoteItemView} />
+                    <Redirect to="/error/404" />
+                  </Switch>
+                )}
             </BrowserRouter>
           </div>
         )) ||

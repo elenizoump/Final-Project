@@ -61,7 +61,7 @@ class StudentSignUpView extends Component {
   render() {
     return (
       <main>
-        <form onSubmit={this.handleFormSubmission}>
+        <form onSubmit={this.handleFormSubmission} enctype="multipart/form-data">
           <input
             type="text"
             placeholder="Insert your Full Name"
@@ -83,6 +83,8 @@ class StudentSignUpView extends Component {
             name="password"
             onChange={this.handleInputChange}
           />
+          <input type="file" id="file"  name="photo" />
+           <button class="btn btn-success custom-file-control">Upload</button>
           {/* These can be added in the profile edit */}
           {/* <input
             type="number"

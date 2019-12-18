@@ -69,13 +69,13 @@ router.post('/create', multerMiddleware.single('image'), async (req, res, next) 
     res.json(user);
     const data = {
       content: content,
-      image: req.file.url,
+      image: req.file.url
       
     };
     const note = await Note.create(data);
     res.json({ note });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     next(error);
   }
 });

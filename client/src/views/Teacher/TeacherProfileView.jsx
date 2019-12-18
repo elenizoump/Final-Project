@@ -16,6 +16,8 @@ import { loadMyCalendar as loadMyCalendarService } from "./../../services/calend
 import MapContainer from "./../../components/Map";
 import { updateUser } from "../../services/authentification.js";
 
+import './../../styles/profileStyles.scss'
+
 class TeacherProfileView extends Component {
   constructor(props) {
     super(props);
@@ -129,7 +131,7 @@ class TeacherProfileView extends Component {
     const user = this.props.user;
     const day = this.state.date;
     return (
-      <div>
+      <div className='main-container'>
         {user && (
           <div>
             <Card style={{ width: "18rem" }}>

@@ -95,7 +95,7 @@ class NoteCreateView extends Component {
               ></textarea>
               <input
                 type="file"
-                name="photo"
+                name="image"
                 onChange={this.handleFileChange}
               />
               <button>Post</button>

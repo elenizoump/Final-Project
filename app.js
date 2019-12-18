@@ -13,7 +13,7 @@ const cors = require("cors");
 const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
 
-// ROUTERS
+// ROUTe
 
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
@@ -26,7 +26,9 @@ const MongoStore = connectMongo(expressSession);
 const app = express();
 
 //app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+//app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+
+app.use(express.static(join(__dirname, "client/build")));
 app.use(logger("dev"));
 app.use(express.json());
 app.use(cookieParser());
@@ -38,8 +40,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 15,
       sameSite: "lax",
-      httpOnly: true,
-      secure: process.env.NODE_ENV !== "development"
+      httpOnly: true
     },
     store: new MongoStore({
       mongooseConnection: mongoose.connection,
@@ -47,27 +48,16 @@ app.use(
     })
   })
 );
-// app.get("/cookie", (req, res) => {
-//   const options = {
-//     secure: false,
-//     httpOnly: false,
-//     domain: "http://localhost:3000"
-//   };
-//   return res
-//     .cookie("cookieName", "cookieValue", options)
-//     .status(200)
-//     .send("cookie sent");
-// });
 
 app.use(basicAuthenticationDeserializer);
 app.use(bindUserToViewLocals);
 
-app.use("/", indexRouter);
-app.use("/auth", authenticationRouter);
-app.use("/lesson", lessonRouter);
-app.use("/calendar", calendarRouter);
-app.use("/notes", notesRouter);
-app.use("/homework", homeworkRouter);
+app.use("/api", indexRouter);
+app.use("/api/auth", authenticationRouter);
+app.use("/api/lesson", lessonRouter);
+app.use("/api/calendar", calendarRouter);
+app.use("/api/notes", notesRouter);
+app.use("/api/homework", homeworkRouter);
 
 // Catch missing routes and forward to error handler
 app.use((req, res, next) => {
@@ -82,6 +72,9 @@ app.use((error, req, res, next) => {
 
   res.status(error.status || 500);
   res.json({ type: "error", error: { message: error.message } });
+});
+app.get("*", (req, res, next) => {
+  res.sendfile(join(__dirname, "client/build/index.html"));
 });
 
 module.exports = app;

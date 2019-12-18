@@ -1,10 +1,35 @@
-.SignInView {
-  height: 100vh;
+.bodyOfView {
+  height: 90vh;
   width: 100vw;
-  background-image: url("/images/authformbackground.png");
-  background-color: #802fe9;
+  background-image: url("/images/authform.png");
+  //background-color: #802fe9;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 0.1px solid #8433e6;
 
-  .paddingzero {
-    margin: 0 auto;
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 0px solid;
+    max-width: 100%;
+    width: 60%;
+    padding: 30px 40px;
+    margin: 20%;
+    border-radius: 4%;
+    //background-color: ;
+    //border: 2px solid yellow;
+
+    -webkit-box-shadow: -1px 4px 26px 11px #c09fed;
+    -moz-box-shadow: -1px 4px 26px 11px #c09fed;
+    box-shadow: -1px 4px 26px 11px #c09fed;
+
+    #formHorizontalEmail {
+      background-color: #f4f1f8;
+    }
   }
+  // .paddingzero {
+  //   margin: 0 auto;
+  // }
 }

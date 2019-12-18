@@ -7,7 +7,7 @@
     "dev": "nodemon ./server",
     "dev:debug": "DEBUG=starter-code* npm run dev",
     "lint": "eslint .",
-    "prepare": "cd client && npm install && npm rin build && cd.."
+    "prepare": "cd client && npm install && npm run build && cd.."
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

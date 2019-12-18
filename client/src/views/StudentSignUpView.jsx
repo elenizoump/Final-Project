@@ -57,7 +57,11 @@ class StudentSignUpView extends Component {
     return (
       <>
         <main className="bodyOfView">
-          <Form className="form" onSubmit={this.handleFormSubmission}>
+          <Form
+            className="form"
+            id="studentSignUpForm"
+            onSubmit={this.handleFormSubmission}
+          >
             <Form.Group as={Row} controlId="formHorizontalName">
               <Form.Label column sm={2}>
                 Name

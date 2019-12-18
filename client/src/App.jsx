@@ -257,6 +257,7 @@ class App extends Component {
                       />
                     )}
                   />
+
                   <Route
                     path="/profile"
                     render={() =>
@@ -358,7 +359,10 @@ class App extends Component {
                       />
                     )}
                   />
-                  <Route path="/lesson-wall" component={LessonWallView} />
+                  <Route
+                    path="/lesson-wall"
+                    render={() => <LessonWallView user={this.state.user} />}
+                  />
 
                   <Route
                     path="/list"

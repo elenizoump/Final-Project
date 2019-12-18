@@ -122,7 +122,7 @@ class StudentLessonFormView extends Component {
     const teachers = this.props.teachers;
     const style = { maxHeight: "90vh", overflow: "scroll" };
     return (
-      <main className="body">
+      <main className="lessonForm">
         <Form onSubmit={this.handleFormSubmission}>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>

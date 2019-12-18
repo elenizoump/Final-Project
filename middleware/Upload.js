@@ -12,8 +12,8 @@ cloudinary.config({
 const storage = storageCloudinary({
   cloudinary,
   folder: "Sam-Alex-Eleni",
-  allowedFormats: ["jpg", "png"]
-  //resource_type: "raw"
+  // allowedFormats: ["jpg", "png"],
+  resource_type: "raw"
 });
 
 const uploader = multer({

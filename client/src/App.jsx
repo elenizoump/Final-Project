@@ -361,8 +361,9 @@ class App extends Component {
                   />
                   <Route
                     path="/lesson-wall"
-                    render={() => <LessonWallView user={this.state.user} />}
+                    render={() => <LessonWallView />}
                   />
+                  {/* <Route path="/lesson-wall" component={LessonWallView} /> */}
 
                   <Route
                     path="/list"
@@ -373,9 +374,9 @@ class App extends Component {
                     path="/homeworkList"
                     render={() => <HomeworkListView user={this.state.user} />}
                   />
-                  {/* <Route path="/note/:id/edit" component={NoteEditView} />
-                  <Route path="/note/:id" component={NoteItemView} /> */}
-                  {/* // <Route path="/list" exact component={NoteListView} /> */}
+                  {/* <Route path="/:id/edit" component={NoteEditView} />
+                  <Route path="/:id" component={NoteItemView} />
+                  <Route path="/notes/list" exact component={NoteListView} /> */}
 
                   <Redirect to="/error/404" />
                 </Switch>

@@ -9,41 +9,29 @@ class NavbarComponent extends Component {
     return (
       <>
         {user ? (
-          <Navbar sticky="bottom" bg="dark" variant="dark">
+          <Navbar fixed="bottom" bg="dark" variant="dark">
             <Nav className="mr-auto">
-              <Nav.Link className="addLesson" as={Link} to="lessons/create">
-                +
-              </Nav.Link>
               <Nav.Link as={Link} to="/lessons/view">
                 <img
-                  src=""
+                  src="/images/home.png"
                   width="30"
                   height="30"
                   className="d-inline-block align-top"
-                  alt="allLesson"
+                  alt="allLessons"
                 />
               </Nav.Link>
-              <Nav.Link as={Link} to="/lessons/progress">
+              <Nav.Link as={Link} to="/teachers/view">
                 <img
-                  src=""
+                  src="/images/plus.png"
                   width="30"
                   height="30"
                   className="d-inline-block align-top"
-                  alt="progress"
-                />
-              </Nav.Link>
-              <Nav.Link as={Link} to="/create">
-                <img
-                  src=""
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                  alt="lessonWall"
+                  alt="teacherList"
                 />
               </Nav.Link>
               <Nav.Link as={Link} to="/profile">
                 <img
-                  src=""
+                  src="/images/user (6).png"
                   width="30"
                   height="30"
                   className="d-inline-block align-top"
@@ -51,7 +39,7 @@ class NavbarComponent extends Component {
                 />
               </Nav.Link>
               <Button variant="outline-info" onClick={this.props.onSignOut}>
-                Sign Out
+                Log Out
               </Button>
             </Nav>
           </Navbar>

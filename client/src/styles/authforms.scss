@@ -18,6 +18,7 @@
     padding: 30px 40px;
     margin: 20%;
     border-radius: 4%;
+    max-height: 80%;
     //background-color: ;
     //border: 2px solid yellow;
 
@@ -28,8 +29,78 @@
     #formHorizontalEmail {
       background-color: #f4f1f8;
     }
+    .row {
+      margin: 0;
+    }
+    .form-group {
+      padding: 0;
+    }
+  }
+
+  #studentSignUpForm {
+    // .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 0px solid;
+    max-width: 100%;
+    width: 60%;
+    padding: 30px 40px;
+    //margin: 20%;
+    border-radius: 20%;
+    max-height: 80%;
+    margin-top: 8%;
+    //background-color: ;
+    //border: 2px solid yellow;
+
+    -webkit-box-shadow: -1px 4px 26px 11px #c09fed;
+    -moz-box-shadow: -1px 4px 26px 11px #c09fed;
+    box-shadow: -1px 4px 26px 11px #c09fed;
+
+    #formHorizontalEmail {
+      background-color: #f4f1f8;
+    }
+    .row {
+      margin: 0;
+    }
+    .form-group {
+      padding: 0;
+    }
+    .button {
+    }
+    //}
   }
   // .paddingzero {
   //   margin: 0 auto;
   // }
+  #SignInView {
+    .form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 0px solid;
+      max-width: 100%;
+      width: 60%;
+      padding: 30px 40px;
+      margin: 20%;
+      border-radius: 4%;
+      max-height: 80%;
+      //background-color: ;
+      //border: 2px solid yellow;
+
+      -webkit-box-shadow: -1px 4px 26px 11px #c09fed;
+      -moz-box-shadow: -1px 4px 26px 11px #c09fed;
+      box-shadow: -1px 4px 26px 11px #c09fed;
+
+      #formHorizontalEmail {
+        background-color: #f4f1f8;
+      }
+      .row {
+        margin: 0;
+      }
+      .form-group {
+        padding: 0;
+      }
+    }
+  }
 }

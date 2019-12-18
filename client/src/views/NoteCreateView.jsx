@@ -4,6 +4,7 @@ import { create as createNoteService } from "./../services/notes";
 import NoteListView from "./NoteListView";
 import NoteItemView from "./NoteItemView";
 import { Link } from "react-router-dom";
+import '../styles/noteCreateStyles.scss'
 
 import HomeworkListView from "./HomeworkListView";
 
@@ -73,14 +74,18 @@ class NoteCreateView extends Component {
 
     return (
       <div className="chat-container">
-        <p>This is a lesson wall</p>
-        <div>
-          <HomeworkListView />
+        <p className='chat-title'>Conversations <Link to="/homework" className='homework-text'> <ion-icon name="add-circle" className='ion-icon-add'></ion-icon> </Link></p>
+        <div className='chat-info-box'>
+          {/* <HomeworkListView />
+          
+           */}
+        <p> </p>
         </div>
 
-        <Link to="/homework">Add Homework </Link>
+        
 
         <main>
+ 
           <NoteListView />
           {note && (
             <form
@@ -88,17 +93,19 @@ class NoteCreateView extends Component {
               encType="multipart/form-data"
             >
               <textarea
-                placeholder="message.."
+                className='chat-input-area'
+                placeholder="Write a response.."
                 value={note.content || ""}
                 name="content"
                 onChange={this.handleInputChange}
               ></textarea>
               <input
+                className='upload-file'
                 type="file"
                 name="image"
                 onChange={this.handleFileChange}
               />
-              <button>Post</button>
+              <button className='chat-send-button'>Send</button>
             </form>
           )}
         </main>

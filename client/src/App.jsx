@@ -205,10 +205,10 @@ class App extends Component {
         this.state.teachersLoaded && (
           <div className="App">
             <BrowserRouter>
-              <NavbarComponent
+              {/* <NavbarComponent
                 user={this.state.user}
                 onSignOut={this.onSignOut}
-              />
+              /> */}
               {/* <Fragment>
               <Link to="/sign-in">Sign In</Link>
               <Link to="/sign-up">Sign Up</Link>

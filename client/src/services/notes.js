@@ -1,14 +1,13 @@
-import axios from 'axios';
+import axios from "axios";
 
 const apiAuthenticationService = axios.create({
-  baseURL: "http://localhost:5000/notes",
-  withCredentials: true
+  baseURL: "/api/notes"
+  //withCredentials: true
 });
-
 
 export const list = async () => {
   try {
-    const response = await apiAuthenticationService.get('/list');
+    const response = await apiAuthenticationService.get("/list");
     const notes = response.data.notes;
     return notes;
   } catch (error) {
@@ -44,14 +43,14 @@ export const remove = async id => {
 
 export const create = async note => {
   const data = new FormData();
-  data.append('content', note.content);
-  data.append('image', note.image);
+  data.append("content", note.content);
+  data.append("image", note.image);
   try {
-    console.log(data)
+    console.log(data);
     const response = await apiAuthenticationService.post(`/create`, data);
     return response.data.note;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     throw error;
   }
 };

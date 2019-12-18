@@ -30,6 +30,7 @@ export default class ListOfTeachersView extends Component {
 
   render() {
     const teachers = this.props.teachers;
+    console.log("this are the teachers", teachers);
     return (
       <main className="listofteachers">
         {/* <h1>List here:</h1> */}

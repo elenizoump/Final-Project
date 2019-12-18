@@ -1,11 +1,7 @@
 .App {
-  background-image: url("./images/screenbackground.png");
+  background-image: url('./images/screenbackground.png');
   background-size: cover;
   width: 100vw;
   height: 100vh;
 }
 
-/* img {
-  width: 5em;
-  height: 5em;
-} */

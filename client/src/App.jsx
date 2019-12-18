@@ -205,10 +205,10 @@ class App extends Component {
         this.state.teachersLoaded && (
           <div className="App">
             <BrowserRouter>
-              {/* <NavbarComponent
+              <NavbarComponent
                 user={this.state.user}
                 onSignOut={this.onSignOut}
-              /> */}
+              />
               {/* <Fragment>
               <Link to="/sign-in">Sign In</Link>
               <Link to="/sign-up">Sign Up</Link>
@@ -257,6 +257,7 @@ class App extends Component {
                       />
                     )}
                   />
+
                   <Route
                     path="/profile"
                     render={() =>
@@ -358,7 +359,11 @@ class App extends Component {
                       />
                     )}
                   />
-                  <Route path="/lesson-wall" component={LessonWallView} />
+                  <Route
+                    path="/lesson-wall"
+                    render={() => <LessonWallView />}
+                  />
+                  {/* <Route path="/lesson-wall" component={LessonWallView} /> */}
 
                   <Route
                     path="/list"
@@ -369,9 +374,9 @@ class App extends Component {
                     path="/homeworkList"
                     render={() => <HomeworkListView user={this.state.user} />}
                   />
-                  {/* <Route path="/note/:id/edit" component={NoteEditView} />
-                  <Route path="/note/:id" component={NoteItemView} /> */}
-                  {/* // <Route path="/list" exact component={NoteListView} /> */}
+                  {/* <Route path="/:id/edit" component={NoteEditView} />
+                  <Route path="/:id" component={NoteItemView} />
+                  <Route path="/notes/list" exact component={NoteListView} /> */}
 
                   <Redirect to="/error/404" />
                 </Switch>

@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
-
-import { list as listHomeworkService } from './../services/homework';
+import { list as listHomeworkService } from "./../services/homework";
 
 class HomeworkListView extends Component {
   constructor(props) {
@@ -35,14 +34,18 @@ class HomeworkListView extends Component {
   }
 
   render() {
-    const user = this.props.user
+    const user = this.props.user;
     return (
       <main>
         {this.state.homeworks.map(homework => {
-          return <div>
-            <p>{homework.content}</p>
-            <p>Attachements: <img src={homework.image} /></p>
-          </div>
+          return (
+            <div>
+              <p>{homework.content}</p>
+              <p>
+                Attachements: <img src={homework.image} />
+              </p>
+            </div>
+          );
         })}
       </main>
     );
@@ -50,4 +53,3 @@ class HomeworkListView extends Component {
 }
 
 export default HomeworkListView;
-

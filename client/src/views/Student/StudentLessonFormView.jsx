@@ -7,6 +7,7 @@ import { PopUpView } from "./PopUpView.jsx";
 // import Calendar from "react-calendar";
 // import { loadMyCalendar as loadMyCalendarService } from "./../../services/calendar.js";
 import { loadCalendar as loadCalendarService } from "./../../services/calendar.js";
+//import "";
 
 class StudentLessonFormView extends Component {
   constructor(props) {
@@ -121,10 +122,12 @@ class StudentLessonFormView extends Component {
     const teachers = this.props.teachers;
     const style = { maxHeight: "90vh", overflow: "scroll" };
     return (
-      <main>
+      <main className="body">
         <Form onSubmit={this.handleFormSubmission}>
           <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>Instrument</Form.Label>
+            <Form.Label>
+              <h5>Instrument</h5>
+            </Form.Label>
             <Form.Control
               as="select"
               type="text"
@@ -151,7 +154,7 @@ class StudentLessonFormView extends Component {
               ))}
             </Form.Control>
           </Form.Group>
-          <Form.Group controlId="exampleForm.ControlSelect1">
+          {/* <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Available Days</Form.Label>
             <Form.Control
               as="select"
@@ -168,27 +171,33 @@ class StudentLessonFormView extends Component {
                 </option>
               ))}
             </Form.Control>
-          </Form.Group>
+          </Form.Group> */}
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>Hours of Study</Form.Label>
+            <Form.Label>
+              <h5>Hours of Study</h5>
+            </Form.Label>
             <Form.Control
               type="number"
+              min="0"
               placeholder="Hours of study this week"
               value={this.state.hoursOfStudy}
               name="hoursOfStudy"
               onChange={this.onStudyHoursChange}
             />
           </Form.Group>
-          <div>
-            Teacher:
-            {
-              this.props.teachers.find(
-                teacher => teacher._id === this.props.teacherId
-              ).name
-            }
-          </div>
+
           <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>Select from available days</Form.Label>
+            <Form.Label>
+              <h5>Select from available days</h5>
+            </Form.Label>
+            <div>
+              <strong>Teacher: </strong>
+              {
+                this.props.teachers.find(
+                  teacher => teacher._id === this.props.teacherId
+                ).name
+              }
+            </div>
             <Form.Control
               as="select"
               type="text"

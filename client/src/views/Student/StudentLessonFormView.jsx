@@ -200,7 +200,7 @@ class StudentLessonFormView extends Component {
               <option value="-1">Please select a day</option>
               {this.state.availableDays.map((availableDay, index) => (
                 <option key={index} value={index}>
-                  {availableDay.toString()}
+                  {availableDay.toLocaleDateString()}
                 </option>
               ))}
             </Form.Control>

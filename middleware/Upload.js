@@ -1,6 +1,7 @@
-const multer = require("multer");
-const cloudinary = require("cloudinary");
-const storageCloudinary = require("multer-storage-cloudinary");
+const multer = require('multer');
+const cloudinary = require('cloudinary');
+const storageCloudinary = require('multer-storage-cloudinary');
+
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_API_NAME,
@@ -11,9 +12,8 @@ cloudinary.config({
 
 const storage = storageCloudinary({
   cloudinary,
-  folder: "Sam-Alex-Eleni",
-  // allowedFormats: ["jpg", "png"],
-  resource_type: "raw"
+  folder: 'Sam-Alex-Eleni',
+  allowedFormats: ['jpg', 'png', 'mp3', 'mp4']
 });
 
 const uploader = multer({

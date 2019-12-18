@@ -12,8 +12,8 @@ const cors = require("cors");
 //const serveFavicon = require('serve-favicon');
 const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
-
-// ROUTe
+//const nodeSass = require("node-sass-middleware");
+// ROUTERS
 
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");

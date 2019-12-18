@@ -9,7 +9,7 @@ class NavbarComponent extends Component {
     return (
       <>
         {user ? (
-          <Navbar fixed="top" bg="light" variant="light">
+          <Navbar bg="light" variant="light">
             <Nav className="mr-auto">
               <Nav.Link as={Link} to="/lessons/view">
                 <img

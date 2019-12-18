@@ -63,9 +63,9 @@ class StudentSignUpView extends Component {
             onSubmit={this.handleFormSubmission}
           >
             <Form.Group as={Row} controlId="formHorizontalName">
-              <Form.Label column sm={2}>
+              {/* <Form.Label column sm={2}>
                 Name
-              </Form.Label>
+              </Form.Label> */}
               <Col sm={10}>
                 <Form.Control
                   type="text"
@@ -77,9 +77,9 @@ class StudentSignUpView extends Component {
               </Col>
             </Form.Group>
             <Form.Group as={Row} controlId="formHorizontalEmail">
-              <Form.Label column sm={2}>
+              {/* <Form.Label column sm={2}>
                 Email
-              </Form.Label>
+              </Form.Label> */}
               <Col sm={10}>
                 <Form.Control
                   type="email"
@@ -92,9 +92,9 @@ class StudentSignUpView extends Component {
             </Form.Group>
 
             <Form.Group as={Row} controlId="formHorizontalPassword">
-              <Form.Label column sm={2}>
+              {/* <Form.Label column sm={2}>
                 Password
-              </Form.Label>
+              </Form.Label> */}
               <Col sm={10}>
                 <Form.Control
                   type="password"
@@ -107,9 +107,9 @@ class StudentSignUpView extends Component {
             </Form.Group>
 
             <Form.Group as={Row} controlId="formHorizontalInstrumentName">
-              <Form.Label column sm={2}>
+              {/* <Form.Label column sm={2}>
                 Instrument
-              </Form.Label>
+              </Form.Label> */}
               <Col sm={10}>
                 <Form.Control
                   as="select"
@@ -138,9 +138,9 @@ class StudentSignUpView extends Component {
             </Form.Group>
 
             <Form.Group as={Row} controlId="formHorizontalInstrumentLevel">
-              <Form.Label column sm={2}>
+              {/* <Form.Label column sm={2}>
                 Level
-              </Form.Label>
+              </Form.Label> */}
               <Col sm={10}>
                 <Form.Control
                   as="select"

@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import "./../../styles/authforms.scss";
 
 class TeacherSignUpView extends Component {
   constructor(props) {
@@ -54,12 +55,12 @@ class TeacherSignUpView extends Component {
 
   render() {
     return (
-      <main>
-        <Form onSubmit={this.handleFormSubmission}>
+      <main className="bodyOfView">
+        <Form id="teacherSignUpForm" onSubmit={this.handleFormSubmission}>
           <Form.Group as={Row} controlId="formHorizontalName">
-            <Form.Label column sm={2}>
+            {/* <Form.Label column sm={2}>
               Name
-            </Form.Label>
+            </Form.Label> */}
             <Col sm={10}>
               <Form.Control
                 type="text"
@@ -71,9 +72,9 @@ class TeacherSignUpView extends Component {
             </Col>
           </Form.Group>
           <Form.Group as={Row} controlId="formHorizontalEmail">
-            <Form.Label column sm={2}>
+            {/* <Form.Label column sm={2}>
               Email
-            </Form.Label>
+            </Form.Label> */}
             <Col sm={10}>
               <Form.Control
                 type="email"
@@ -86,9 +87,9 @@ class TeacherSignUpView extends Component {
           </Form.Group>
 
           <Form.Group as={Row} controlId="formHorizontalPassword">
-            <Form.Label column sm={2}>
+            {/* <Form.Label column sm={2}>
               Password
-            </Form.Label>
+            </Form.Label> */}
             <Col sm={10}>
               <Form.Control
                 type="password"
@@ -101,9 +102,9 @@ class TeacherSignUpView extends Component {
           </Form.Group>
 
           <Form.Group as={Row} controlId="formHorizontalInstrumentName">
-            <Form.Label column sm={2}>
+            {/* <Form.Label column sm={2}>
               Instrument
-            </Form.Label>
+            </Form.Label> */}
             <Col sm={10}>
               <Form.Control
                 as="select"
@@ -132,9 +133,9 @@ class TeacherSignUpView extends Component {
           </Form.Group>
 
           <Form.Group as={Row} controlId="formHorizontalInstrumentLevel">
-            <Form.Label column sm={2}>
+            {/* <Form.Label column sm={2}>
               Level
-            </Form.Label>
+            </Form.Label> */}
             <Col sm={10}>
               <Form.Control
                 as="select"
@@ -151,9 +152,9 @@ class TeacherSignUpView extends Component {
           </Form.Group>
 
           <Form.Group as={Row} controlId="formHorizontalInstrumentLevel">
-            <Form.Label column sm={2}>
+            {/* <Form.Label column sm={2}>
               Price
-            </Form.Label>
+            </Form.Label> */}
             <Col sm={10}>
               <Form.Control
                 type="number"
@@ -168,9 +169,9 @@ class TeacherSignUpView extends Component {
           </Form.Group>
 
           <Form.Group as={Row} controlId="formHorizontalInstrumentLevel">
-            <Form.Label column sm={2}>
+            {/* <Form.Label column sm={2}>
               City
-            </Form.Label>
+            </Form.Label> */}
             <Col sm={10}>
               <Form.Control
                 as="select"

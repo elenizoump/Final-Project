@@ -4,8 +4,8 @@ import { createLesson as createLessonService } from "./../../services/lesson.js"
 import Form from "react-bootstrap/Form";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import { PopUpView } from "./PopUpView.jsx";
-import Calendar from "react-calendar";
-import { loadMyCalendar as loadMyCalendarService } from "./../../services/calendar.js";
+// import Calendar from "react-calendar";
+// import { loadMyCalendar as loadMyCalendarService } from "./../../services/calendar.js";
 import { loadCalendar as loadCalendarService } from "./../../services/calendar.js";
 
 class StudentLessonFormView extends Component {
@@ -200,7 +200,7 @@ class StudentLessonFormView extends Component {
               <option value="-1">Please select a day</option>
               {this.state.availableDays.map((availableDay, index) => (
                 <option key={index} value={index}>
-                  {availableDay.toString()}
+                  {availableDay.toLocaleDateString()}
                 </option>
               ))}
             </Form.Control>

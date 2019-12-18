@@ -85,7 +85,7 @@ class NoteCreateView extends Component {
           {note && (
             <form
               onSubmit={this.handleFormSubmission}
-              enctype="multipart/form-data"
+              encType="multipart/form-data"
             >
               <textarea
                 placeholder="message.."

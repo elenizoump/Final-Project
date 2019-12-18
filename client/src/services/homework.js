@@ -1,21 +1,19 @@
-import axios from 'axios';
+import axios from "axios";
 
 const apiAuthenticationService = axios.create({
-  baseURL: "http://localhost:5000/homework",
+  baseURL: "/api/homework",
   withCredentials: true
 });
 
-
 export const list = async () => {
   try {
-    const response = await apiAuthenticationService.get('/homeworkList');
+    const response = await apiAuthenticationService.get("/homeworkList");
     const homeworks = response.data.homeworks;
     return homeworks;
   } catch (error) {
     throw error;
   }
 };
-
 
 export const edit = async (id, homework) => {
   try {
@@ -27,14 +25,14 @@ export const edit = async (id, homework) => {
 
 export const create = async homework => {
   const data = new FormData();
-  data.append('content', homework.content);
-  data.append('image', homework.image);
+  data.append("content", homework.content);
+  data.append("image", homework.image);
   try {
-    console.log(data)
+    console.log(data);
     const response = await apiAuthenticationService.post(`/homework`, data);
     return response.data.homework;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     throw error;
   }
 };

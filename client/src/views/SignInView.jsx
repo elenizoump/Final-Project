@@ -37,8 +37,8 @@ class SignInView extends Component {
   render() {
     return (
       <>
-        <main className="SignInView">
-          <Form classname="paddingzero" onSubmit={this.handleFormSubmission}>
+        <main className="bodyOfView">
+          <Form className="form" onSubmit={this.handleFormSubmission}>
             <Form.Group as={Row} controlId="formHorizontalEmail">
               <Form.Label classname="paddingzero" column sm={2}>
                 Email

@@ -5,8 +5,8 @@ const apiService = axios.create({
   // baseURL: 'http://localhost:3020/api'
   // After proxying
   // baseURL: 'http://localhost:3000/api'
-  baseURL: "http://localhost:5000/calendar",
-  withCredentials: true
+  baseURL: "/api/calendar"
+  //withCredentials: true
 });
 
 export const listCalendars = async () =>

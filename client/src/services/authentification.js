@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const apiAuthenticationService = axios.create({
-  baseURL: "http://localhost:5000/auth",
-  withCredentials: true
+  baseURL: "/api/auth"
+  //withCredentials: true
 });
 
 //export default signIn;

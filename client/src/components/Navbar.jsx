@@ -9,7 +9,7 @@ class NavbarComponent extends Component {
     return (
       <>
         {user ? (
-          <Navbar fixed="bottom" bg="dark" variant="dark">
+          <Navbar fixed="top" bg="light" variant="light">
             <Nav className="mr-auto">
               <Nav.Link as={Link} to="/lessons/view">
                 <img
@@ -44,7 +44,7 @@ class NavbarComponent extends Component {
             </Nav>
           </Navbar>
         ) : (
-          <Navbar bg="dark" variant="dark">
+          <Navbar bg="light" variant="light">
             <Navbar.Brand as={Link} to="#home">
               <img
                 alt="AppLogo"
@@ -55,7 +55,7 @@ class NavbarComponent extends Component {
               />
               AppName
             </Navbar.Brand>
-            <Nav className="mr-auto">
+            <Nav fixed="bottom" className="mr-auto">
               <Nav.Link as={Link} to="/sign-in">
                 Sign In
               </Nav.Link>

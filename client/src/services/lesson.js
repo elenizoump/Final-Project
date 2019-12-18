@@ -5,8 +5,8 @@ const apiService = axios.create({
   // baseURL: 'http://localhost:3020/api'
   // After proxying
   // baseURL: 'http://localhost:3000/api'
-  baseURL: "http://localhost:5000/lesson",
-  withCredentials: true
+  baseURL: "/api/lesson"
+  //withCredentials: true
 });
 
 export const listLessons = async () => await apiService.get("/viewAllLessons");
@@ -25,7 +25,7 @@ export const editLesson = async (id, lesson) => {
 
 export const addComment = async (id, comment) => {
   try {
-  await apiService.patch(`/comments/${id}`, comment);
+    await apiService.patch(`/comments/${id}`, comment);
   } catch (error) {
     throw error;
   }

@@ -25,7 +25,7 @@ const calendarRouter = require("./routes/calendar");
 const MongoStore = connectMongo(expressSession);
 const app = express();
 
-//app.use(serveFavicon(join(__dirname, 'public/images', 'favicon.ico')));
+app.use(serveFavicon(join(__dirname, "client/build", "favicon.ico")));
 //app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(express.static(join(__dirname, "client/build")));

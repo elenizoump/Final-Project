@@ -46,6 +46,7 @@ export default class ListOfTeachersView extends Component {
               value={this.state.instrumentName}
               name="instrument"
               onChange={this.onInstrumentNameChange}
+              className="form-select"
             >
               <option value="">Filter By Instument</option>
               {[

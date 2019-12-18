@@ -7,7 +7,7 @@ import { PopUpView } from "./PopUpView.jsx";
 // import Calendar from "react-calendar";
 // import { loadMyCalendar as loadMyCalendarService } from "./../../services/calendar.js";
 import { loadCalendar as loadCalendarService } from "./../../services/calendar.js";
-//import "";
+import "./../../styles/studentlessonformview.scss";
 
 class StudentLessonFormView extends Component {
   constructor(props) {
@@ -126,7 +126,7 @@ class StudentLessonFormView extends Component {
         <Form onSubmit={this.handleFormSubmission}>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>
-              <h5>Instrument</h5>
+              <h5 className="h5">Instrument</h5>
             </Form.Label>
             <Form.Control
               as="select"
@@ -174,7 +174,7 @@ class StudentLessonFormView extends Component {
           </Form.Group> */}
           <Form.Group controlId="formBasicPassword">
             <Form.Label>
-              <h5>Hours of Study</h5>
+              <h5 className="h5">Hours of Study</h5>
             </Form.Label>
             <Form.Control
               type="number"
@@ -188,7 +188,7 @@ class StudentLessonFormView extends Component {
 
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>
-              <h5>Select from available days</h5>
+              <h5 className="h5">Select from available days</h5>
             </Form.Label>
             <div>
               <strong>Teacher: </strong>
@@ -240,8 +240,8 @@ class StudentLessonFormView extends Component {
           {/* <Calendar onChange={this.onChange} value={this.state.date} />
           <p>Picked date: {this.state.date.toLocaleDateString()} </p>
           <hr /> */}
-          <ButtonToolbar>
-            <Button variant="primary" type="submit">
+          <ButtonToolbar className="button">
+            <Button variant="primary" type="submit" size="bg" block>
               Create Lesson
             </Button>
             <PopUpView

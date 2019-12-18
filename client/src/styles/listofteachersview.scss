@@ -1,4 +1,8 @@
-.lessonForm {
+.form-style {
+  border: 2px solid red;
+}
+
+.listofteachers {
   display: flex;
   justify-content: center;
   padding-top: 2em;
@@ -7,4 +11,3 @@
 .form-group {
   padding-bottom: 2em;
 }
-

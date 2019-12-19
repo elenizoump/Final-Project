@@ -155,7 +155,7 @@ class StudentProfileView extends Component {
             </div>
 
             <img
-              src="images/user (2).png"
+              src="images/userProfile.png"
               alt="Profile"
               className="profilePic"
             />

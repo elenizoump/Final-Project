@@ -34,7 +34,7 @@ class NavbarComponent extends Component {
                 <Nav.Link as={Link} to="/profile">
                   <img
                     id="navbaricons"
-                    src="/images/user (6).png"
+                    src="/images/navProfile.png"
                     className="d-inline-block align-top"
                     alt="profile"
                   />

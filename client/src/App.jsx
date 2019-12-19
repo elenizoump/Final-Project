@@ -279,10 +279,11 @@ class App extends Component {
                   <Route
                     path="/create"
                     // component={NoteCreateView}
-                    render={props => <NoteCreateView {...props} />}
+                    render={props => <NoteCreateView {...props}   user={this.state.user} />}
                     // verify={this.verifyAuthentication}
                     // redirect="/error/401"
-                    user={this.state.user}
+                   // user={this.state.user}
+                   // onUpdateUser={this.fetchUserData}
                   />
                   <Route
                     path="/lesson/:lessonId/view"
@@ -372,7 +373,7 @@ class App extends Component {
 
                   <Route
                     path="/list"
-                    render={() => <NoteListView user={this.state.user} />}
+                    render={() => <NoteListView  />}
                   />
 
                   <Route

@@ -1,0 +1,47 @@
+.main-div-container {
+    display: flex;
+    flex-direction: column;
+ 
+
+    .lesson-info-box{
+        border-radius: 5px;
+        margin-top: 10em;
+        margin-left: 2em;
+        margin-right: 2em;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        background-color: white;
+        box-shadow: 2px -1px 15px 0px rgba(0,0,0,0.40);
+
+        h4{
+            margin: 10px;
+        }
+
+        p {
+            margin: 10px;
+        }
+
+      
+    }
+
+    .lesson-status-info{
+        margin: 10px;
+        text-align: center;
+        color: white;
+    }
+    button {
+        
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        padding: 10px;
+        border: none;
+        color: white;
+        background-color: #7c45c7;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+}
+

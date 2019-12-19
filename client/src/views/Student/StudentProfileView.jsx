@@ -10,6 +10,7 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { updateUser } from "../../services/authentification.js";
 import "./../../styles/profileStyles.scss";
+import defaultImg from "./../../images/profileDefault.png";
 class StudentProfileView extends Component {
   constructor(props) {
     super(props);
@@ -155,7 +156,7 @@ class StudentProfileView extends Component {
             </div>
 
             <img
-              src="/images/userprofile.png"
+              src={defaultImg}
               alt="Profile"
               className="profilePic"
             />

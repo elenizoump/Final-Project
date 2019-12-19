@@ -1,72 +1,81 @@
 .main-container {
-  background-image: url("./../images/profileBackground.png");
-  background-size: cover;
-  background-position: center;
-}
+    background-image: url('./../images/profileBackground.png');
+    background-size: cover;
+    background-position: center;
 
-.profile-title {
-  color: white;
-  display: flex;
-  justify-content: center;
-  font-weight: bold;
-  letter-spacing: 1px;
-  padding: 10px;
-  font-size: 55px;
-}
 
-.profile-info-box {
-  margin-top: 10em;
-  margin-left: 5em;
-  width: fit-content;
-}
+    .profile-title {
+        color: white;
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-size: 55px;
+        margin-left: 2em;
+    }
 
-.user-name {
-  color: white;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-}
+    .profile-info-box {
+        margin-top: 10em;
+        margin-left: 5em;
+        width: fit-content;
 
-img {
-  width: 15em;
-  height: 15em;
-}
+        img {
+            width: 15em;
+            height: 15em;
+        }
 
-.DayPicker {
-  font-size: 0.8rem !important;
-  background-color: white;
-  width: 90%;
-  margin-left: 16px;
-  border-radius: 5px;
-}
 
-.calendar-info {
-  display: flex;
-  flex-direction: column;
-  h6 {
-    color: black;
-    border: 1px solid white;
-    border-radius: 5px;
-    width: 50%;
-    background-color: white;
-    margin-left: 20px;
-    padding: 1em;
-  }
-}
+        .user-name {
+            color: white;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            font-size: 20px;
+        }
+    }
 
-.user-info-box {
-  padding: 3em;
-  background-color: white;
-  border-radius: 5px;
-  margin: 12px;
-  margin-top: 15em;
-}
 
-.save-date-button {
-  border: none;
-  background-color: purple;
-  padding: 1em;
-  border-radius: 3px;
-  width: 100vw;
-  color: white;
+
+
+
+    .DayPicker {
+        font-size: 0.8rem !important;
+        background-color: white;
+        width: 90%;
+        margin-left: 16px;
+        border-radius: 5px;
+
+    }
+
+    .calendar-info {
+        display: flex;
+        flex-direction: column;
+
+
+        h6 {
+            color: black;
+            border: 1px solid white;
+            border-radius: 5px;
+            width: 50%;
+            background-color: white;
+            margin-left: 20px;
+            padding: 1em;
+        }
+    }
+
+    .user-info-box {
+        padding: 3em;
+        background-color: white;
+        border-radius: 5px;
+        margin: 12px;
+        margin-top: 15em;
+    }
+
+
+    .save-date-button {
+        border: none;
+        background-color: purple;
+        padding: 1em;
+        border-radius: 3px;
+        width: 100vw;
+        color: white;
+    }
 }

@@ -20,7 +20,13 @@ class NoteCreateView extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
-    console.log(this.props);
+  }
+
+  componentDidMount(){
+    console.log(this.props)
+    
+    //console.log(this.props)
+    //this.props.fetchUserData()
   }
 
   handleInputChange(event) {
@@ -71,10 +77,11 @@ class NoteCreateView extends Component {
   render() {
     const note = this.state.note;
     const user = this.props.user;
+    console.log('fdvfdvfdgf', user)
 
     return (
       <div className="chat-container">
-        <p className='chat-title'>Conversations <Link to="/homework" className='homework-text'> <ion-icon name="add-circle" className='ion-icon-add'></ion-icon> </Link></p>
+        <h1 className='chat-title'>Conversations </h1>
         <div className='chat-info-box'>
           {/* <HomeworkListView />
           
@@ -86,7 +93,7 @@ class NoteCreateView extends Component {
 
         <main>
  
-          <NoteListView />
+          <NoteListView user={this.props.user} />
           {note && (
             <form
               onSubmit={this.handleFormSubmission}
@@ -98,13 +105,14 @@ class NoteCreateView extends Component {
                 value={note.content || ""}
                 name="content"
                 onChange={this.handleInputChange}
+          
               ></textarea>
-              <input
+              {/* <input
                 className='upload-file'
                 type="file"
                 name="image"
                 onChange={this.handleFileChange}
-              />
+              /> */}
               <button className='chat-send-button'>Send</button>
             </form>
           )}
@@ -115,3 +123,5 @@ class NoteCreateView extends Component {
 }
 
 export default NoteCreateView;
+
+{/* <Link to="/homework" className='homework-text'> <ion-icon name="add-circle" className='ion-icon-add'></ion-icon> </Link> */}

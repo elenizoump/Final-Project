@@ -289,7 +289,7 @@ class App extends Component {
                 <Route
                   path="/create"
                   // component={NoteCreateView}
-                  render={props => <NoteCreateView {...props} />}
+                  render={() => <NoteCreateView user={this.state.user} />}
                   // verify={this.verifyAuthentication}
                   // redirect="/error/401"
                   user={this.state.user}

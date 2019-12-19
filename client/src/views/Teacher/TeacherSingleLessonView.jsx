@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { loadLesson, updateStatus } from "./../../services/lesson";
 import { withRouter } from "react-router-dom";
+import './../../styles/teacherSingleLessonStyles.scss';
 
 class TeacherSingleLessonView extends Component {
   constructor(props) {
@@ -73,38 +74,28 @@ class TeacherSingleLessonView extends Component {
   render() {
     const lesson = this.state.lesson;
     return this.state.loaded && this.state.lesson ? (
-      <div>
-        <Card style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>
-              <h3>Single lesson view</h3>
-              <Card.Img variant="top" src={lesson._teacher.image} />
-            </Card.Title>
-            <Card.Text>
-              <p>{lesson._student.name}</p>
-              <p>{lesson._student.gender}</p>
-              <p>{lesson._student.age}</p>
-              <p>{lesson._student.name}</p>
-              <p>{lesson._student.adress}</p>
-              <p>{lesson._student.description}</p>
-              <p>
-                {lesson._student.levelsname} - {lesson._student.levelsprice}
-              </p>
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-
-        <div className="lesson-info">
-          <p>{lesson.date}</p>
-          <p>{lesson.status}</p>
+      <div className='main-div-container'>
+         <div className="lesson-status-info">
+          <h6> Bookend on {lesson.date }</h6>
+          <h4> Current status {lesson.status}</h4>
+        </div>
+        <div className='lesson-info-box'>
+          <h4>Student details</h4>
+          <p>{lesson._student.name} Student Name</p>
+          <p>{lesson._student.gender} Student Gender</p>
+          <p>{lesson._student.age} Student Age</p>
+          <p>{lesson._student.adress} Student Address</p>
+          <p>{lesson._student.description} Student Description</p>
+          <p>
+            {lesson._student.levelsname} {lesson._student.levelsprice}
+          </p>
         </div>
         {this.state.statusPeding && (
           <button onClick={this.statusChange}>Confirm Lesson</button>
         )}
-        <div className="_teacherMapLocation">
+        {/* <div className="_teacherMapLocation">
           <p>Here goes the house location on the map</p>
-        </div>
+        </div> */}
       </div>
     ) : null;
   }

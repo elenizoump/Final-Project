@@ -130,19 +130,22 @@ class TeacherProfileView extends Component {
 
   render() {
     const user = this.props.user;
+    console.log("USER IN PROFILE", user)
     const day = this.state.date;
     return (
-      <main className="main-container">
-        <div className="containerElements">
-          <p className="profile-title">Profile</p>
-          {user && (
-            <div className="profile-info-box">
-              <p className="user-name">{user.name}</p>
-              <img src={defaultImg} alt="Profile" className="profilePic" />
-            </div>
-          )}
+      <main className='main-container'>
+        <div className='containerElements'>
+        <p className='profile-title'>Profile</p>
+        {user && (
+          <div className='profile-info-box'>
+            <p className='user-name'>{user.name}</p>
+            <img src={defaultImg} alt="Profile" className='profilePic' />
+          </div>
+          
 
-          {/* <div className="UsersMapLocation">
+        )}
+
+        {/* <div className="UsersMapLocation">
           <MapContainer />
         </div> */}
 

@@ -43,5 +43,17 @@
         font-weight: bold;
         letter-spacing: 1px;
     }
+
+    .chat-bubble {
+        display: flex;
+        justify-content: flex-end;
+        margin: 10px;
+        padding: 10px;
+
+        ion-icon {
+            font-size: 4em;
+            color: #7c45c7;
+        }
+    }
 }
 

@@ -99,6 +99,12 @@ class NoteCreateView extends Component {
               onSubmit={this.handleFormSubmission}
               encType="multipart/form-data"
             >
+                {/* <input
+                className='upload-file'
+                type="file"
+                name="image"
+                onChange={this.handleFileChange}
+              /> */}
               <textarea
                 className='chat-input-area'
                 placeholder="Write a response.."
@@ -107,12 +113,6 @@ class NoteCreateView extends Component {
                 onChange={this.handleInputChange}
           
               ></textarea>
-              {/* <input
-                className='upload-file'
-                type="file"
-                name="image"
-                onChange={this.handleFileChange}
-              /> */}
               <button className='chat-send-button'>Send</button>
             </form>
           )}

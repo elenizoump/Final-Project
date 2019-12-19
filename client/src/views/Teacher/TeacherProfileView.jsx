@@ -135,17 +135,17 @@ class TeacherProfileView extends Component {
     return (
       <main className='main-container'>
         <div className='containerElements'>
-        <p className='profile-title'>Profile</p>
-        {user && (
-          <div className='profile-info-box'>
-            <p className='user-name'>{user.name}</p>
-            <img src={defaultImg} alt="Profile" className='profilePic' />
-          </div>
-          
+          <p className='profile-title'>Profile</p>
+          {user && (
+            <div className='profile-info-box'>
+              <p className='user-name'>{user.name}</p>
+              <img src={defaultImg} alt="Profile" className='profilePic' />
+            </div>
 
-        )}
 
-        {/* <div className="UsersMapLocation">
+          )}
+
+          {/* <div className="UsersMapLocation">
           <MapContainer />
         </div> */}
 

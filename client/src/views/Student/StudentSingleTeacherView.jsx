@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { loadTeacher } from "./../../services";
 import { withRouter } from "react-router-dom";
 import "./../../styles/singleTeacherView.scss";
+import defaultImg from "./../../images/profileDefault.png";
 
 class StudentSingleTeacherView extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class StudentSingleTeacherView extends Component {
       <div className="singleTeacherView">
         <h1>{teacher.name}</h1>
         <img
-          src="/images/userprofile.png"
+          src={defaultImg}
           alt="Profile"
           className="profilePic"
         />

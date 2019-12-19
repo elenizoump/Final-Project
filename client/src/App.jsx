@@ -383,7 +383,6 @@ class App extends Component {
                   <Route path="/:id" component={NoteItemView} />
                   <Route path="/notes/list" exact component={NoteListView} /> */}
 
-                  <Redirect to="/error/404" />
                 </Switch>
               )}
             </BrowserRouter>

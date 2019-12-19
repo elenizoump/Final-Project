@@ -134,7 +134,7 @@ class TeacherProfileView extends Component {
     return (
       <main className='main-container'>
         <div className='containerElements'>
-        <p className='profile-title'>Profile</p>
+        <p className='profile-title'>Profile <ion-icon name="home"></ion-icon></p>
         {user && (
           <div className='profile-info-box'>
             <p className='user-name'>{user.name}</p>

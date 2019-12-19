@@ -1,5 +1,6 @@
 body,
 html {
+  background-color: #26262e;
   width: 100vw;
   height: 100vh;
   margin: 0;
@@ -9,6 +10,12 @@ html {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+#mainScreen {
+  width: 100vw;
+  height: 100vh;
+  background-color: #26262e;
 }
 
 code {

@@ -1,0 +1,45 @@
+.bodyOfStudentProfile {
+  height: 90vh;
+  width: 100vw;
+  background-image: url("/images/profile.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 0.1px solid #26262e;
+  background-color: #26262e;
+  .ProfileEdit {
+    display: flex;
+    flex-direction: row;
+    img {
+      height: 2em;
+      border: none;
+      padding: 0 !important;
+      margin-top: 1em;
+    }
+    h2 {
+      margin-top: 1em;
+      margin-left: 30%;
+      margin-right: 0.5%;
+      color: white;
+      //margin: 0% 27%;
+    }
+    button {
+      background-color: Transparent;
+      border: none;
+    }
+  }
+  h1 {
+    padding-top: 0.5em;
+    color: white;
+    margin: 0% 27%;
+  }
+
+  img {
+    height: 10em;
+    width: auto;
+
+    margin: 0 30%;
+    border: 2px solid white;
+    border-radius: 50%;
+  }
+}

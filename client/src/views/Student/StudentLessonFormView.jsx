@@ -14,7 +14,7 @@ class StudentLessonFormView extends Component {
     super(props);
     this.state = {
       instrumentName: "",
-      hoursOfStudy: 0,
+      hoursOfStudy: "",
       popUpViewShow: false,
       availableDays: [],
       chosenDay: -1,
@@ -122,12 +122,9 @@ class StudentLessonFormView extends Component {
     const teachers = this.props.teachers;
     const style = { maxHeight: "90vh", overflow: "scroll" };
     return (
-      <main className="lessonForm">
-        <Form onSubmit={this.handleFormSubmission}>
+      <main className="bookLessonView">
+        <Form onSubmit={this.handleFormSubmission} id="bookLessonForm">
           <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>
-              <h5 className="h5">Instrument</h5>
-            </Form.Label>
             <Form.Control
               as="select"
               type="text"
@@ -173,13 +170,10 @@ class StudentLessonFormView extends Component {
             </Form.Control>
           </Form.Group> */}
           <Form.Group controlId="formBasicPassword">
-            <Form.Label>
-              <h5 className="h5">Hours of Study</h5>
-            </Form.Label>
             <Form.Control
               type="number"
               min="0"
-              placeholder="Hours of study this week"
+              placeholder="Hours of study per week"
               value={this.state.hoursOfStudy}
               name="hoursOfStudy"
               onChange={this.onStudyHoursChange}
@@ -187,16 +181,15 @@ class StudentLessonFormView extends Component {
           </Form.Group>
 
           <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>
-              <h5 className="h5">Select from available days</h5>
-            </Form.Label>
             <div>
-              <strong>Teacher: </strong>
-              {
-                this.props.teachers.find(
-                  teacher => teacher._id === this.props.teacherId
-                ).name
-              }
+              <h3>
+                Teacher:
+                {
+                  this.props.teachers.find(
+                    teacher => teacher._id === this.props.teacherId
+                  ).name
+                }
+              </h3>
             </div>
             <Form.Control
               as="select"
@@ -206,7 +199,7 @@ class StudentLessonFormView extends Component {
               name="instrument"
               onChange={this.onAvailableDayChange}
             >
-              <option value="-1">Please select a day</option>
+              <option value="-1">Please select an available day</option>
               {this.state.availableDays.map((availableDay, index) => (
                 <option key={index} value={index}>
                   {availableDay.toLocaleDateString()}
@@ -241,7 +234,7 @@ class StudentLessonFormView extends Component {
           <p>Picked date: {this.state.date.toLocaleDateString()} </p>
           <hr /> */}
           <ButtonToolbar className="button">
-            <Button variant="primary" type="submit" size="bg" block>
+            <Button className="btn-create" type="submit">
               Create Lesson
             </Button>
             <PopUpView

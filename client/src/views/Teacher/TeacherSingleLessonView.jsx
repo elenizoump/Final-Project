@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { loadLesson, updateStatus } from "./../../services/lesson";
 import { withRouter } from "react-router-dom";
+import './../../styles/teacherSingleLessonStyles.scss';
 
 class TeacherSingleLessonView extends Component {
   constructor(props) {

@@ -191,6 +191,7 @@ class App extends Component {
           user: null,
           lessons: []
         });
+        //this.props.history.push(`/sign-in`);
       } else {
         console.error(response);
       }

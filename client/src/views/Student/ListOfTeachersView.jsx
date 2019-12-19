@@ -32,13 +32,10 @@ export default class ListOfTeachersView extends Component {
     const teachers = this.props.teachers;
     console.log("this are the teachers", teachers);
     return (
-      <main className="listofteachers">
-        {/* <h1>List here:</h1> */}
-        <Form>
-          {/*<Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>
-              <h5>Instrument</h5>
-            </Form.Label>
+      <main className="listOfTeachers">
+        <Form id="listOfTeachersForm">
+          <h2>Select your Teacher</h2>
+          <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Control
               as="select"
               type="text"
@@ -48,7 +45,7 @@ export default class ListOfTeachersView extends Component {
               onChange={this.onInstrumentNameChange}
               className="form-select"
             >
-              <option value="">Filter By Instument</option>
+              <option value="">Filter Teachers By Instument</option>
               {[
                 "Piano",
                 "Guitar",
@@ -67,9 +64,6 @@ export default class ListOfTeachersView extends Component {
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>
-              <h5>Level</h5>
-            </Form.Label>
             <Form.Control
               as="select"
               type="text"
@@ -78,7 +72,7 @@ export default class ListOfTeachersView extends Component {
               name="level"
               onChange={this.onLevelChange}
             >
-              <option value="">Filter By Level</option>
+              <option value="">Filter Teachers By Level</option>
               {["Beginner", "Intermediate", "Advanced"].map(level => (
                 <option key={level} value={level}>
                   {level}
@@ -86,9 +80,7 @@ export default class ListOfTeachersView extends Component {
               ))}
             </Form.Control>
           </Form.Group>
-          <h5>Teachers:</h5>
-          <hr />
-          <ListGroup>
+          <ListGroup className="overflow-auto">
             {teachers
               .filter(
                 teacher =>
@@ -111,47 +103,8 @@ export default class ListOfTeachersView extends Component {
                 </ListGroup.Item>
               ))}
           </ListGroup>
-          {/* <Link to={`/teachers/view`}>View all Teachers</Link> */}
         </Form>
       </main>
     );
   }
 }
-
-// class ListOfTeachersView extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       users: []
-//     };
-//   }
-
-//   async componentDidMount() {
-//     try {
-//       const users = await listTeachers();
-//       this.setState({
-//         users: users
-//       });
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-
-//   render() {
-//     const teacherList = this.state.users;
-//     return (
-//       <div>
-//         <h1>List here:</h1>
-//         <ul>
-//           {teacherList.map(user => (
-//             <div key={user._id}>
-//               <li>{user.name}</li>
-//             </div>
-//           ))}
-//         </ul>
-//       </div>
-//     );
-//   }
-// }
-
-// export default ListOfTeachersView;

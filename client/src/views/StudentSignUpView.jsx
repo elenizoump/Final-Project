@@ -39,7 +39,8 @@ class StudentSignUpView extends Component {
       emailValue: email,
       passwordValue: password,
       instrumentnameValue: instrumentname,
-      levelsnameValue: levelsname
+      levelsnameValue: levelsname,
+      cityValue: city
       //photoValue: image
     } = this.state;
     this.props.onSignUp({
@@ -48,6 +49,7 @@ class StudentSignUpView extends Component {
       password,
       instrumentname,
       levelsname,
+      city,
       //image,
       type: "student"
     });

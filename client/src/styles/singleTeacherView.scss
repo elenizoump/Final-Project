@@ -1,4 +1,4 @@
-.bodyOfStudentProfile {
+.singleTeacherView {
   height: 90vh;
   width: 100vw;
   background-image: url("/images/profile.png");
@@ -7,31 +7,13 @@
   background-size: cover;
   border: 0.1px solid #26262e;
   background-color: #26262e;
-  .ProfileEdit {
-    display: flex;
-    flex-direction: row;
-    img {
-      height: 2em;
-      border: none;
-      padding: 0 !important;
-      margin-top: 1em;
-    }
-    h2 {
-      margin-top: 1em;
-      margin-left: 25%;
-      margin-right: 0.5%;
-      color: white;
-      //margin: 0% 27%;
-    }
-    button {
-      background-color: Transparent;
-      border: none;
-    }
-  }
+
   h1 {
     padding-top: 0.5em;
     color: white;
     margin: 0% 27%;
+    text-align: center;
+    margin-bottom: 2em;
   }
 
   img {
@@ -59,18 +41,20 @@
     box-shadow: -1px 2px 1px 1px #524a5d;
     border-radius: 20%;
   }
-  #studentProfileInfo {
+
+  #teacherInfo {
     text-align: center;
-    background-color: whitesmoke;
+    background-color: #f4f1f8;
     border: 0px solid;
     max-width: 100%;
     width: 80%;
-    margin: 10%;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    margin: 15%;
+    height: fit-content;
+    width: fit-content;
     border-radius: 2%;
     max-height: 95%;
     margin-top: 25%;
+    margin-bottom: 8%;
     color: #000;
 
     -webkit-box-shadow: -1px 4px 26px 11px #c09fed;
@@ -79,6 +63,10 @@
 
     p {
       margin-bottom: 1px;
+    }
+
+    h3 {
+      margin: 0 1em;
     }
   }
 }

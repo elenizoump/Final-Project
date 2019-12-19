@@ -40,7 +40,11 @@ class NavbarComponent extends Component {
                   />
                 </Nav.Link>
               </div>
-              <Button variant="outline-info" onClick={this.props.onSignOut}>
+              <Button
+                variant="outline-info"
+                onClick={this.props.onSignOut}
+                redirect="/sign-in"
+              >
                 Log Out
               </Button>
             </Nav>

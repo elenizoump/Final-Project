@@ -147,7 +147,7 @@ class StudentProfileView extends Component {
               <h2>{user.name}</h2>
               <Button onClick={this.handleShow} data-target="#nameModal">
                 <img
-                  src="images/pen.png"
+                  src="/images/pen.png"
                   alt="edit name"
                   // className="profilePic"
                 />
@@ -155,7 +155,7 @@ class StudentProfileView extends Component {
             </div>
 
             <img
-              src="images/user (2).png"
+              src="/images/userprofile.png"
               alt="Profile"
               className="profilePic"
             />

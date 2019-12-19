@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 
-import { create as createNoteService } from "./../services/notes";
+import {
+  create as createNoteService,
+  list as listNoteService
+} from "./../services/notes";
 import NoteListView from "./NoteListView";
 import NoteItemView from "./NoteItemView";
 import { Link } from "react-router-dom";
-import '../styles/noteCreateStyles.scss'
+import "../styles/noteCreateStyles.scss";
 
 import HomeworkListView from "./HomeworkListView";
 
@@ -12,6 +15,7 @@ class NoteCreateView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      notes: [],
       note: {
         content: "",
         image: null
@@ -22,11 +26,30 @@ class NoteCreateView extends Component {
     this.handleFileChange = this.handleFileChange.bind(this);
   }
 
-  componentDidMount(){
-    console.log(this.props)
-    
-    //console.log(this.props)
-    //this.props.fetchUserData()
+  componentDidMount() {
+    this.fetchNotes();
+  }
+
+  async fetchNotes() {
+    try {
+      const response = await listNoteService();
+      if (response.statusText === "OK") {
+        const { data } = response;
+        this.setState({
+          notes: data,
+          notesLoaded: true
+        });
+      } else {
+        this.setState({
+          notesLoaded: true
+        });
+        console.error(response);
+      }
+    } catch (error) {
+      this.setState({
+        notesLoaded: true
+      });
+    }
   }
 
   handleInputChange(event) {
@@ -56,8 +79,15 @@ class NoteCreateView extends Component {
     // console.log(note);
     try {
       const noteDocument = await createNoteService(note);
-      const id = noteDocument._id;
+      // const id = noteDocument._id;
       //this.props.history.push(`/${id}`);
+      this.setState({
+        note: {
+          content: "",
+          image: null
+        }
+      });
+      this.fetchNotes();
     } catch (error) {
       console.log(error);
     }
@@ -75,45 +105,42 @@ class NoteCreateView extends Component {
   }
 
   render() {
+    const notes = this.state.notes;
     const note = this.state.note;
     const user = this.props.user;
-    console.log('fdvfdvfdgf', user)
+    console.log("fdvfdvfdgf", user);
 
     return (
       <div className="chat-container">
-        <h1 className='chat-title'>Conversations </h1>
-        <div className='chat-info-box'>
+        <h1 className="chat-title">Conversations </h1>
+        <div className="chat-info-box">
           {/* <HomeworkListView />
           
            */}
-        <p> </p>
+          <p> </p>
         </div>
 
-        
-
         <main>
- 
-          <NoteListView user={this.props.user} />
+          <NoteListView user={this.props.user} notes={notes} />
           {note && (
             <form
               onSubmit={this.handleFormSubmission}
               encType="multipart/form-data"
             >
-                {/* <input
+              {/* <input
                 className='upload-file'
                 type="file"
                 name="image"
                 onChange={this.handleFileChange}
               /> */}
               <textarea
-                className='chat-input-area'
+                className="chat-input-area"
                 placeholder="Write a response.."
                 value={note.content || ""}
                 name="content"
                 onChange={this.handleInputChange}
-          
               ></textarea>
-              <button className='chat-send-button'>Send</button>
+              <button className="chat-send-button">Send</button>
             </form>
           )}
         </main>
@@ -124,4 +151,6 @@ class NoteCreateView extends Component {
 
 export default NoteCreateView;
 
-{/* <Link to="/homework" className='homework-text'> <ion-icon name="add-circle" className='ion-icon-add'></ion-icon> </Link> */}
+{
+  /* <Link to="/homework" className='homework-text'> <ion-icon name="add-circle" className='ion-icon-add'></ion-icon> </Link> */
+}

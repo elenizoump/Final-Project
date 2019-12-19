@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const schema = new mongoose.Schema({
   content: {
@@ -8,11 +8,12 @@ const schema = new mongoose.Schema({
   image: {
     type: String
   },
-  author: {
-    type: String
+  _author: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
   }
 });
 
-const Note = mongoose.model('Note', schema);
+const Note = mongoose.model("Note", schema);
 
 module.exports = Note;

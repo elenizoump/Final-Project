@@ -5,15 +5,7 @@ const apiAuthenticationService = axios.create({
   //withCredentials: true
 });
 
-export const list = async () => {
-  try {
-    const response = await apiAuthenticationService.get("/list");
-    const notes = response.data.notes;
-    return notes;
-  } catch (error) {
-    throw error;
-  }
-};
+export const list = async () => await apiAuthenticationService.get("/list");
 
 export const load = async id => {
   try {

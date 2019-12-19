@@ -74,14 +74,8 @@ class TeacherSingleLessonView extends Component {
   render() {
     const lesson = this.state.lesson;
     return this.state.loaded && this.state.lesson ? (
-      <div>
-        <Card style={{ width: "18rem" }}>
-          <Card.Body>
-            <Card.Title>
-              <h3>Single lesson view</h3>
-              <Card.Img variant="top" src={lesson._teacher.image} />
-            </Card.Title>
-            <Card.Text>
+      <div className='main-div-container'>
+        <div className='lesson-info-box'>
               <p>{lesson._student.name}</p>
               <p>{lesson._student.gender}</p>
               <p>{lesson._student.age}</p>
@@ -91,12 +85,9 @@ class TeacherSingleLessonView extends Component {
               <p>
                 {lesson._student.levelsname} - {lesson._student.levelsprice}
               </p>
-            </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
-          </Card.Body>
-        </Card>
-
-        <div className="lesson-info">
+        </div>
+          
+        <div className="lesson-status-info">
           <p>{lesson.date}</p>
           <p>{lesson.status}</p>
         </div>

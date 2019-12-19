@@ -191,6 +191,7 @@ class App extends Component {
           user: null,
           lessons: []
         });
+        //this.props.history.push(`/sign-in`);
       } else {
         console.error(response);
       }
@@ -205,15 +206,20 @@ class App extends Component {
         this.state.teachersLoaded && (
           <div className="App">
             <BrowserRouter>
-              <NavbarComponent
-                user={this.state.user}
-                onSignOut={this.onSignOut}
-              />
-              {/* <Fragment>
-              <Link to="/sign-in">Sign In</Link>
-              <Link to="/sign-up">Sign Up</Link>
-              <Link to="/sign-up-teacher">Become a Teacher</Link>
-            </Fragment> */}
+              {this.state.user ? (
+                <NavbarComponent
+                  fixed="bottom"
+                  user={this.state.user}
+                  onSignOut={this.onSignOut}
+                />
+              ) : (
+                <NavbarComponent
+                  fixed="bottom"
+                  user={this.state.user}
+                  onSignOut={this.onSignOut}
+                />
+              )}
+
               {this.state.user ? (
                 <Switch>
                   {/* routes to forms */}
@@ -275,8 +281,8 @@ class App extends Component {
                     path="/create"
                     // component={NoteCreateView}
                     render={props => <NoteCreateView {...props} />}
-                    verify={this.verifyAuthentication}
-                    redirect="/error/401"
+                    // verify={this.verifyAuthentication}
+                    // redirect="/error/401"
                     user={this.state.user}
                   />
                   <Route
@@ -378,7 +384,7 @@ class App extends Component {
                   <Route path="/:id" component={NoteItemView} />
                   <Route path="/notes/list" exact component={NoteListView} /> */}
 
-                  <Redirect to="/error/404" />
+                  {/* <Redirect to="/error/404" /> */}
                 </Switch>
               )}
             </BrowserRouter>

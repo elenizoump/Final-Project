@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import { updateUser } from "../../services/authentification.js";
-
+import "./../../styles/profileStyles.scss";
 class StudentProfileView extends Component {
   constructor(props) {
     super(props);
@@ -138,50 +138,27 @@ class StudentProfileView extends Component {
   render() {
     const user = this.props.user;
     return (
-      <div>
+      <div className="bodyOfStudentProfile">
         {user && (
           <div>
-            <Container>
-              <Row>
-                <Col xs={6} md={4}>
-                  <Image
-                    src={`/${user.image}/171x180`}
-                    alt="Profile photo"
-                    roundedCircle
-                  />
-                </Col>
-                <Col xs={6} md={4}>
-                  <div>
-                    <h1>{user.name}</h1>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
-            <Card className="text-center">
-              <Card.Header>Your address</Card.Header>
-              <Card.Body>
-                <Card.Title></Card.Title>
-                <Card.Text>
-                  Street Name: Insert the name of your Street House Number:
-                  Insert your housenumber Postcode: Insert your postcode City:
-                  Insert the name of your city
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-              <Card.Footer className="text-muted">2 days ago</Card.Footer>
-            </Card>
+            <h1>My Profile</h1>
 
-            <Card className="text-center">
-              <Card.Header>Instrunments of interest</Card.Header>
-              <Card.Body>
-                <Card.Title></Card.Title>
-                <Card.Text>
-                  List the instruments you would like to learn...
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-              <Card.Footer className="text-muted">2 days ago</Card.Footer>
-            </Card>
+            <div className="ProfileEdit">
+              <h2>{user.name}</h2>
+              <Button onClick={this.handleShow} data-target="#nameModal">
+                <img
+                  src="/images/pen.png"
+                  alt="edit name"
+                  // className="profilePic"
+                />
+              </Button>
+            </div>
+
+            <img
+              src="/images/userprofile.png"
+              alt="Profile"
+              className="profilePic"
+            />
 
             {/* <Card style={{ width: "18rem" }}>
               <Card.Img variant="top" src={`/${user.image}`} />
@@ -206,13 +183,7 @@ class StudentProfileView extends Component {
         {/* <div className="UsersMapLocation">
           <p>Here goes the house location on the map</p>
         </div> */}
-        <Button
-          variant="primary"
-          onClick={this.handleShow}
-          data-target="#nameModal"
-        >
-          Edit Name
-        </Button>
+
         {/* <Button
           variant="primary"
           onClick={this.handleShow}
@@ -394,7 +365,13 @@ class StudentProfileView extends Component {
           </Modal.Footer>
         </Modal>{" "}
         */}
-        <Link to={`/teachers/view`}>View all Teachers</Link>
+        <div id="studentProfileInfo">
+          <h3>Personal Information</h3>
+          <p>{user.instrumentname}</p>
+          <p>{user.levelsname}</p>
+          <p>{user.city}</p>
+        </div>
+        <Link to={`/teachers/view`}>Book a lesson</Link>
       </div>
     );
   }

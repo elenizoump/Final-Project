@@ -2,24 +2,25 @@
   height: 90vh;
   width: 100vw;
   background-image: url("/images/authform.png");
-  //background-color: #802fe9;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  border: 0.1px solid #8433e6;
+  border: 0.1px solid #26262e;
+  background-color: #26262e;
 
-  .form {
+  #studentSignUpForm {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border: 0px solid;
     max-width: 100%;
-    width: 60%;
-    padding: 30px 40px;
-    margin: 20%;
+    width: 80%;
+    margin: 10%;
+    padding-top: 1em;
     border-radius: 4%;
-    //background-color: ;
-    //border: 2px solid yellow;
+    max-height: 95%;
+    margin-top: 10%;
+    color: #000;
 
     -webkit-box-shadow: -1px 4px 26px 11px #c09fed;
     -moz-box-shadow: -1px 4px 26px 11px #c09fed;
@@ -28,8 +29,154 @@
     #formHorizontalEmail {
       background-color: #f4f1f8;
     }
+    .row {
+      margin: 0;
+    }
+    .form-group {
+      padding: 0;
+    }
+    .col-sm-10 {
+      padding: 0;
+      margin-right: 1em;
+    }
+    .form-control {
+      margin: 1em;
+      max-width: 95%;
+      border: none;
+      background-color: #f7f5fa;
+    }
+    input {
+      margin: 1em;
+      color: #000;
+      border: none;
+      background-color: #f7f5fa;
+      max-width: 93%;
+    }
+    button {
+      margin-top: 35%;
+      margin-left: 30%;
+      margin-right: 30%;
+      margin-bottom: 5%;
+      background-color: #6e30c1;
+      opacity: 70%;
+      color: #ddd3ea;
+      border-color: #ddd3ea;
+      box-shadow: -1px 2px 1px 1px #524a5d;
+    }
   }
-  // .paddingzero {
-  //   margin: 0 auto;
-  // }
+
+  #SignInView {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 0px solid;
+    max-width: 100%;
+    width: 80%;
+    margin: 10%;
+    //text-shadow: 1px 1px #6e30c1;
+    border-radius: 4%;
+    max-height: 95%;
+    margin-top: 15%;
+    color: #000;
+
+    -webkit-box-shadow: -1px 4px 26px 11px #c09fed;
+    -moz-box-shadow: -1px 4px 26px 11px #c09fed;
+    box-shadow: -1px 4px 26px 11px #c09fed;
+
+    #formHorizontalEmail {
+      margin-top: 15%;
+      background-color: #f4f1f8;
+    }
+    .row {
+      margin: 0;
+    }
+    .form-group {
+      padding: 0;
+    }
+    .col-sm-10 {
+      padding: 0;
+      margin-right: 1em;
+    }
+    .form-control {
+      margin: 1em;
+      max-width: 95%;
+      border: none;
+      background-color: #f7f5fa;
+    }
+    input {
+      margin: 1em;
+      color: #000;
+      border: none;
+      background-color: #f7f5fa;
+      max-width: 93%;
+    }
+    button {
+      margin-top: 10%;
+      margin-left: 30%;
+      margin-right: 30%;
+      margin-bottom: 10%;
+      background-color: #f7f5fa;
+      opacity: 70%;
+      color: #000;
+      border-color: #ddd3ea;
+      box-shadow: -1px 2px 1px 1px #524a5d;
+    }
+  }
+
+  #teacherSignUpForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 0px solid;
+    max-width: 100%;
+    width: 80%;
+    margin: 10%;
+    //text-shadow: 1px 1px #6e30c1;
+    border-radius: 4%;
+    max-height: 95%;
+    margin-top: 5%;
+    color: #000;
+
+    -webkit-box-shadow: -1px 4px 26px 11px #c09fed;
+    -moz-box-shadow: -1px 4px 26px 11px #c09fed;
+    box-shadow: -1px 4px 26px 11px #c09fed;
+
+    #formHorizontalEmail {
+      background-color: #f4f1f8;
+    }
+    .row {
+      margin: 0;
+    }
+    .form-group {
+      padding: 0;
+    }
+    .col-sm-10 {
+      padding: 0;
+      margin-right: 1em;
+    }
+    .form-control {
+      margin: 1em;
+      max-width: 95%;
+      border: none;
+      background-color: #f7f5fa;
+    }
+    input {
+      margin: 1em;
+      color: #000;
+      border: none;
+      background-color: #f7f5fa;
+      max-width: 93%;
+    }
+    button {
+      margin-top: 20%;
+      margin-left: 30%;
+      margin-right: 30%;
+      margin-bottom: 5%;
+      background-color: #6e30c1;
+      opacity: 70%;
+      color: #ddd3ea;
+      border-color: #ddd3ea;
+      box-shadow: -1px 2px 1px 1px #524a5d;
+    }
+  }
 }

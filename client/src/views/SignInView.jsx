@@ -38,14 +38,17 @@ class SignInView extends Component {
     return (
       <>
         <main className="bodyOfView">
-          <Form className="form" onSubmit={this.handleFormSubmission}>
+          <Form
+            className="form"
+            id="SignInView"
+            onSubmit={this.handleFormSubmission}
+          >
             <Form.Group as={Row} controlId="formHorizontalEmail">
-              <Form.Label classname="paddingzero" column sm={2}>
+              {/* <Form.Label column sm={2}>
                 Email
-              </Form.Label>
+              </Form.Label> */}
               <Col sm={10}>
                 <Form.Control
-                  classname="paddingzero"
                   type="email"
                   placeholder="Insert your Email"
                   value={this.state.emailValue}
@@ -56,12 +59,11 @@ class SignInView extends Component {
             </Form.Group>
 
             <Form.Group as={Row} controlId="formHorizontalPassword">
-              <Form.Label classname="paddingzero" column sm={2}>
+              {/* <Form.Label column sm={2}>
                 Password
-              </Form.Label>
+              </Form.Label> */}
               <Col sm={10}>
                 <Form.Control
-                  classname="paddingzero"
                   type="password"
                   placeholder="Insert your Password"
                   value={this.state.passwordValue}

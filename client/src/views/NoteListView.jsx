@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Toast from 'react-bootstrap/Toast'
+import Toast from 'react-bootstrap/Toast';
+import '../styles/noteCreateStyles.scss'
 
 
 import { list as listNoteService } from './../services/notes';
@@ -39,17 +40,16 @@ class NoteListView extends Component {
     const user = this.props.user
     console.log('THIS IS USER ', user);
     return (
-      <main>
+      
+      <main className='chat-details-container scrollbar scrollbar-lady-lips'>
         {this.state.notes.map(note => {
           return <div>
             {/* <p>{note.content}</p>
             <p>Attachements: <img src={note.image} /></p> */}
-
-
-            <Toast>
+            <Toast className='toast'>
               <Toast.Header>
                 <img src={note.image} className="rounded mr-2" alt="" />
-                <strong className="mr-auto">Bootstrap</strong>
+                <strong className="mr-auto">Mendes</strong>
                 <small>just now</small>
               </Toast.Header>
               <Toast.Body>{note.content}</Toast.Body>

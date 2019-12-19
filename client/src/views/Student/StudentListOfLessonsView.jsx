@@ -13,7 +13,7 @@ export default class StudentListOfLessonsView extends Component {
             <h2>Upcoming Lessons</h2>
             <ul>
               {lessonList.map(lesson => (
-                <ListGroup.Item key={teacher._id}>
+                <ListGroup.Item key={lesson._id}>
                   <Link key={lesson._id} to={`/lesson/${lesson._id}/view`}>
                     <h4>
                       {lesson._teacher}

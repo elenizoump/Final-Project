@@ -42,4 +42,46 @@
     border: 2px solid white;
     border-radius: 50%;
   }
+
+  a {
+    padding: 1em 1.5em 1em 1.5em;
+    width: 5em;
+    text-decoration: none;
+    margin-top: 30%;
+    margin-left: 32%;
+    margin-right: 32%;
+    margin-bottom: 10%;
+    //padding: 1em;
+    background-color: #ddd3ea;
+    opacity: 70%;
+    color: #000;
+    border-color: #ddd3ea;
+    box-shadow: -1px 2px 1px 1px #524a5d;
+    border-radius: 20%;
+  }
+  #studentProfileInfo {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    text-align: center;
+    background-color: whitesmoke;
+    border: 0px solid;
+    max-width: 100%;
+    width: 80%;
+    margin: 10%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    border-radius: 2%;
+    max-height: 95%;
+    margin-top: 25%;
+    color: #000;
+
+    -webkit-box-shadow: -1px 4px 26px 11px #c09fed;
+    -moz-box-shadow: -1px 4px 26px 11px #c09fed;
+    box-shadow: -1px 4px 26px 11px #c09fed;
+
+    p {
+      margin-bottom: 1px;
+    }
+  }
 }

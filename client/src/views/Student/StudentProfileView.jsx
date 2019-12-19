@@ -365,7 +365,13 @@ class StudentProfileView extends Component {
           </Modal.Footer>
         </Modal>{" "}
         */}
-        <Link to={`/teachers/view`}>View all Teachers</Link>
+        <div id="studentProfileInfo">
+          <h3>Personal Information</h3>
+          <p>{user.instrumentname}</p>
+          <p>{user.levelsname}</p>
+          <p>{user.city}</p>
+        </div>
+        <Link to={`/teachers/view`}>Book a lesson</Link>
       </div>
     );
   }

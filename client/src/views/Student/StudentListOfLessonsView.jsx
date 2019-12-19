@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import { listLessons as listService } from "./../../services/lesson.js";
+// import { listLessons as listService } from "./../../services/lesson.js";
 
 export default class StudentListOfLessonsView extends Component {
   render() {

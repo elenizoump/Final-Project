@@ -280,8 +280,8 @@ class App extends Component {
                     path="/create"
                     // component={NoteCreateView}
                     render={props => <NoteCreateView {...props} />}
-                    verify={this.verifyAuthentication}
-                    redirect="/error/401"
+                    // verify={this.verifyAuthentication}
+                    // redirect="/error/401"
                     user={this.state.user}
                   />
                   <Route
@@ -383,7 +383,7 @@ class App extends Component {
                   <Route path="/:id" component={NoteItemView} />
                   <Route path="/notes/list" exact component={NoteListView} /> */}
 
-                  <Redirect to="/error/404" />
+                  {/* <Redirect to="/error/404" /> */}
                 </Switch>
               )}
             </BrowserRouter>

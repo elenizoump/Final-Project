@@ -155,6 +155,26 @@ class StudentSignUpView extends Component {
                 </Form.Control>
               </Col>
             </Form.Group>
+
+            <Form.Group as={Row} controlId="formHorizontalInstrumentLevel">
+              {/* <Form.Label column sm={2}>
+              City
+            </Form.Label> */}
+              <Col sm={10}>
+                <Form.Control
+                  as="select"
+                  value={this.state.cityValue}
+                  name="city"
+                  onChange={this.handleInputChange}
+                >
+                  <option value="">Please select your city</option>
+                  <option>Lisbon</option>
+                  <option>Porto</option>
+                  <option>Algarve</option>
+                </Form.Control>
+              </Col>
+            </Form.Group>
+
             <Button variant="outline-info" type="submit">
               Sign Up
             </Button>

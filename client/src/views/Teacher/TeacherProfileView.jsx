@@ -15,9 +15,9 @@ import { loadMyCalendar as loadMyCalendarService } from "./../../services/calend
 //import SimpleReactCalendar from 'simple-react-calendar'
 import MapContainer from "./../../components/Map";
 import { updateUser } from "../../services/authentification.js";
-import defaultImg from './../../images/profileDefault.png'
+import defaultImg from "./../../images/profileDefault.png";
 
-import './../../styles/teacherProfileStyles.scss';
+import "./../../styles/teacherProfileStyles.scss";
 
 class TeacherProfileView extends Component {
   constructor(props) {
@@ -132,6 +132,7 @@ class TeacherProfileView extends Component {
     const user = this.props.user;
     const day = this.state.date;
     return (
+<<<<<<< HEAD
       <main className='main-container'>
         <div className='containerElements'>
         <p className='profile-title'>Profile <ion-icon name="home"></ion-icon></p>
@@ -146,49 +147,59 @@ class TeacherProfileView extends Component {
         )}
 
         {/* <div className="UsersMapLocation">
+=======
+      <main className="main-container">
+        <div className="containerElements">
+          <p className="profile-title">Profile</p>
+          {user && (
+            <div className="profile-info-box">
+              <p className="user-name">{user.name}</p>
+              <img src={defaultImg} alt="Profile" className="profilePic" />
+            </div>
+          )}
+
+          {/* <div className="UsersMapLocation">
+>>>>>>> 2d55053c109e4b4cedd5dc59dd9265ea4b12bf40
           <MapContainer />
         </div> */}
 
-        <div>
-          <p className='user-info-box'>This is user info container</p>
-        </div>
-
-        {/* calendar for teacher -----------------------------------------------*/}
-        <div className='calendar-info'>
-          <h6>Free to teach on</h6>
-          
-        </div>
-
-        <div >
-        
-          <div className='calendar-box'>
-            <DayPicker
-              fromMonth={new Date()}
-              selectedDays={this.state.availableDays}
-              onDayClick={this.handleDayClick}
-              disabledDays={[
-                {
-                  before: new Date()
-                }
-              ]}
-            />
-            {!!this.state.availableDays.length && (
-              <div>
-                <ul>
-                  {this.state.availableDays.map(day => {
-                    // return <li key={day}>{day.toLocaleDateString()}</li>;
-                  })}
-                </ul>
-              </div>
-            )}
+          <div>
+            <p className="user-info-box">This is user info container</p>
           </div>
-          <button onClick={this.saveDays} className='save-date-button'>Save</button>
+
+          {/* calendar for teacher -----------------------------------------------*/}
+          <div className="calendar-info">
+            <h6>Free to teach on</h6>
+          </div>
+
+          <div>
+            <div className="calendar-box">
+              <DayPicker
+                fromMonth={new Date()}
+                selectedDays={this.state.availableDays}
+                onDayClick={this.handleDayClick}
+                disabledDays={[
+                  {
+                    before: new Date()
+                  }
+                ]}
+              />
+              {!!this.state.availableDays.length && (
+                <div>
+                  <ul>
+                    {this.state.availableDays.map(day => {
+                      // return <li key={day}>{day.toLocaleDateString()}</li>;
+                    })}
+                  </ul>
+                </div>
+              )}
+            </div>
+            <button onClick={this.saveDays} className="save-date-button">
+              Save
+            </button>
+          </div>
         </div>
-        </div>
-        
-    
-       </main>
-      
+      </main>
     );
   }
 }

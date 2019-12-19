@@ -1,14 +1,25 @@
-.form-select {
-  border: 2px solid red;
+.listOfTeachers {
+  height: 90vh;
+  width: 100vw;
+  background-image: url("/images/authform.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 0.1px solid #26262e;
+  background-color: #26262e;
 }
 
-.listofteachers {
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  padding-top: 2em;
-}
+// .form-select {
+//   border: 2px solid red;
+// }
 
-.form-group {
-  padding-bottom: 2em;
-}
+// .listofteachers {
+//   margin: 0;
+//   display: flex;
+//   justify-content: center;
+//   padding-top: 2em;
+// }
+
+// .form-group {
+//   padding-bottom: 2em;
+// }

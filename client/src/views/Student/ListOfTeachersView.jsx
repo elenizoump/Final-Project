@@ -35,7 +35,7 @@ export default class ListOfTeachersView extends Component {
       <main className="listofteachers">
         {/* <h1>List here:</h1> */}
         <Form>
-          <Form.Group controlId="exampleForm.ControlSelect1">
+          {/*<Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>
               <h5>Instrument</h5>
             </Form.Label>
@@ -102,7 +102,7 @@ export default class ListOfTeachersView extends Component {
                   teacher2.popularity - teacher1.popularity
               )
               .map(teacher => (
-                <ListGroup.Item>
+                <ListGroup.Item key={teacher._id}>
                   <Link key={teacher._id} to={`/teachers/${teacher._id}/view`}>
                     <h4>
                       {teacher.name} {teacher.popularity}

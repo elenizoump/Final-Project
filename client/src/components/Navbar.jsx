@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
+import "./../styles/navbar.scss";
 class NavbarComponent extends Component {
   render() {
     const user = this.props.user;
@@ -11,33 +12,34 @@ class NavbarComponent extends Component {
         {user ? (
           <Navbar bg="light" variant="light">
             <Nav className="mr-auto">
-              <Nav.Link as={Link} to="/lessons/view">
-                <img
-                  src="/images/home.png"
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                  alt="allLessons"
-                />
-              </Nav.Link>
-              <Nav.Link as={Link} to="/teachers/view">
-                <img
-                  src="/images/plus.png"
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                  alt="teacherList"
-                />
-              </Nav.Link>
-              <Nav.Link as={Link} to="/profile">
-                <img
-                  src="/images/user (6).png"
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                  alt="profile"
-                />
-              </Nav.Link>
+              <div id="Navbaricons">
+                <Nav.Link as={Link} to="/lessons/view">
+                  <img
+                    id="navbaricons"
+                    src="/images/home.png"
+                    className="d-inline-block align-top"
+                    alt="allLessons"
+                  />
+                </Nav.Link>
+                <Nav.Link as={Link} to="/teachers/view">
+                  <img
+                    id="navbaricons"
+                    src="/images/plus.png"
+                    width="5"
+                    height="5"
+                    className="d-inline-block align-top"
+                    alt="teacherList"
+                  />
+                </Nav.Link>
+                <Nav.Link as={Link} to="/profile">
+                  <img
+                    id="navbaricons"
+                    src="/images/user (6).png"
+                    className="d-inline-block align-top"
+                    alt="profile"
+                  />
+                </Nav.Link>
+              </div>
               <Button variant="outline-info" onClick={this.props.onSignOut}>
                 Log Out
               </Button>
@@ -48,12 +50,11 @@ class NavbarComponent extends Component {
             <Navbar.Brand as={Link} to="#home">
               <img
                 alt="AppLogo"
-                src=""
-                width="30"
-                height="30"
+                src="/images/logo.png"
+                width="5"
+                height="5"
                 className="d-inline-block align-top"
               />
-              AppName
             </Navbar.Brand>
             <Nav fixed="bottom" className="mr-auto">
               <Nav.Link as={Link} to="/sign-in">

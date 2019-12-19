@@ -183,14 +183,14 @@ class StudentLessonFormView extends Component {
 
           <Form.Group controlId="exampleForm.ControlSelect1">
             <div>
-              <h3>
-                Teacher:
+              <h4>
+                Your teacher: <br />
                 {
                   this.props.teachers.find(
                     teacher => teacher._id === this.props.teacherId
                   ).name
                 }
-              </h3>
+              </h4>
             </div>
             <Form.Control
               as="select"

@@ -72,7 +72,7 @@ class SignInView extends Component {
                 />
               </Col>
             </Form.Group>
-            <Button variant="outline-info" type="submit">
+            <Button className="button" variant="outline-info" type="submit">
               Sign In
             </Button>
           </Form>

@@ -4,13 +4,15 @@ import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { loadLesson, updateStatus } from "./../../services/lesson";
 import { withRouter } from "react-router-dom";
-import './../../styles/teacherSingleLessonStyles.scss';
+import "./../../styles/teacherSingleLessonStyles.scss";
 
 class TeacherSingleLessonView extends Component {
   constructor(props) {
     super(props);
     this.state = {
       lesson: null,
+      studentData: null,
+      teacherData: null,
       loaded: false,
       //status: "Pending",
       statusPeding: true
@@ -27,9 +29,13 @@ class TeacherSingleLessonView extends Component {
     try {
       const response = await loadLesson(id);
       if (response.statusText === "OK") {
-        const { data } = response;
+        const {
+          data: { lesson, studentData, teacherData }
+        } = response;
         this.setState({
-          lesson: data,
+          lesson,
+          studentData,
+          teacherData,
           loaded: true
         });
       } else {
@@ -72,22 +78,22 @@ class TeacherSingleLessonView extends Component {
   // }
 
   render() {
-    const lesson = this.state.lesson;
+    const { lesson, studentData } = this.state;
     return this.state.loaded && this.state.lesson ? (
-      <div className='main-div-container'>
-         <div className="lesson-status-info">
-          <h6> Bookend on {lesson.date }</h6>
+      <div className="main-div-container">
+        <div className="lesson-status-info">
+          <h6> Bookend on {lesson.date}</h6>
           <h4> Current status {lesson.status}</h4>
         </div>
-        <div className='lesson-info-box'>
+        <div className="lesson-info-box">
           <h4>Student details</h4>
-          <p>{lesson._student.name} Student Name</p>
-          <p>{lesson._student.gender} Student Gender</p>
-          <p>{lesson._student.age} Student Age</p>
-          <p>{lesson._student.adress} Student Address</p>
-          <p>{lesson._student.description} Student Description</p>
+          <p>{studentData.name} Student Name</p>
+          <p>{studentData.gender} Student Gender</p>
+          <p>{studentData.age} Student Age</p>
+          <p>{studentData.adress} Student Address</p>
+          <p>{studentData.description} Student Description</p>
           <p>
-            {lesson._student.levelsname} {lesson._student.levelsprice}
+            {studentData.levelsname} {studentData.levelsprice}
           </p>
         </div>
         {this.state.statusPeding && (
@@ -96,8 +102,10 @@ class TeacherSingleLessonView extends Component {
         {/* <div className="_teacherMapLocation">
           <p>Here goes the house location on the map</p>
         </div> */}
-        <div className='chat-bubble'>
-        <Link to='/create'><ion-icon name="chatbubbles"></ion-icon></Link>
+        <div className="chat-bubble">
+          <Link to="/create">
+            <ion-icon name="chatbubbles"></ion-icon>
+          </Link>
         </div>
       </div>
     ) : null;

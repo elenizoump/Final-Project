@@ -85,7 +85,13 @@ router.get("/lesson/:lessonId", async (req, res, next) => {
           lesson._student.toString() === user._id.toString()) ||
         (lesson._teacher && lesson._teacher.toString() === user._id.toString())
       ) {
-        res.json(lesson);
+        const student = await User.findById(lesson._student._id).exec();
+        const teacher = await User.findById(lesson._teacher._id).exec();
+        res.json({
+          lesson,
+          studentData: student,
+          teacherData: teacher
+        });
       } else {
         res.sendStatus(401);
       }
@@ -150,8 +156,6 @@ router.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-
 
 //const multerMiddleware = require('./../../middleware/multer-configuration');
 

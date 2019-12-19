@@ -7,7 +7,7 @@ export default class StudentListOfLessonsView extends Component {
   render() {
     const lessonList = this.props.lessons;
     return (
-      <div>
+      <div className="listOfLessons">
         <h1>List here:</h1>
         <ul>
           {lessonList.map(lesson => (

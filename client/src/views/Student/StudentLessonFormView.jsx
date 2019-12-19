@@ -148,6 +148,7 @@ class StudentLessonFormView extends Component {
                 "Cello",
                 "Vocals"
               ].map(instrumentName => (
+                
                 <option key={instrumentName} value={instrumentName}>
                   {instrumentName}
                 </option>

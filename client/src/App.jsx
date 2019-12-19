@@ -1,5 +1,12 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter, Switch, Redirect, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter,
+  Switch,
+  Redirect,
+  Route,
+  Link,
+  withRouter
+} from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import {
   loadUser,
@@ -152,10 +159,11 @@ class App extends Component {
         const {
           data: { user }
         } = response;
-        this.fetchLessonData();
         this.setState({
           user
         });
+        await this.fetchLessonData();
+        await this.fetchTeacherData();
       } else {
         console.error(response);
       }
@@ -171,10 +179,11 @@ class App extends Component {
         const {
           data: { user }
         } = response;
-        this.fetchLessonData();
         this.setState({
           user
         });
+        await this.fetchLessonData();
+        await this.fetchTeacherData();
       } else {
         console.error(response);
       }
@@ -191,7 +200,7 @@ class App extends Component {
           user: null,
           lessons: []
         });
-        //this.props.history.push(`/sign-in`);
+        this.props.history.push(`/sign-in`);
       } else {
         console.error(response);
       }
@@ -199,199 +208,202 @@ class App extends Component {
       console.error(error);
     }
   }
+
   render() {
     return (
       (this.state.userLoaded &&
         this.state.lessonsLoaded &&
         this.state.teachersLoaded && (
           <div className="App">
-            <BrowserRouter>
-              {this.state.user ? (
-                <NavbarComponent
-                  fixed="bottom"
-                  user={this.state.user}
-                  onSignOut={this.onSignOut}
+            {this.state.user ? (
+              <NavbarComponent
+                fixed="bottom"
+                user={this.state.user}
+                onSignOut={this.onSignOut}
+              />
+            ) : (
+              <NavbarComponent
+                fixed="bottom"
+                user={this.state.user}
+                onSignOut={this.onSignOut}
+              />
+            )}
+
+            {this.state.user ? (
+              <Switch>
+                {/* routes to forms */}
+
+                {/* routes from forms to profiles */}
+                {/* <Redirect from="/student" to="/lesson/create" /> */}
+                <Redirect exact="true" from="/" to="/lessons/view" />
+                <Redirect from="/sign-up" to="/profile" />
+                <Redirect from="/sign-in" to="/profile" />
+
+                <Route
+                  exact
+                  path="/teachers/view"
+                  render={() => (
+                    <ListOfTeachersView
+                      user={this.state.user}
+                      teachers={this.state.teachers}
+                    />
+                  )}
                 />
-              ) : (
-                <NavbarComponent
-                  fixed="bottom"
-                  user={this.state.user}
-                  onSignOut={this.onSignOut}
+                <Route
+                  path="/teachers/:teacherId/view"
+                  render={({
+                    match: {
+                      params: { teacherId }
+                    }
+                  }) => <StudentSingleTeacherView teacherId={teacherId} />}
                 />
-              )}
-
-              {this.state.user ? (
-                <Switch>
-                  {/* routes to forms */}
-
-                  {/* routes from forms to profiles */}
-                  {/* <Redirect from="/student" to="/lesson/create" /> */}
-                  <Redirect exact="true" from="/" to="/lessons/view" />
-                  <Redirect from="/sign-up" to="/profile" />
-                  <Redirect from="/sign-in" to="/profile" />
-
-                  <Route
-                    exact
-                    path="/teachers/view"
-                    render={() => (
-                      <ListOfTeachersView
-                        user={this.state.user}
-                        teachers={this.state.teachers}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/teachers/:teacherId/view"
-                    render={({
-                      match: {
-                        params: { teacherId }
-                      }
-                    }) => <StudentSingleTeacherView teacherId={teacherId} />}
-                  />
-                  <Route
-                    path="/teachers/:teacherId/book"
-                    render={({
-                      match: {
-                        params: { teacherId }
-                      }
-                    }) => (
-                      <StudentLessonFormView
-                        user={this.state.user}
-                        teacherId={teacherId}
-                        teachers={this.state.teachers}
-                        fetchLessonData={this.fetchLessonData}
-                      />
-                    )}
-                  />
-
-                  <Route
-                    path="/profile"
-                    render={() =>
-                      this.state.user.type === "teacher" ? (
-                        <TeacherProfileView user={this.state.user} />
-                      ) : (
-                        <StudentProfileView
-                          user={this.state.user}
-                          onUpdateUser={this.fetchUserData}
-                        />
-                      )
+                <Route
+                  path="/teachers/:teacherId/book"
+                  render={({
+                    match: {
+                      params: { teacherId }
                     }
-                  />
-                  <Route
-                    path="/create"
-                    // component={NoteCreateView}
-                    render={props => <NoteCreateView {...props} />}
-                    // verify={this.verifyAuthentication}
-                    // redirect="/error/401"
-                    user={this.state.user}
-                  />
-                  <Route
-                    path="/lesson/:lessonId/view"
-                    render={({
-                      match: {
-                        params: { lessonId }
-                      }
-                    }) =>
-                      this.state.user.type === "teacher" ? (
-                        <TeacherSingleLessonView
-                          user={this.state.user}
-                          lessonId={lessonId}
-                        />
-                      ) : (
-                        <StudentSingleLessonView
-                          user={this.state.user}
-                          lessonId={lessonId}
-                        />
-                      )
-                    }
-                  />
-                  <Route
-                    path="/lessons/view"
-                    render={() => (
-                      <StudentListOfLessonsView
-                        user={this.state.user}
-                        lessons={this.state.lessons}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/homework"
-                    render={() =>
-                      this.state.user.type === "teacher" ? (
-                        <AddHomework user={this.state.user} />
-                      ) : (
-                        <ErrorView />
-                      )
-                    }
-                  />
-                  <Route
-                    path="/lessons/create"
-                    render={() => (
-                      <StudentLessonFormView
-                        user={this.state.user}
-                        teachers={this.state.teachers}
-                        fetchLessonData={this.fetchLessonData}
-                      />
-                    )}
-                  />
-                </Switch>
-              ) : (
-                <Switch>
-                  <Redirect exact="true" from="/" to="/sign-in" />
-                  <Route
-                    path="/sign-in"
-                    render={() => (
-                      <SignInView
-                        user={this.state.user}
-                        onSignIn={this.onSignIn}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/sign-up/student"
-                    render={() => (
-                      <StudentSignUpView
-                        user={this.state.user}
-                        onSignUp={this.onSignUp}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/sign-up/teacher"
-                    render={() => (
-                      <TeacherSignUpView
-                        user={this.state.user}
-                        onSignUp={this.onSignUp}
-                      />
-                    )}
-                  />
-                  <Route
-                    path="/lesson-wall"
-                    render={() => <LessonWallView />}
-                  />
-                  {/* <Route path="/lesson-wall" component={LessonWallView} /> */}
+                  }) => (
+                    <StudentLessonFormView
+                      user={this.state.user}
+                      teacherId={teacherId}
+                      teachers={this.state.teachers}
+                      fetchLessonData={this.fetchLessonData}
+                    />
+                  )}
+                />
 
-                  <Route
-                    path="/list"
-                    render={() => <NoteListView user={this.state.user} />}
-                  />
+                <Route
+                  path="/profile"
+                  render={() =>
+                    this.state.user.type === "teacher" ? (
+                      <TeacherProfileView user={this.state.user} />
+                    ) : (
+                      <StudentProfileView
+                        user={this.state.user}
+                        onUpdateUser={this.fetchUserData}
+                      />
+                    )
+                  }
+                />
+                <Route
+                  path="/create"
+                  // component={NoteCreateView}
+                  render={props => <NoteCreateView {...props} />}
+                  // verify={this.verifyAuthentication}
+                  // redirect="/error/401"
+                  user={this.state.user}
+                />
+                <Route
+                  path="/lesson/:lessonId/view"
+                  render={({
+                    match: {
+                      params: { lessonId }
+                    }
+                  }) =>
+                    this.state.user.type === "teacher" ? (
+                      <TeacherSingleLessonView
+                        user={this.state.user}
+                        lessonId={lessonId}
+                      />
+                    ) : (
+                      <StudentSingleLessonView
+                        user={this.state.user}
+                        lessonId={lessonId}
+                      />
+                    )
+                  }
+                />
+                <Route
+                  path="/lessons/view"
+                  render={() => (
+                    <StudentListOfLessonsView
+                      user={this.state.user}
+                      lessons={this.state.lessons}
+                    />
+                  )}
+                />
+                <Route
+                  path="/homework"
+                  render={() =>
+                    this.state.user.type === "teacher" ? (
+                      <AddHomework user={this.state.user} />
+                    ) : (
+                      <ErrorView />
+                    )
+                  }
+                />
+                <Route
+                  path="/lessons/create"
+                  render={() => (
+                    <StudentLessonFormView
+                      user={this.state.user}
+                      teachers={this.state.teachers}
+                      fetchLessonData={this.fetchLessonData}
+                    />
+                  )}
+                />
+              </Switch>
+            ) : (
+              <Switch>
+                <Redirect exact="true" from="/" to="/sign-in" />
+                <Route
+                  path="/sign-in"
+                  render={() => (
+                    <SignInView
+                      user={this.state.user}
+                      onSignIn={this.onSignIn}
+                    />
+                  )}
+                />
+                <Route
+                  path="/sign-up/student"
+                  render={() => (
+                    <StudentSignUpView
+                      user={this.state.user}
+                      onSignUp={this.onSignUp}
+                    />
+                  )}
+                />
+                <Route
+                  path="/sign-up/teacher"
+                  render={() => (
+                    <TeacherSignUpView
+                      user={this.state.user}
+                      onSignUp={this.onSignUp}
+                    />
+                  )}
+                />
+                <Route path="/lesson-wall" render={() => <LessonWallView />} />
+                {/* <Route path="/lesson-wall" component={LessonWallView} /> */}
 
-                  <Route
-                    path="/homeworkList"
-                    render={() => <HomeworkListView user={this.state.user} />}
-                  />
-                  {/* <Route path="/:id/edit" component={NoteEditView} />
+                <Route
+                  path="/list"
+                  render={() => <NoteListView user={this.state.user} />}
+                />
+
+                <Route
+                  path="/homeworkList"
+                  render={() => <HomeworkListView user={this.state.user} />}
+                />
+                {/* <Route path="/:id/edit" component={NoteEditView} />
                   <Route path="/:id" component={NoteItemView} />
                   <Route path="/notes/list" exact component={NoteListView} /> */}
 
-                  {/* <Redirect to="/error/404" /> */}
-                </Switch>
-              )}
-            </BrowserRouter>
+                {/* <Redirect to="/error/404" /> */}
+              </Switch>
+            )}
           </div>
         )) ||
       null
     );
   }
 }
-export default App;
+
+const AppWithRouter = withRouter(App);
+
+export default () => (
+  <BrowserRouter>
+    <AppWithRouter />
+  </BrowserRouter>
+);

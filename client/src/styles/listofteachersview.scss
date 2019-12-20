@@ -1,4 +1,6 @@
 .listOfTeachers {
+  max-width: 414px !important;
+  max-height: 736px !important;
   height: 90vh;
   width: 100vw;
   background-image: url("/images/screenbackground.png");
@@ -65,11 +67,26 @@
     }
 
     .list-group-item {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
       position: relative;
       display: block;
       padding: 0.75rem 1.25rem;
       background-color: transparent;
       border: 1px;
+
+      h4 {
+        text-decoration: none;
+        color: black;
+      }
+
+      .teacherProfile {
+        height: 3em;
+        width: 3em;
+        border: 2px solid white;
+        border-radius: 50%;
+      }
     }
     // .list-group {
     //   //overflow: "scroll"

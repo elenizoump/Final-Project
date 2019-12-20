@@ -96,8 +96,14 @@ export default class ListOfTeachersView extends Component {
               .map(teacher => (
                 <ListGroup.Item key={teacher._id}>
                   <Link key={teacher._id} to={`/teachers/${teacher._id}/view`}>
+                    <img
+                      src={teacher.image}
+                      alt="Profile"
+                      className="teacherProfile"
+                    />
                     <h4>
-                      {teacher.name} {teacher.popularity}
+                      {teacher.name} {teacher.levelsprice}€/hr
+                      {teacher.popularity}
                     </h4>
                   </Link>
                 </ListGroup.Item>

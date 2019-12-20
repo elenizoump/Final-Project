@@ -49,17 +49,14 @@ class StudentSingleTeacherView extends Component {
     return this.state.loaded && this.state.teacher ? (
       <div className="singleTeacherView">
         <h1>{teacher.name}</h1>
-        <img
-          src={defaultImg}
-          alt="Profile"
-          className="profilePic"
-        />
+        <img src={teacher.image} alt="Profile" className="profilePic" />
         <div id="teacherInfo">
           <h3>Teacher Information</h3>
           <p>{teacher.instrumentname}</p>
           <p>{teacher.levelsname}</p>
           <p>{teacher.levelsprice}€/Hour</p>
           <p>{teacher.city}</p>
+          <p className="teacherDescription">{teacher.description}</p>
         </div>
 
         <Link to={`/teachers/${this.props.match.params.teacherId}/book`}>

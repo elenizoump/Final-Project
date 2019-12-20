@@ -87,14 +87,15 @@ class TeacherSingleLessonView extends Component {
         </div>
         <div className="lesson-info-box">
           <h4>Student details</h4>
-          <p>{studentData.name} Student Name</p>
-          <p>{studentData.gender} Student Gender</p>
-          <p>{studentData.age} Student Age</p>
-          <p>{studentData.adress} Student Address</p>
-          <p>{studentData.description} Student Description</p>
-          <p>
-            {studentData.levelsname} {studentData.levelsprice}
-          </p>
+          <img
+            src={studentData.image}
+            alt="Profile"
+            className="studentprofilePic"
+          />
+          <p>Student name: {studentData.name} </p>
+          <p>Student location: {studentData.city} </p>
+          <p>Description: {studentData.description} Student Description</p>
+          <p>Student level: {studentData.levelsname}</p>
         </div>
         {this.state.statusPeding && (
           <button onClick={this.statusChange}>Confirm Lesson</button>

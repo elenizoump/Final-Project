@@ -1,4 +1,6 @@
 .bodyOfView {
+  max-width: 414px !important;
+  max-height: 736px !important;
   height: 90vh;
   width: 100vw;
   background-image: url("/images/authform.png");
@@ -26,12 +28,8 @@
     -webkit-box-shadow: -1px 4px 26px 11px #c09fed;
     -moz-box-shadow: -1px 4px 26px 11px #c09fed;
     box-shadow: -1px 4px 26px 11px #c09fed;
-
-    #formHorizontalEmail {
-      background-color: #f4f1f8;
-    }
     .row {
-      margin: 0;
+      margin-left: 1em;
     }
     .form-group {
       padding: 0;
@@ -54,7 +52,7 @@
       max-width: 93%;
     }
     button {
-      margin-top: 35%;
+      margin-top: 20%;
       margin-left: 30%;
       margin-right: 30%;
       margin-bottom: 5%;
@@ -88,7 +86,7 @@
       background-color: #f4f1f8;
     }
     .row {
-      margin: 0;
+      margin-left: 1em;
     }
     .form-group {
       padding: 0;
@@ -115,9 +113,9 @@
       margin-left: 30%;
       margin-right: 30%;
       margin-bottom: 10%;
-      background-color: #f7f5fa;
+      background-color: rgb(219, 208, 233);
       color: #000;
-      border-color: #ddd3ea;
+      border-color: rgb(219, 208, 233);
       box-shadow: -1px 2px 1px 1px #524a5d;
     }
   }
@@ -144,7 +142,7 @@
       background-color: #f4f1f8;
     }
     .row {
-      margin: 0;
+      margin-left: 1em;
     }
     .form-group {
       padding: 0;
@@ -167,7 +165,7 @@
       max-width: 93%;
     }
     button {
-      margin-top: 20%;
+      margin-top: 7%;
       margin-left: 30%;
       margin-right: 30%;
       margin-bottom: 5%;

@@ -16,7 +16,8 @@ import { loadMyCalendar as loadMyCalendarService } from "./../../services/calend
 import MapContainer from "./../../components/Map";
 import { updateUser } from "../../services/authentification.js";
 import defaultImg from "./../../images/profileDefault.png";
-
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 import "./../../styles/teacherProfileStyles.scss";
 
 class TeacherProfileView extends Component {
@@ -130,60 +131,95 @@ class TeacherProfileView extends Component {
 
   render() {
     const user = this.props.user;
-    console.log("USER IN PROFILE", user)
     const day = this.state.date;
     return (
-      <main className='main-container'>
-        <div className='containerElements'>
-          <p className='profile-title'>Profile</p>
-          {user && (
-            <div className='profile-info-box'>
-              <p className='user-name'>{user.name}</p>
-              <img src={defaultImg} alt="Profile" className='profilePic' />
+      <main className="main-container">
+        {user && (
+          <div>
+            <h1>My Profile</h1>
+
+            <div className="ProfileEdit">
+              <h2>{user.name}</h2>
+              <Button onClick={this.handleShow} data-target="#nameModal">
+                <img
+                  src="/images/pen.png"
+                  alt="edit name"
+                  // className="profilePic"
+                />
+              </Button>
             </div>
 
-
-          )}
-
-          {/* <div className="UsersMapLocation">
-          <MapContainer />
-        </div> */}
-
-          <div>
-            <p className="user-info-box">This is user info container</p>
+            <img src={user.image} alt="Profile" className="profilePic" />
           </div>
+        )}
 
-          {/* calendar for teacher -----------------------------------------------*/}
-          <div className="calendar-info">
+        {/* Edit profile modals------------------------------------------------------------------------------ */}
+        <Modal
+          show={this.state.modalShown}
+          onHide={this.handleClose}
+          id="nameModal"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Change your name</Modal.Title>
+          </Modal.Header>
+
+          <Modal.Body>
+            <p>New name</p>
+            <Form.Control
+              size="lg"
+              type="text"
+              placeholder="Your new name"
+              value={this.state.newName}
+              onChange={this.handleNameChange}
+            />
+          </Modal.Body>
+
+          <Modal.Footer>
+            <Button variant="secondary" onClick={this.handleClose}>
+              Cancel
+            </Button>
+            <Button variant="primary" onClick={this.handleSubmit}>
+              Update
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        {/* calendar for teacher -----------------------------------------------*/}
+
+        <div id="teacherProfileInfo">
+          <h3>Personal Information</h3>
+          <p>{user.instrumentname}</p>
+          <p>{user.levelsname}</p>
+          <p>{user.city}</p>
+        </div>
+
+        <div>
+          {/* <div className="calendar-info">
             <h6>Free to teach on</h6>
+          </div> */}
+          <div className="calendar-box">
+            <DayPicker
+              fromMonth={new Date()}
+              selectedDays={this.state.availableDays}
+              onDayClick={this.handleDayClick}
+              disabledDays={[
+                {
+                  before: new Date()
+                }
+              ]}
+            />
+            {!!this.state.availableDays.length && (
+              <div>
+                <ul>
+                  {this.state.availableDays.map(day => {
+                    // return <li key={day}>{day.toLocaleDateString()}</li>;
+                  })}
+                </ul>
+              </div>
+            )}
           </div>
-
-          <div>
-            <div className="calendar-box">
-              <DayPicker
-                fromMonth={new Date()}
-                selectedDays={this.state.availableDays}
-                onDayClick={this.handleDayClick}
-                disabledDays={[
-                  {
-                    before: new Date()
-                  }
-                ]}
-              />
-              {!!this.state.availableDays.length && (
-                <div>
-                  <ul>
-                    {this.state.availableDays.map(day => {
-                      // return <li key={day}>{day.toLocaleDateString()}</li>;
-                    })}
-                  </ul>
-                </div>
-              )}
-            </div>
-            <button onClick={this.saveDays} className="save-date-button">
-              Save
-            </button>
-          </div>
+          <button onClick={this.saveDays} className="save-date-button">
+            Save
+          </button>
         </div>
       </main>
     );

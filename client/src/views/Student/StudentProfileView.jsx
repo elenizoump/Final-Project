@@ -155,64 +155,10 @@ class StudentProfileView extends Component {
               </Button>
             </div>
 
-            <img
-              src={defaultImg}
-              alt="Profile"
-              className="profilePic"
-            />
-
-            {/* <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src={`/${user.image}`} />
-              <Card.Body>
-                <Card.Title>
-                  <p>{user.name}</p>
-                  <p>{}</p>
-                  <p>{user.age}</p>
-                  <p>{user.address}</p>
-                  {this.state.instruments.map(instrument => (
-                    <p>
-                      {instrument.instrumentname} {instrument.level}
-                    </p>
-                  ))}
-                </Card.Title>
-
-                <Card.Text>{user.description}</Card.Text>
-              </Card.Body>
-            </Card> */}
+            <img src={user.image} alt="Profile" className="profilePic" />
           </div>
         )}
-        {/* <div className="UsersMapLocation">
-          <p>Here goes the house location on the map</p>
-        </div> */}
 
-        {/* <Button
-          variant="primary"
-          onClick={this.handleShow}
-          data-target="#emailModal"
-        >
-          Edit Email
-        </Button>
-        <Button
-          variant="primary"
-          onClick={this.handleShow}
-          data-target="#instrumentModal"
-        >
-          Edit Instrument
-        </Button>
-        <Button
-          variant="primary"
-          onClick={this.handleShow}
-          data-target="#levelModal"
-        >
-          Edit Level
-        </Button>
-        <Button
-          variant="primary"
-          onClick={this.handleShow}
-          data-target="#cityModal"
-        >
-          Edit City
-        </Button> */}
         {/* Edit profile modals------------------------------------------------------------------------------ */}
         <Modal
           show={this.state.modalShown}
@@ -371,6 +317,7 @@ class StudentProfileView extends Component {
           <p>{user.instrumentname}</p>
           <p>{user.levelsname}</p>
           <p>{user.city}</p>
+          <p className="studentDescription">{user.description}</p>
         </div>
         <Link to={`/teachers/view`}>Book a lesson</Link>
       </div>

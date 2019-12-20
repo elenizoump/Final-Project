@@ -1,4 +1,6 @@
 .listOfLessons {
+  max-width: 414px !important;
+  max-height: 736px !important;
   height: 90vh;
   width: 100vw;
   background-image: url("/images/screenbackground.png");
@@ -47,6 +49,11 @@
       background-color: transparent;
       //border: 1px;
       border: 2px solid #c09fed;
+
+      h4 {
+        text-decoration: none;
+        color: black;
+      }
     }
   }
 }

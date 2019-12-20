@@ -1,4 +1,6 @@
 .singleTeacherView {
+  max-width: 414px !important;
+  max-height: 736px !important;
   height: 90vh;
   width: 100vw;
   background-image: url("/images/profile.png");
@@ -18,8 +20,7 @@
 
   img {
     height: 10em;
-    width: auto;
-
+    width: 10em;
     margin: 0 30%;
     border: 2px solid white;
     border-radius: 50%;
@@ -43,7 +44,7 @@
 
   #teacherInfo {
     text-align: center;
-    background-color: #f4f1f8;
+    background-color: transparent;
     border: 0px solid;
     max-width: 100%;
     width: 80%;
@@ -52,7 +53,7 @@
     width: fit-content;
     border-radius: 2%;
     max-height: 95%;
-    margin-top: 25%;
+    margin-top: 5%;
     margin-bottom: 8%;
     color: #000;
 
@@ -62,6 +63,10 @@
 
     p {
       margin-bottom: 1px;
+    }
+
+    .teacherDescription {
+      margin-top: 1em;
     }
 
     h3 {

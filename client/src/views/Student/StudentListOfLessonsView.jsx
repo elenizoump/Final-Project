@@ -14,12 +14,9 @@ export default class StudentListOfLessonsView extends Component {
             {lessonList.map(lesson => (
               <ListGroup.Item key={lesson._id}>
                 <Link key={lesson._id} to={`/lesson/${lesson._id}/view`}>
-                  <h4>
-                    {lesson._teacher.name}
-                    {lesson.instrument}
-                    {lesson.hoursOfStudy}
-                    {lesson.status}
-                  </h4>
+                  <h4>Teacher: {lesson._teacher.name}</h4>
+                  <h4>Instrument: {lesson.instrument}</h4>
+                  <h4> Status: {lesson.status}</h4>
                 </Link>
               </ListGroup.Item>
             ))}

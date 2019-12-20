@@ -1,6 +1,9 @@
 .App {
-  background-image: url('./images/screenbackground.png');
+  max-width: 414px !important;
+  max-height: 736px !important;
+  margin-left: 20vw;
+  /* background-image: url('./images/screenbackground.png');
   background-size: cover; 
    width: 100vw;
-  height: 100vh;
+  height: 100vh; */
 }

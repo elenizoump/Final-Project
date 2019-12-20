@@ -65,8 +65,10 @@
 
   .save-date-button {
     border: none;
+    position: absolute;
+    bottom: 0;
     background-color: purple;
-    padding: 1em;
+    padding: 0.2em;
     border-radius: 3px;
     width: 100%;
     color: white;

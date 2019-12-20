@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { loadLesson } from "./../../services/lesson";
 import { withRouter } from "react-router-dom";
 import "./../../styles/studentSingleLessonStyles.scss";
+import GoogleApiWrapper from "./../../components/Map";
 class StudentSingleLessonView extends Component {
   constructor(props) {
     super(props);
@@ -30,7 +31,7 @@ class StudentSingleLessonView extends Component {
         } = response;
         this.setState({
           lesson,
-          studentData,
+          // studentData,
           teacherData,
           loaded: true
         });
@@ -56,23 +57,19 @@ class StudentSingleLessonView extends Component {
           <h6> Bookend on {lesson.date}</h6>
           <h4> Current status {lesson.status}</h4>
         </div>
-
-        <div className="location-box">
-          <h4>Location</h4>
-          <p>{teacherData.adress} Teacher Address</p>
-        </div>
-
         <div className="lesson-info-box">
           <h4>Teacher details</h4>
-          <p>{teacherData.name} Teacher Name</p>
-          <p>{teacherData.gender} Teacher Gender</p>
-          <p>{teacherData.age} Teacher Age</p>
-          <p>{teacherData.description} Teacher Description</p>
+          <img
+            src={teacherData.image}
+            alt="Profile"
+            className="studentprofilePic"
+          />
+          <p>Teacher name: {teacherData.name} </p>
+          <p>Teacher location: {teacherData.city} </p>
+          <p>Description: {teacherData.description} Student Description</p>
+          <p>Teacher teaching level: {teacherData.levelsname}</p>
+          <p>Price per hour: {teacherData.levelsname}</p>
         </div>
-
-        {/* <div className="_teacherMapLocation">
-          <p>Here goes the house location on the map</p>
-        </div> */}
         <div className="chat-bubble">
           <Link to="/create">
             <ion-icon name="chatbubbles"></ion-icon>

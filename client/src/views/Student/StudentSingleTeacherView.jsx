@@ -6,7 +6,7 @@ import { loadTeacher } from "./../../services";
 import { withRouter } from "react-router-dom";
 import "./../../styles/singleTeacherView.scss";
 import defaultImg from "./../../images/profileDefault.png";
-
+import MapContainer from "./../../components/Map";
 class StudentSingleTeacherView extends Component {
   constructor(props) {
     super(props);

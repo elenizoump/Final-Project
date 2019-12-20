@@ -13,8 +13,8 @@ export default class StudentListOfLessonsView extends Component {
           {lessonList.map(lesson => (
             <Link key={lesson._id} to={`/lesson/${lesson._id}/view`}>
               <li>Instrunment:{lesson.instrument}</li>
-              <li>{lesson.hoursOfStudy}</li>
               <li>Status: {lesson.status}</li>
+              <li>Student: {lesson.hoursOfStudy}</li>
             </Link>
           ))}
         </ul>

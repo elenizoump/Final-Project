@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
 .App {
-  max-width: 414px !important;
+  /* max-width: 414px !important;
   max-height: 736px !important;
-  margin-left: 20vw;
+  //margin-left: 20vw; */
   /* background-image: url('./images/screenbackground.png');
   background-size: cover; 
    width: 100vw;

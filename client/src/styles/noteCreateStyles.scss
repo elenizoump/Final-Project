@@ -46,9 +46,9 @@
     width: 414px;
     max-width: 414px !important;
     position: absolute;
-    //@debugmargin-top: 10px;
-    bottom: 157px;
-    left: 155px;
+    bottom: 0;
+    right: 1em;
+
     right: 0;
     padding: 10px;
   }
@@ -58,11 +58,12 @@
     border: none;
     border-radius: 2px;
     padding: 10px;
-    position: absolute;
+
     margin: 10px;
     color: white;
-    right: 212px;
-    bottom: 156px;
+    position: absolute;
+    right: 10px;
+    bottom: 7px;
   }
 }
 

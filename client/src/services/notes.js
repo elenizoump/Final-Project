@@ -5,7 +5,8 @@ const apiAuthenticationService = axios.create({
   //withCredentials: true
 });
 
-export const list = async () => await apiAuthenticationService.get("/list");
+export const list = async receiver =>
+  await apiAuthenticationService.get(`/list/${receiver}`);
 
 export const load = async id => {
   try {
@@ -33,12 +34,12 @@ export const remove = async id => {
   }
 };
 
-export const create = async note => {
-  const data = new FormData();
-  data.append("content", note.content);
-  data.append("image", note.image);
+export const create = async (note, receiver) => {
+  const data = {
+    content: note.content,
+    receiver
+  };
   try {
-    console.log(data);
     const response = await apiAuthenticationService.post(`/create`, data);
     return response.data.note;
   } catch (error) {

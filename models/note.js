@@ -11,6 +11,10 @@ const schema = new mongoose.Schema({
   _author: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
+  },
+  _receiver: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
   }
 });
 

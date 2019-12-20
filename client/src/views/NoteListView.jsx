@@ -16,8 +16,12 @@ class NoteListView extends Component {
             <p>Attachements: <img src={note.image} /></p> */}
               <Toast className="toast">
                 <Toast.Header>
-                  <img src={user.image} className="rounded mr-2" alt="" />
-                  <strong className="mr-auto">{user.name}</strong>
+                  <img
+                    src={note._author.image}
+                    className="rounded mr-2"
+                    alt=""
+                  />
+                  <strong className="mr-auto">{note._author.name}</strong>
                   <small>just now</small>
                 </Toast.Header>
                 <Toast.Body>{note.content}</Toast.Body>

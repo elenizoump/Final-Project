@@ -31,8 +31,10 @@ class NoteCreateView extends Component {
   }
 
   async fetchNotes() {
+    const receiver = this.props.match.params.receiver;
+    console.log(this.props);
     try {
-      const response = await listNoteService();
+      const response = await listNoteService(receiver);
       if (response.statusText === "OK") {
         const { data } = response;
         this.setState({
@@ -78,7 +80,8 @@ class NoteCreateView extends Component {
     const note = this.state.note;
     // console.log(note);
     try {
-      const noteDocument = await createNoteService(note);
+      const receiver = this.props.match.params.receiver;
+      const noteDocument = await createNoteService(note, receiver);
       // const id = noteDocument._id;
       //this.props.history.push(`/${id}`);
       this.setState({
@@ -123,10 +126,7 @@ class NoteCreateView extends Component {
         <main className="noteForm">
           <NoteListView user={this.props.user} notes={notes} />
           {note && (
-            <form
-              onSubmit={this.handleFormSubmission}
-              encType="multipart/form-data"
-            >
+            <form onSubmit={this.handleFormSubmission}>
               {/* <input
                 className='upload-file'
                 type="file"

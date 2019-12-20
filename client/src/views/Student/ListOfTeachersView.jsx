@@ -103,7 +103,11 @@ export default class ListOfTeachersView extends Component {
                     />
                     <h4>
                       {teacher.name} {teacher.levelsprice}€/hr
+                    </h4>
+                    <h4>
+                      Rating:
                       {teacher.popularity}
+                      <ion-icon name="star-outline"></ion-icon>
                     </h4>
                   </Link>
                 </ListGroup.Item>

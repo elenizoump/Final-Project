@@ -70,11 +70,13 @@ class StudentSingleLessonView extends Component {
           <p>Teacher teaching level: {teacherData.levelsname}</p>
           <p>Price per hour: {teacherData.levelsname}</p>
         </div>
-        <div className="chat-bubble">
-          <Link to="/create">
-            <ion-icon name="chatbubbles"></ion-icon>
-          </Link>
-        </div>
+        {teacherData && (
+          <div className="chat-bubble">
+            <Link to={`/create/${teacherData._id}`}>
+              <ion-icon name="chatbubbles"></ion-icon>
+            </Link>
+          </div>
+        )}
       </div>
     ) : null;
   }

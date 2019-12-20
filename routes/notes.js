@@ -15,14 +15,23 @@ router.get('/list', (req, res, next) => {
 });
 */
 
-router.get("/list", async (req, res, next) => {
+router.get("/list/:receiver", async (req, res, next) => {
   const userId = req.session.user;
+  const receiverId = req.params.receiver;
+  console.log(receiverId);
   if (!userId) {
     res.sendStatus(401);
   } else {
     try {
       const user = await User.findById(userId).exec();
-      const notes = await Note.find({ _author: userId }).exec();
+      const notes = await Note.find({
+        $or: [
+          { _author: userId, _receiver: receiverId },
+          { _author: receiverId, _receiver: userId }
+        ]
+      })
+        .populate("_author _receiver")
+        .exec();
       res.json(notes);
     } catch (error) {
       next(error);
@@ -63,29 +72,28 @@ router.delete("/:id", async (req, res, next) => {
 
 const multerMiddleware = require("./../middleware/Upload");
 
-router.post(
-  "/create",
-  multerMiddleware.single("image"),
-  async (req, res, next) => {
-    const content = req.body.content;
-    const userId = req.session.user;
-    if (!userId) {
-      res.sendStatus(401);
-    } else {
-      try {
-        // const note = await Note.create({ title, body }).exec();
-        const user = await User.findById(userId).exec();
-        const note = await Note.create({
-          content: content,
-          // image: req.file.url,
-          _author: user._id
-        });
-        res.json(note);
-      } catch (error) {
-        next(error);
-      }
+router.post("/create", async (req, res, next) => {
+  const content = req.body.content;
+  const receiverId = req.body.receiver;
+  const userId = req.session.user;
+  console.log(receiverId, userId);
+  if (!userId) {
+    res.sendStatus(401);
+  } else {
+    try {
+      // const note = await Note.create({ title, body }).exec();
+      const user = await User.findById(userId).exec();
+      const note = await Note.create({
+        content: content,
+        // image: req.file.url,
+        _author: user._id,
+        _receiver: receiverId
+      });
+      res.json(note);
+    } catch (error) {
+      next(error);
     }
   }
-);
+});
 
 module.exports = router;

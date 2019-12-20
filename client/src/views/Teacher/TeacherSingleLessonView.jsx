@@ -101,11 +101,13 @@ class TeacherSingleLessonView extends Component {
         {/* <div className="_teacherMapLocation">
           <p>Here goes the house location on the map</p>
         </div> */}
-        <div className="chat-bubble">
-          <Link to="/create">
-            <ion-icon name="chatbubbles"></ion-icon>
-          </Link>
-        </div>
+        {studentData && (
+          <div className="chat-bubble">
+            <Link to={`/create/${studentData._id}`}>
+              <ion-icon name="chatbubbles"></ion-icon>
+            </Link>
+          </div>
+        )}
         {this.state.statusPeding && (
           <button onClick={this.statusChange}>Confirm Lesson</button>
         )}

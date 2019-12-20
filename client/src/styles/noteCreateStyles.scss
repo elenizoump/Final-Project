@@ -1,4 +1,18 @@
-.list-group {
+.chat-container {
+  max-width: 414px !important;
+  max-height: 736px !important;
+  height: 90vh;
+  width: 100vw;
+  background-image: url("/images/screenbackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 0.1px solid #26262e;
+  background-color: #26262e;
+  display: flex;
+  flex-direction: column;
+
+  .list-group {
     display: flex;
     flex-direction: column;
     padding-left: 0;
@@ -6,76 +20,76 @@
     max-height: 25em !important;
   }
 
-.chat-container {
-    display: flex;
-    flex-direction: column;
+  //   .chat-container {
+  //     display: flex;
+  //     flex-direction: column;
 
-    .chat-title {
-        color: white;
-        font-weight: bold;
-        letter-spacing: 1px;
-        text-align: center;
-        margin-top: 0.5em;
-        // box-shadow: -1px 15px 14px -7px rgba(0,0,0,0.50);
-    }
-    
-    .chat-details-container{
+  .chat-title {
+    color: white;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 0.5em;
+    // box-shadow: -1px 15px 14px -7px rgba(0,0,0,0.50);
+  }
+
+  .chat-details-container {
     margin: 20px;
-    }
-    
-    .toast {
-        margin: 10px;
-    
-    }
-    
-    .chat-input-area {
-        border: none;
-        width: 100%;
-        position: absolute;
-        margin-top: 10px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 10px;
-    }
-    
-    .chat-send-button {
-        background-color: purple;
-        border: none;
-        border-radius: 2px;
-        padding: 10px;
-        position: absolute;
-        margin: 10px;
-        color: white;
-        right: 0;
-        bottom: 0;
-    }
-    
-    .chat-info-box {
-        border-radius: 3px;
-        width: 0 auto;
-        height: 0 auto;
-        display: flex;
-        color: white;
-        font-size: 16px;
-        margin-bottom: 8em;
-        
-    }
-    
-    ion-icon{
-        color: white;
-        font-size: 2em;
-      margin-left: 4em;
-    }
-    
-    .homework-text {
-        color: white;
-        margin-bottom: 2em;
-    }
-    
-    img {
-        width: 5em;
-        height: 5em;
-    }
+  }
+
+  .toast {
+    margin: 10px;
+  }
+
+  .chat-input-area {
+    border: none;
+    width: 414px;
+    max-width: 414px !important;
+    position: absolute;
+    //@debugmargin-top: 10px;
+    bottom: 157px;
+    left: 155px;
+    right: 0;
+    padding: 10px;
+  }
+
+  .chat-send-button {
+    background-color: purple;
+    border: none;
+    border-radius: 2px;
+    padding: 10px;
+    position: absolute;
+    margin: 10px;
+    color: white;
+    right: 212px;
+    bottom: 156px;
+  }
 }
 
+.chat-info-box {
+  border-radius: 3px;
+  width: 0 auto;
+  height: 0 auto;
+  display: flex;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 8em;
+}
+
+ion-icon {
+  color: white;
+  font-size: 2em;
+  margin-left: 4em;
+}
+
+.homework-text {
+  color: white;
+  margin-bottom: 2em;
+}
+
+img {
+  width: 5em;
+  height: 5em;
+}
+
+// }

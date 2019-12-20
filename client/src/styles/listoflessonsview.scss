@@ -25,7 +25,7 @@
   }
 
   #listOfLessonsGroup {
-    background-color: #f7f5fa;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -48,11 +48,13 @@
       padding: 0.75rem 1.25rem;
       background-color: transparent;
       //border: 1px;
-      border: 2px solid #c09fed;
+      border: none;
 
-      h4 {
+      p {
         text-decoration: none;
         color: black;
+        padding: none;
+        margin: none;
       }
     }
   }

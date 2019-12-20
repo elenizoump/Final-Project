@@ -120,7 +120,7 @@ class NoteCreateView extends Component {
           <p> </p>
         </div>
 
-        <main>
+        <main className="noteForm">
           <NoteListView user={this.props.user} notes={notes} />
           {note && (
             <form

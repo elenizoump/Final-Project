@@ -6,6 +6,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 export default class StudentListOfLessonsView extends Component {
   render() {
     const lessonList = this.props.lessons;
+    const teacher = this.props.teacherData;
     return (
       <div className="listOfLessons">
         <h2>Upcoming Lessons</h2>
@@ -14,9 +15,8 @@ export default class StudentListOfLessonsView extends Component {
             {lessonList.map(lesson => (
               <ListGroup.Item key={lesson._id}>
                 <Link key={lesson._id} to={`/lesson/${lesson._id}/view`}>
-                  <h4>Teacher: {lesson._teacher.name}</h4>
-                  <h4>Instrument: {lesson.instrument}</h4>
-                  <h4> Status: {lesson.status}</h4>
+                  <p>Instrument: {lesson.instrument}</p>
+                  <p> Status: {lesson.status}</p>
                 </Link>
               </ListGroup.Item>
             ))}

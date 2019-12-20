@@ -97,9 +97,7 @@ class TeacherSingleLessonView extends Component {
           <p>Description: {studentData.description} Student Description</p>
           <p>Student level: {studentData.levelsname}</p>
         </div>
-        {this.state.statusPeding && (
-          <button onClick={this.statusChange}>Confirm Lesson</button>
-        )}
+
         {/* <div className="_teacherMapLocation">
           <p>Here goes the house location on the map</p>
         </div> */}
@@ -108,6 +106,9 @@ class TeacherSingleLessonView extends Component {
             <ion-icon name="chatbubbles"></ion-icon>
           </Link>
         </div>
+        {this.state.statusPeding && (
+          <button onClick={this.statusChange}>Confirm Lesson</button>
+        )}
       </div>
     ) : null;
   }

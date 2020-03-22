@@ -31,7 +31,7 @@ class StudentSingleLessonView extends Component {
         } = response;
         this.setState({
           lesson,
-          // studentData,
+          studentData,
           teacherData,
           loaded: true
         });
@@ -54,8 +54,11 @@ class StudentSingleLessonView extends Component {
     return this.state.loaded && this.state.lesson ? (
       <div className="main-div-container-student">
         <div className="lesson-status-info">
-          <h6> Bookend on {lesson.date}</h6>
+          <h6> Booked on {lesson.date}</h6>
           <h4> Current status {lesson.status}</h4>
+          <Button onClick={this.fetchLesson(this.props.lessonId)}>
+            Refresh Lesson Status
+          </Button>
         </div>
         <div className="lesson-info-box">
           <h4>Teacher details</h4>
@@ -68,7 +71,7 @@ class StudentSingleLessonView extends Component {
           <p>Teacher location: {teacherData.city} </p>
           <p>Description: {teacherData.description} Student Description</p>
           <p>Teacher teaching level: {teacherData.levelsname}</p>
-          <p>Price per hour: {teacherData.levelsname}</p>
+          <p>Price per hour: {teacherData.levelsprice}‎€</p>
         </div>
         {teacherData && (
           <div className="chat-bubble">

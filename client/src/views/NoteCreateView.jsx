@@ -111,7 +111,6 @@ class NoteCreateView extends Component {
     const notes = this.state.notes;
     const note = this.state.note;
     const user = this.props.user;
-    console.log("fdvfdvfdgf", user);
 
     return (
       <div className="chat-container">

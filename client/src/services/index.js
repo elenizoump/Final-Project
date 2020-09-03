@@ -2,7 +2,6 @@ import axios from "axios";
 
 const apiAuthenticationService = axios.create({
   baseURL: "/api"
-  //withCredentials: true
 });
 
 export const listTeachers = async () =>

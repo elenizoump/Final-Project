@@ -14,7 +14,6 @@ class TeacherSingleLessonView extends Component {
       studentData: null,
       teacherData: null,
       loaded: false,
-      //status: "Pending",
       statusPeding: true
     };
     this.statusChange = this.statusChange.bind(this);
@@ -67,16 +66,6 @@ class TeacherSingleLessonView extends Component {
       console.log(error);
     }
   }
-  // async submitChangedStatus() {
-  //   try {
-  //     const response = await updateStatus({
-  //       status: this.state.status
-  //     });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-
   render() {
     const { lesson, studentData } = this.state;
     return this.state.loaded && this.state.lesson ? (
@@ -98,9 +87,6 @@ class TeacherSingleLessonView extends Component {
           <p>Student level: {studentData.levelsname}</p>
         </div>
 
-        {/* <div className="_teacherMapLocation">
-          <p>Here goes the house location on the map</p>
-        </div> */}
         {studentData && (
           <div className="chat-bubble">
             <Link to={`/create/${studentData._id}`}>

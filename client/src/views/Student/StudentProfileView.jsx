@@ -18,21 +18,11 @@ class StudentProfileView extends Component {
       instruments: [],
       modalShown: false,
       newName: props.user.name
-      // newEmail: props.user.email,
-      // newInstrumentname: props.user.instrumentname,
-      // newLevelsname: props.user.levelsname,
-      // newCity: props.user.city
     };
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
-    // this.handleEmailChange = this.handleEmailChange.bind(this);
-    // this.handleInstrumentnamelChange = this.handleInstrumentnamelChange.bind(
-    //   this
-    // );
-    // this.handleLevelsnameChange = this.handleLevelsnameChange.bind(this);
-    // this.handleCityChange = this.handleCityChange.bind(this);
   }
 
   handleNameChange(event) {
@@ -40,27 +30,6 @@ class StudentProfileView extends Component {
       newName: event.target.value
     });
   }
-
-  // handleEmailChange(event) {
-  //   this.setState({
-  //     newEmail: event.target.value
-  //   });
-  // }
-  // handleInstrumentnamelChange(event) {
-  //   this.setState({
-  //     newInstrumentname: event.target.value
-  //   });
-  // }
-  // handleLevelsnameChange(event) {
-  //   this.setState({
-  //     newLevelsname: event.target.value
-  //   });
-  // }
-  // handleCityChange(event) {
-  //   this.setState({
-  //     newCity: event.target.value
-  //   });
-  // }
 
   async submitChangedData() {
     try {
@@ -88,40 +57,6 @@ class StudentProfileView extends Component {
         modalShown: false
       });
     }
-
-    // if (this.state.newEmail && this.state.newEmail !== this.props.user.email) {
-    //   this.submitChangedData();
-    //   this.setState({
-    //     modalShown: false
-    //   });
-    // }
-
-    // if (
-    //   this.state.newInstrumentname &&
-    //   this.state.newInstrumentname !== this.props.user.instrumentname
-    // ) {
-    //   this.submitChangedData();
-    //   this.setState({
-    //     modalShown: false
-    //   });
-    // }
-
-    // if (
-    //   this.state.newLevelsname &&
-    //   this.state.newLevelsname !== this.props.user.levelsname
-    // ) {
-    //   this.submitChangedData();
-    //   this.setState({
-    //     modalShown: false
-    //   });
-    // }
-
-    // if (this.state.newCity && this.state.newCity !== this.props.user.newCity) {
-    //   this.submitChangedData();
-    //   this.setState({
-    //     modalShown: false
-    //   });
-    // }
   }
 
   handleClose() {
@@ -150,7 +85,6 @@ class StudentProfileView extends Component {
                 <img
                   src="/images/pen.png"
                   alt="edit name"
-                  // className="profilePic"
                 />
               </Button>
             </div>
@@ -189,129 +123,6 @@ class StudentProfileView extends Component {
             </Button>
           </Modal.Footer>
         </Modal>
-        {/* Modal email------------------------------------------------------------------ */}
-        {/* <Modal
-          show={this.state.modalShown}
-          onHide={this.handleClose}
-          id="emailModal"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Change your email</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <p>New email</p>
-            <Form.Control
-              size="lg"
-              type="text"
-              placeholder="Your new email"
-              value={this.state.newEmail}
-              onChange={this.handleEmailChange}
-            />
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Cancel
-            </Button>
-            <Button variant="primary" onClick={this.handleSubmit}>
-              Update
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
-        {/* Modal instrument------------------------------------------------------------------ */}
-        {/* <Modal
-          show={this.state.modalShown}
-          onHide={this.handleClose}
-          id="instrumentModal"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Change your Instrument</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <p>New Instrument</p>
-            <Form.Control
-              size="lg"
-              type="text"
-              placeholder="Your Instrument"
-              value={this.state.newInstrumentname}
-              onChange={this.handleInstrumentnamelChange}
-            />
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Cancel
-            </Button>
-            <Button variant="primary" onClick={this.handleSubmit}>
-              Update
-            </Button>
-          </Modal.Footer>
-        </Modal>
-
-        {/* Modal Level------------------------------------------------------------------ */}
-        {/* <Modal
-          show={this.state.modalShown}
-          onHide={this.handleClose}
-          id="levelModal"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Change your level</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <p>New level</p>
-            <Form.Control
-              size="lg"
-              type="text"
-              placeholder="Your Level"
-              value={this.state.newLevelsname}
-              onChange={this.handleLevelsnameChange}
-            />
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Cancel
-            </Button>
-            <Button variant="primary" onClick={this.handleSubmit}>
-              Update
-            </Button>
-          </Modal.Footer>
-        </Modal>
-        {/* Modal City------------------------------------------------------------------ */}
-        {/* <Modal
-          show={this.state.modalShown}
-          onHide={this.handleClose}
-          id="cityModal"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Change your City</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
-            <p>New City</p>
-            <Form.Control
-              size="lg"
-              type="text"
-              placeholder="Your City"
-              value={this.state.newCity}
-              onChange={this.handleCityChange}
-            />
-          </Modal.Body>
-
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.handleClose}>
-              Cancel
-            </Button>
-            <Button variant="primary" onClick={this.handleSubmit}>
-              Update
-            </Button>
-          </Modal.Footer>
-        </Modal>{" "}
-        */}
         <div id="studentProfileInfo">
           <h3>Personal Information</h3>
           <p>{user.instrumentname}</p>

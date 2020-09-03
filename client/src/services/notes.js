@@ -2,7 +2,6 @@ import axios from "axios";
 
 const apiAuthenticationService = axios.create({
   baseURL: "/api/notes"
-  //withCredentials: true
 });
 
 export const list = async receiver =>

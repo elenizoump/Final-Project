@@ -5,18 +5,9 @@ const router = new Router();
 const User = require("./../models/user");
 const Calendar = require("./../models/Calendar");
 
-/* router.get("/list", (req, res, next) => {
-  Lesson.find()
-    .then(lessons => {
-      res.json({ lessons });
-    })
-    .catch(error => {
-      next(error);
-    });
-}); */
 
 router.post("/create", async (req, res, next) => {
-  // const { title, body } = req.body;
+
   console.log("REQ BODY CALENDAR", req.body.calendar);
   console.log("CALENDAR CREATE teacherId", req.session.user);
 
@@ -82,14 +73,6 @@ router.get("/viewAllCalendars", async (req, res, next) => {
   }
 });
 
-// router.get("/selectTeacher", async (req, res, next) => {
-//   try {
-//     const users = await User.find().exec();
-//     res.json({ users });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 router.get("/my-calendar", async (req, res, next) => {
   const userId = req.session.user;
@@ -113,7 +96,7 @@ router.get("/:teacherId", async (req, res, next) => {
     res.sendStatus(401);
   } else {
     try {
-      // const user = await User.findById(userId).exec();
+    
       const calendar = await Calendar.findOne({ _teacher: teacherId }).exec();
       res.json(calendar);
     } catch (error) {
@@ -123,38 +106,6 @@ router.get("/:teacherId", async (req, res, next) => {
   }
 });
 
-// router.get("/lesson/:lessonId", async (req, res, next) => {
-//   const userId = req.session.user;
-//   console.log("IS THIS SOMETHING", req.params.id);
-//   if (!userId) {
-//     res.sendStatus(401);
-//   } else {
-//     try {
-//       const lesson = await Lesson.findById(req.params.lessonId).exec();
-//       if (lesson._student === userId || lesson._teacher === userId) {
-//         res.json(lesson);
-//       } else {
-//         res.sendStatus(401);
-//       }
-//     } catch (error) {
-//       next(error);
-//     }
-//   }
-// });
-
-// router.patch("/:id", async (req, res, next) => {
-//   const { instrument, hoursOfStudy } = req.body;
-//   try {
-//     const lesson = await Lesson.findByIdAndUpdate(req.params.id, {
-//       ...(instrument && { instrument }),
-//       ...(hoursOfStudy ? { hoursOfStudy } : {})
-//     }).exec();
-//     res.json({ lesson });
-//   } catch (error) {
-//     next(error);
-//   }
-// });
-
 router.delete("/:id", async (req, res, next) => {
   try {
     await Calendar.findByIdAndRemove(req.params.id).exec();
@@ -163,7 +114,5 @@ router.delete("/:id", async (req, res, next) => {
     next(error);
   }
 });
-
-//const multerMiddleware = require('./../../middleware/multer-configuration');
 
 module.exports = router;

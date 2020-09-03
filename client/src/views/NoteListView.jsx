@@ -11,7 +11,7 @@ class NoteListView extends Component {
       <ListGroup className="chat-details-container overflow-auto">
         {this.props.notes.map(note => {
           return (
-            <div>
+            <div key={note._id}>
               {/* <p>{note.content}</p>
             <p>Attachements: <img src={note.image} /></p> */}
               <Toast className="toast">

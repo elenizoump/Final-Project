@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./../../styles/listoflessonsview.scss";
-// import { listLessons as listService } from "./../../services/lesson.js";
 import ListGroup from "react-bootstrap/ListGroup";
 export default class StudentListOfLessonsView extends Component {
   render() {

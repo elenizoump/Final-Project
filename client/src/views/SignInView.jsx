@@ -44,9 +44,6 @@ class SignInView extends Component {
             onSubmit={this.handleFormSubmission}
           >
             <Form.Group as={Row} controlId="formHorizontalEmail">
-              {/* <Form.Label column sm={2}>
-                Email
-              </Form.Label> */}
               <Col sm={10}>
                 <Form.Control
                   type="email"
@@ -59,9 +56,6 @@ class SignInView extends Component {
             </Form.Group>
 
             <Form.Group as={Row} controlId="formHorizontalPassword">
-              {/* <Form.Label column sm={2}>
-                Password
-              </Form.Label> */}
               <Col sm={10}>
                 <Form.Control
                   type="password"

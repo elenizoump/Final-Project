@@ -3,18 +3,6 @@ const router = new Router();
 const User = require("./../models/user");
 const Note = require("../models/note");
 
-/*
-router.get('/list', (req, res, next) => {
-  Note.find()
-    .then(notes => {
-      res.json({ notes });
-    })
-    .catch(error => {
-      next(error);
-    });
-});
-*/
-
 router.get("/list/:receiver", async (req, res, next) => {
   const userId = req.session.user;
   const receiverId = req.params.receiver;
@@ -81,11 +69,9 @@ router.post("/create", async (req, res, next) => {
     res.sendStatus(401);
   } else {
     try {
-      // const note = await Note.create({ title, body }).exec();
       const user = await User.findById(userId).exec();
       const note = await Note.create({
         content: content,
-        // image: req.file.url,
         _author: user._id,
         _receiver: receiverId
       });

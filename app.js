@@ -8,25 +8,16 @@ const cookieParser = require("cookie-parser");
 const expressSession = require("express-session");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-//const cors = require("cors");
-//const serveFavicon = require("serve-favicon");
 const basicAuthenticationDeserializer = require("./middleware/basic-authentication-deserializer.js");
 const bindUserToViewLocals = require("./middleware/bind-user-to-view-locals.js");
-//const nodeSass = require("node-sass-middleware");
-// ROUTERS
-
 const indexRouter = require("./routes/index");
 const authenticationRouter = require("./routes/authentication");
 const lessonRouter = require("./routes/lesson");
 const notesRouter = require("./routes/notes");
 const homeworkRouter = require("./routes/homework");
 const calendarRouter = require("./routes/calendar");
-
 const MongoStore = connectMongo(expressSession);
 const app = express();
-
-//app.use(serveFavicon(join(__dirname, "client/build", "favicon.ico")));
-//app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 app.use(express.static(join(__dirname, "client/build")));
 app.use(logger("dev"));

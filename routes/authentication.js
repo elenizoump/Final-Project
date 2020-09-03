@@ -34,10 +34,7 @@ router.patch("/user", async (req, res, next) => {
 
       const user = await User.findByIdAndUpdate(userId, {
         name: newName
-        // email: newEmail,
-        // instrumentname: newInstrumentname,
-        // levelsname: newLevelsname,
-        // city: newCity
+    
       }).exec();
       res.json(user);
     } catch (error) {

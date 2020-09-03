@@ -4,8 +4,6 @@ import { createLesson as createLessonService } from "./../../services/lesson.js"
 import Form from "react-bootstrap/Form";
 import { Button, ButtonToolbar } from "react-bootstrap";
 import { PopUpView } from "./PopUpView.jsx";
-// import Calendar from "react-calendar";
-// import { loadMyCalendar as loadMyCalendarService } from "./../../services/calendar.js";
 import { loadCalendar as loadCalendarService } from "./../../services/calendar.js";
 import "./../../styles/studentlessonformview.scss";
 
@@ -21,7 +19,6 @@ class StudentLessonFormView extends Component {
       date: new Date()
     };
     this.handleFormSubmission = this.handleFormSubmission.bind(this);
-    //this.onTeacherChange = this.onTeacherChange.bind(this);
     this.onInstrumentNameChange = this.onInstrumentNameChange.bind(this);
     this.onStudyHoursChange = this.onStudyHoursChange.bind(this);
     this.onAvailableDayChange = this.onAvailableDayChange.bind(this);
@@ -43,10 +40,10 @@ class StudentLessonFormView extends Component {
   onChange = date => this.setState({ date });
 
   onTeacherChange(event) {
-    //const result = await loadMyCalendarService()
+
     this.setState({
       chosenDay: event.target.value
-      //availableDays: result
+
     });
   }
 
@@ -84,7 +81,6 @@ class StudentLessonFormView extends Component {
       this.props.fetchLessonData();
       const id = lessonDocument._id;
       this.setState({ popUpViewShow: true });
-      //this.props.history.push(`/lesson/selectTeacher`);
     } catch (error) {
       console.log(error);
     }
@@ -103,18 +99,6 @@ class StudentLessonFormView extends Component {
       chosenDay: parseInt(event.target.value, 10)
     });
   }
-
-  /* handleFileChange(event) {
-    console.dir(event.target.files);
-    const file = event.target.files[0];
-    this.setState({
-      note: {
-        ...this.state.note,
-        image: file
-      }
-    });
-  } */
-
   render() {
     let popUpViewClose = () => this.setState({ popUpViewShow: false });
     console.log("CALENDAR", this.state.availableDays);
@@ -152,24 +136,6 @@ class StudentLessonFormView extends Component {
               ))}
             </Form.Control>
           </Form.Group>
-          {/* <Form.Group controlId="exampleForm.ControlSelect1">
-            <Form.Label>Available Days</Form.Label>
-            <Form.Control
-              as="select"
-              type="text"
-              placeholder="Days"
-              value={this.state.availableDays}
-              name="days"
-              onChange={this.onTeacherChange}
-            >
-              <option value="">Please select a day</option>
-              {this.state.availableDays.map(day => (
-                <option key={day._id} value={day._id}>
-                  {day.name}
-                </option>
-              ))}
-            </Form.Control>
-          </Form.Group> */}
           <Form.Group controlId="formBasicPassword">
             <Form.Control
               type="number"
@@ -208,32 +174,7 @@ class StudentLessonFormView extends Component {
               ))}
             </Form.Control>
           </Form.Group>
-          {/*<div>
-            <div className="container">
-              <div className="row">
-                <div className="col-5" style={style}>
-                  <div className="list-group">
-                    {teachers.map(teacher => {
-                      return (
-                        <Link
-                          key={teacher._id}
-                          className="list-group-item list-group-item-action"
-                          to={`/teacher/${teacher._id}`}
-                        >
-                          {teacher.name} {teacher.image} {teacher.popularity}
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>  */}
           <hr />
-
-          {/* <Calendar onChange={this.onChange} value={this.state.date} />
-          <p>Picked date: {this.state.date.toLocaleDateString()} </p>
-          <hr /> */}
           <ButtonToolbar className="button">
             <Button className="btn-create" type="submit">
               Create Lesson

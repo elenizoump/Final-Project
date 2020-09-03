@@ -3,7 +3,6 @@ import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react'
 
 import { create as createHomeworkService } from './../services/homework';
 import { Link } from 'react-router-dom';
-//import HomeworkListView from './HomeworkListView';
 
 
 class AddHomework extends Component {
@@ -24,22 +23,12 @@ class AddHomework extends Component {
   handleInputChange(event) {
     const name = event.target.name;
     const value = event.target.value;
-    // console.log(name, value);
     this.setState({
-      // [name]: value
       homework: {
         ...this.state.homework,
         [name]: value
       }
     });
-    /*
-    this.setState(previousState => ({
-      note: {
-        ...previousState.note,
-        [name]: value
-      }
-    }));
-    */
   }
 
   async handleFormSubmission(event) {
@@ -49,7 +38,6 @@ class AddHomework extends Component {
     try {
       const noteDocument = await createHomeworkService(homework);
       const id = noteDocument._id;
-      //this.props.history.push(`/create`);
     } catch (error) {
       console.log(error);
     }

@@ -2,10 +2,9 @@ import axios from "axios";
 
 const apiAuthenticationService = axios.create({
   baseURL: "/api/auth"
-  //withCredentials: true
+ 
 });
 
-//export default signIn;
 
 export const signUp = async data => {
   try {
@@ -15,7 +14,6 @@ export const signUp = async data => {
     throw error;
   }
 };
-//export default signUp;
 
 export const signUpTeacher = async data => {
   try {
@@ -29,7 +27,6 @@ export const signUpTeacher = async data => {
   }
 };
 
-//export default signOut;
 
 export const load = async id => {
   try {
@@ -39,7 +36,7 @@ export const load = async id => {
     throw error;
   }
 };
-//export default load;
+
 
 export const updateUser = async data =>
   await apiAuthenticationService.patch(`/user`, data);

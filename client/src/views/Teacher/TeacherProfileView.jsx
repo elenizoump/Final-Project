@@ -3,7 +3,6 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { load as loadUserService } from "./../../services/authentification";
-//import Calendar from "react-calendar";
 import DayPicker, { DateUtils } from "react-day-picker";
 import "react-day-picker/lib/style.css";
 import { createCalendar as createCalendarService } from "./../../services/calendar.js";
@@ -11,8 +10,6 @@ import { loadCalendar as loadCalendarService } from "./../../services/calendar.j
 import { editCalendar as editCalendarService } from "./../../services/calendar.js";
 import { loadTeacher as loadTeacherService } from "./../../services/authentification";
 import { loadMyCalendar as loadMyCalendarService } from "./../../services/calendar.js";
-//import DatePicker from "react-date-picker";
-//import SimpleReactCalendar from 'simple-react-calendar'
 import MapContainer from "./../../components/Map";
 import { updateUser } from "../../services/authentification.js";
 import defaultImg from "./../../images/profileDefault.png";
@@ -77,16 +74,8 @@ class TeacherProfileView extends Component {
           availableDays: days
         });
       }
-      // TODO - ADD SERVICE TO DISPLAY THE CALENDAR THAT MATCH TH USER ID WITH THE TEACHER ID
-      // backend - calendar.findOne({_teacher: req.session.user})
     }
   }
-
-  /*  handleChange = date => {
-    this.setState({
-      startDate: date
-    });
-  }; */
 
   //edit profile for teacher-----------------------------------------------
   handleNameChange(event) {
@@ -193,9 +182,6 @@ class TeacherProfileView extends Component {
         </div>
 
         <div>
-          {/* <div className="calendar-info">
-            <h6>Free to teach on</h6>
-          </div> */}
           <div className="calendar-box">
             <DayPicker
               fromMonth={new Date()}
@@ -211,7 +197,6 @@ class TeacherProfileView extends Component {
               <div>
                 <ul>
                   {this.state.availableDays.map(day => {
-                    // return <li key={day}>{day.toLocaleDateString()}</li>;
                   })}
                 </ul>
               </div>

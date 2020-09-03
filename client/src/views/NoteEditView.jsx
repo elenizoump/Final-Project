@@ -32,22 +32,13 @@ class NoteEditView extends Component {
   handleInputChange(event) {
     const name = event.target.name;
     const value = event.target.value;
-    // console.log(name, value);
     this.setState({
-      // [name]: value
+     
       note: {
         ...this.state.note,
         [name]: value
       }
     });
-    /*
-    this.setState(previousState => ({
-      note: {
-        ...previousState.note,
-        [name]: value
-      }
-    }));
-    */
   }
 
   async handleFormSubmission(event) {

@@ -22,40 +22,28 @@ import NoteItemView from "./views/NoteItemView";
 import ErrorView from "./views/ErrorView";
 import {
   listLessons
-  // loadLesson,
-  // editLesson,
-  // removeLesson
 } from "./services/lesson.js";
-
 import { listTeachers } from "./services";
 
 // student views
 import ListOfTeachersView from "./views/Student/ListOfTeachersView";
-// import PopUpView from "./views/Student/PopUpView";
 import StudentLessonFormView from "./views/Student/StudentLessonFormView";
 import StudentListOfLessonsView from "./views/Student/StudentListOfLessonsView";
 import StudentProfileView from "./views/Student/StudentProfileView";
-// import StudentProgressView from "./views/Student/StudentProgressView";
 import StudentSingleLessonView from "./views/Student/StudentSingleLessonView";
 import StudentSingleTeacherView from "./views/Student/StudentSingleTeacherView";
 //teacher views
-// import TeacherCalendarView from "./views/Teacher/TeacherCalendarView";
-// import TeacherListOfLessonsView from "./views/Teacher/TeacherListOfLessonsView";
-// import TeacherListRequestedLessons from "./views/Teacher/TeacherListRequestedLessons";
+
 import TeacherProfileView from "./views/Teacher/TeacherProfileView";
 import TeacherSignUpView from "./views/Teacher/TeacherSignUpView";
 import TeacherSingleLessonRequest from "./views/Teacher/TeacherSingleLessonRequest";
 import TeacherSingleLessonView from "./views/Teacher/TeacherSingleLessonView";
-//other
-// import ErrorView from "./views/ErrorView";
-// import LessonWallView from "./views/LessonWallView";
 import SignInView from "./views/SignInView";
 import StudentSignUpView from "./views/StudentSignUpView";
 import NavbarComponent from "./components/Navbar";
 
 import "./App.css";
 import LessonWallView from "./views/LessonWallView";
-
 import AddHomework from "./views/HomeworkView";
 import HomeworkListView from "./views/HomeworkListView";
 
@@ -231,10 +219,6 @@ class App extends Component {
 
             {this.state.user ? (
               <Switch>
-                {/* routes to forms */}
-
-                {/* routes from forms to profiles */}
-                {/* <Redirect from="/student" to="/lesson/create" /> */}
                 <Redirect exact="true" from="/" to="/lessons/view" />
                 <Redirect from="/sign-up" to="/profile" />
                 <Redirect from="/sign-in" to="/profile" />
@@ -288,12 +272,9 @@ class App extends Component {
                 />
                 <Route
                   path="/create/:receiver"
-                  // component={NoteCreateView}
                   render={props => (
                     <NoteCreateView {...props} user={this.state.user} />
                   )}
-                  // verify={this.verifyAuthentication}
-                  // redirect="/error/401"
                   user={this.state.user}
                 />
                 <Route
@@ -377,8 +358,7 @@ class App extends Component {
                   )}
                 />
                 <Route path="/lesson-wall" render={() => <LessonWallView />} />
-                {/* <Route path="/lesson-wall" component={LessonWallView} /> */}
-
+            
                 <Route
                   path="/list"
                   render={() => <NoteListView user={this.state.user} />}
@@ -388,11 +368,6 @@ class App extends Component {
                   path="/homeworkList"
                   render={() => <HomeworkListView user={this.state.user} />}
                 />
-                {/* <Route path="/:id/edit" component={NoteEditView} />
-                  <Route path="/:id" component={NoteItemView} />
-                  <Route path="/notes/list" exact component={NoteListView} /> */}
-
-                {/* <Redirect to="/error/404" /> */}
               </Switch>
             )}
           </div>
